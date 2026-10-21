@@ -1937,6 +1937,13 @@ document.addEventListener("pointerdown", e => {
   addEventListener("pointermove", move); addEventListener("pointerup", up); e.preventDefault();
 });
 document.addEventListener("dblclick", e => { if (!e.target.closest(".aipanel.v-float .ah") || e.target.closest("button")) return; S.floatPos = null; try { localStorage.removeItem("clueso-proto-float"); } catch (er) {} placeFloat(); });
+// Phone Home: the composer is a bar fixed to the bottom of the screen; the page reserves its height so nothing scrolls
+// out of reach behind it. Its height changes as people type (the box grows), so it is measured, not guessed.
+let dockRO = null;
+function dockComposer() { if (dockRO) { dockRO.disconnect(); dockRO = null; }
+  const box = isPhone() && document.querySelector(".create > .prompt"); const page = box && box.parentElement; if (!box) return;
+  const set = () => page.style.setProperty("--dock", Math.ceil(box.getBoundingClientRect().height) + "px"); set();
+  if (window.ResizeObserver) { dockRO = new ResizeObserver(set); dockRO.observe(box); } }
 let wasPhone = isPhone();
 addEventListener("resize", () => { placeFloat(); placeCoach(); if (isPhone() !== wasPhone) { wasPhone = isPhone(); S.navopen = false; closeLayers(); render(); } });
 
@@ -1977,6 +1984,7 @@ function render() {
   if (r === "settings") document.title = `${SET_LABEL[S.setPage] || "Settings"} · Settings · Clueso (redesign)`;
   if (r === "projects" && a) document.title = `${decodeURIComponent(a)} · Projects · Clueso (redesign)`;
   $("#root").innerHTML = html; if (tsug && !document.contains(tsug.input)) sugClose();
+  dockComposer();
   // Animate only when the feature changes (a new route or the AI panel opening), not on every re-render.
   const page = location.hash.split("?")[0];
   if (page !== lastPage) { const m = $(".main > *, .stage > main, .signin"); if (m) m.classList.add("arrive"); const n = $(".navitem.on"); if (n && lastPage !== null) n.classList.add("arrive"); }

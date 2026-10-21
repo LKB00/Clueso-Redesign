@@ -2592,3 +2592,39 @@ a.emcta { text-decoration: none; }
 .asklater > .nlx { grid-column: 2; grid-row: 1; }
 .asklater > .starters.inline { grid-column: 1 / -1; grid-row: 2; display: flex; flex-wrap: wrap; gap: 6px; }
 @media (max-width: 760px) { .app.phone .asklater > .starters.inline { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } .app.phone .asklater .choice { height: 40px; font-size: 14px; } .app.phone .create > .asklater { order: -1; } }
+
+/* ======================================================================================================================
+   Phone, second pass (21 Oct 2026, from the user: "making it responsive is not enough… the top bar should be fixed, the
+   bottom part should be fixed, nothing cropped, not overwhelming").
+   - The app is exactly the visible screen (100dvh: mobile browsers' toolbars no longer hide the bottom), with the top bar
+     and the composer as fixed bars and only the content between them scrolling.
+   - The composer is a fixed bottom bar; the page reserves its measured height (--dock), so the last content is reachable.
+   - Home is calmer: no second logo, the other ways to start as short rows, Clueprints as one swipeable row. Every way to
+     start is kept (decided earlier with the user), just smaller.
+   ====================================================================================================================== */
+@media (max-width: 760px) {
+  .app.phone { height: 100dvh; }
+  .app.phone .top { position: relative; z-index: 6; }
+  .app.phone .main { overscroll-behavior: contain; }
+
+  /* The composer: a bar fixed to the bottom, above the safe area */
+  .app.phone .create { padding-bottom: calc(var(--dock, 150px) + 24px + env(safe-area-inset-bottom, 0px)); }
+  .app.phone .create > .prompt { position: fixed; left: 8px; right: 8px; bottom: calc(8px + env(safe-area-inset-bottom, 0px)); width: auto; margin: 0; z-index: 7; backdrop-filter: none; box-shadow: none; }
+  /* the bar behind it: solid, edge to edge, from the bottom of the screen to 8px above the box (a soft shadow, no rule) */
+  .app.phone .create:has(> .prompt)::after { content: ""; position: fixed; left: 0; right: 0; bottom: 0; height: calc(var(--dock, 150px) + 16px + env(safe-area-inset-bottom, 0px)); background: var(--page); box-shadow: 0 -6px 16px -6px oklch(0 0 0 / .1); z-index: 6; pointer-events: none; }
+
+  /* A calmer Home */
+  .app.phone .create .hero svg { display: none; }
+  .app.phone .create .hero { margin: 0 0 16px; }
+  .app.phone .create .orline { margin: 20px 0 10px; }
+  .app.phone .create .ways { gap: 8px; }
+  .app.phone .create .way { padding: 10px 12px; align-items: center; min-height: 56px; }
+  .app.phone .create .way > span:last-child { flex: 1; min-width: 0; }
+  .app.phone .create .way > span:last-child > span { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .app.phone .create .cluerow { margin-top: 20px; gap: 8px; }
+  .app.phone .create .cluerow > .mut { display: none; }
+  .app.phone .create .cluerow .cards { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 16px; gap: 10px; margin: 0 -16px; padding: 0 16px 4px; scrollbar-width: none; }
+  .app.phone .create .cluerow .cards > * { flex: 0 0 42%; scroll-snap-align: start; }
+  .app.phone .create .recent { margin: 20px 0 0; }
+  .app.phone .create .recent .cards > .pcard { flex-basis: 62%; }
+}
