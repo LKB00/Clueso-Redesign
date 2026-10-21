@@ -1829,7 +1829,20 @@ function wireFixGrip(bar) {
     e.preventDefault(); const r = bar.getBoundingClientRect(); S.fixPos = { x: r.left + d[0], y: r.top + d[1] }; placeFixbar(bar); saveFixPrefs();
   });
 }
+// Review mode: the improvements bar, its numbered markers and list, and the follow-up emails page are for design reviews.
+// They show on this computer (localhost) and on any URL with ?review=1. The deployed site (GitHub Pages) shows the product
+// with one small "Viewing as" switcher, so people trying it can see the visitor, new-user and returning-user states.
+const REVIEW = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname) || /[?&]review=1\b/.test(location.search);
+const SCENARIOS = [["visitor", "Visitor"], ["new", "New user"], ["returning", "Returning user"]];
+const curScenario = () => S.guest ? "visitor" : S.scenario === "returning" ? "returning" : "new";
 function fixLayer(key) {
+  if (!REVIEW) { // the deployed site: a single "Viewing as" button, nothing else
+    S.showFix = false; document.body.classList.remove("showfix"); document.querySelectorAll(".fixlist").forEach(x => x.remove());
+    let bar = $(".fixbar"); if (!bar) { bar = document.createElement("div"); bar.className = "fixbar demo"; bar.setAttribute("role", "region"); bar.setAttribute("aria-label", "Prototype"); document.body.appendChild(bar); }
+    const cur = SCENARIOS.find(x => x[0] === curScenario());
+    bar.innerHTML = `<button data-act="demomenu" aria-haspopup="menu" title="Prototype: switch between a visitor, a new user and a returning user">Viewing as: ${cur[1]}${icon("chevDown")}</button>`;
+    return;
+  }
   const list = FIXES[key] || [];
   if (S.fixPos === undefined) { const p = fixPrefs(); S.fixPos = p.pos || null; S.fixMin = !!p.min; }
   document.body.classList.toggle("showfix", S.showFix);
@@ -1886,7 +1899,7 @@ function render() {
     if (r === "invite") S.invite = "taskly.io";
     const box = r === "sso" ? null : BOX[r] || { kind: "continue", mode: "signin" };
     if (!S.guest) { toEntry(); } go("/home"); setTimeout(() => box ? signupGate(box) : ssoBox(), 60); return; }
-  else if (r === "emails") html = vEmails();
+  else if (r === "emails") { if (!REVIEW) return go("/home"); html = vEmails(); } // a review page, not part of the product
 
   else if (r === "try") { if (!S.guest) toEntry(); return go("/home"); } // try Clueso before an account (value before commitment)
   else if (r === "welcome") { return go("/home"); }
@@ -2182,6 +2195,7 @@ document.addEventListener("click", e => {
       popover(t, accountMenu()); break;
     case "toast": toast(t.dataset.m); break;
     case "togglefix": S.showFix = !S.showFix; fixLayer(currentFixKey()); break;
+    case "demomenu": popover(t, `<div class="lab">View the prototype as</div>${SCENARIOS.map(([k2, l]) => `<button class="mi" role="menuitemradio" aria-checked="${k2 === curScenario()}" data-act="scenario" data-k="${k2}"><span class="grow">${l}</span><span class="ck">${k2 === curScenario() ? icon("check") : ""}</span></button>`).join("")}`, "right"); { const f = $(".pop [aria-checked=true]"); if (f) f.focus(); } break;
     case "fixlist": S.fixList = !S.fixList; fixLayer(currentFixKey()); break;
     case "fixmin": S.fixMin = !S.fixMin; saveFixPrefs(); fixLayer(currentFixKey()); { const b = $(S.fixMin ? ".fixpill" : ".fixx"); if (b) b.focus(); } break;
   }

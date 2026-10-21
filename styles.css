@@ -2570,3 +2570,8 @@ a.emcta { text-decoration: none; }
 .edpf2 .btn.pink { height: 44px; padding: 0 16px; font-size: 15px; }
 /* Captions wrap to a second line instead of being cut off on narrow screens (seen at 320px) */
 .cluecap { white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; width: max-content; }
+/* Deployed site: the prototype's only extra control is a small "Viewing as" button (see REVIEW in app.js) */
+.fixbar.demo { padding: 3px; gap: 0; }
+.fixbar.demo button { display: inline-flex; align-items: center; gap: 4px; }
+.fixbar.demo .ic { width: 12px; height: 12px; }
+@media (max-width: 760px) { .fixbar.demo { left: auto; right: 8px; top: 60px; bottom: auto; } } /* under the phone top bar, clear of the pinned composer */
