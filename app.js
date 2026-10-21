@@ -482,34 +482,42 @@ function vSignup() {
   </form></div>
   <div class="quote"><p>“With Clueso, we created and launched 8 training courses for Duda's new editor in just one quarter.”</p><span style="font-size:12px;opacity:.75">Duda</span></div></div>`;
 }
-/* Test emails (prototype aid, 21 Oct 2026, asked for by the user): focusing an email field lists emails that each show one
-   path, the way a browser's autofill list does, so people trying the prototype don't have to invent accounts. New-account
-   emails get the next unused number, so they always create a new account. Picking one also fills a test password. */
+/* Saved-email suggestions (prototype aid, 21 Oct 2026; reworked with the user the same day). Focusing an email field opens
+   a list of previously used emails the way the browser's own autofill does: a small floating list under the field, just
+   the addresses, nothing explaining the prototype. Each address still leads somewhere different (a new personal account,
+   a Taskly work email whose team is on Clueso, a company with a brand on its website, the demo account), and new-account
+   addresses take the next unused number. Picking one also fills the saved password, as a password manager would. */
 const TEST_PW = "prototype-123";
 const TEST_PWF = { gem: "gpw", em: "pw", sem: "spw" };
 function nextFree(make) { const a = accounts(); for (let n = 1; n < 500; n++) { const e = make(n); if (!a[e]) return e; } return make(Date.now()); }
 function testEmails(id) {
   const mode = id === "gem" ? ((S.pending || {}).mode || "signup") : id === "em" ? "signin" : id === "ssoem" ? "sso" : id === "sem" || id === "gaem" ? "signup" : null;
   if (!mode) return null;
-  if (mode === "sso") return [["jo@acme.io", "Company with SSO: opens its sign-in"], ["sam@taskly.io", "Taskly: SSO, and the team is on Clueso"], ["pat@northwind.com", "Company without SSO"], ["you@gmail.com", "Personal email: no SSO"]];
-  if (mode === "signin") return [[DEMO_ACCT.email, "Demo account, with videos"], ...Object.values(accounts()).filter(a => a.email !== DEMO_ACCT.email).slice(-2).map(a => [a.email, "Made in this browser"]), ["nobody@gmail.com", "No account: shows the error"]];
-  return [[nextFree(n => `new.user${n}@gmail.com`), "New account, personal email"], [nextFree(n => `sam${n}@taskly.io`), "Work email: the team is already on Clueso"], [nextFree(n => `lee${n}@northwind.com`), "Work email: brand from the company's website"], [DEMO_ACCT.email, "Has an account: shows the error"]];
+  const made = Object.values(accounts()).filter(a => a.email !== DEMO_ACCT.email).slice(-2).map(a => a.email);
+  if (mode === "sso") return ["jo@acme.io", "sam@taskly.io", "pat@northwind.com"];
+  if (mode === "signin") return [DEMO_ACCT.email, ...made];
+  return [nextFree(n => `new.user${n}@gmail.com`), nextFree(n => `sam${n}@taskly.io`), nextFree(n => `lee${n}@northwind.com`), DEMO_ACCT.email];
 }
 let tsug = null; // { input, list, items, active }
 function sugClose() { if (!tsug) return; tsug.list.remove(); tsug.input.setAttribute("aria-expanded", "false"); tsug.input.removeAttribute("aria-activedescendant"); tsug = null; }
+// Below the field, like the browser's list; it only flips above when there's less room below than for about two rows
+function sugPlace() { if (!tsug) return; const r = tsug.input.getBoundingClientRect(), l = tsug.list; l.style.maxHeight = ""; const h = l.offsetHeight;
+  const room = innerHeight - r.bottom - 12, below = room >= Math.min(h, 100) || room >= r.top;
+  if (below && h > room) l.style.maxHeight = room + "px";
+  Object.assign(l.style, { left: r.left + "px", width: r.width + "px", top: (below ? r.bottom + 4 : Math.max(8, r.top - h - 4)) + "px" }); }
 function sugOpen(input) {
   const all = testEmails(input.id); if (!all) return; const q = input.value.trim().toLowerCase();
-  const items = all.filter(([em]) => !q || (em.toLowerCase().includes(q) && em.toLowerCase() !== q));
+  const items = all.filter(em => !q || (em.toLowerCase().startsWith(q) && em.toLowerCase() !== q));
   if (tsug && tsug.input !== input) sugClose();
   if (!items.length) { sugClose(); return; }
   const id = "tsug-" + input.id; let list = tsug ? tsug.list : null;
-  if (!list) { list = document.createElement("div"); list.className = "tsug"; list.id = id; list.setAttribute("role", "listbox"); list.setAttribute("aria-label", "Test emails"); input.closest(".field").appendChild(list);
+  if (!list) { list = document.createElement("div"); list.className = "tsug"; list.id = id; list.setAttribute("role", "listbox"); list.setAttribute("aria-label", "Saved emails"); document.body.appendChild(list);
     input.setAttribute("role", "combobox"); input.setAttribute("aria-autocomplete", "list"); input.setAttribute("aria-controls", id); }
-  list.innerHTML = `<div class="tsugh" aria-hidden="true">Test emails · prototype</div>${items.map(([em, d], i) => `<div class="tsugo" role="option" id="${id}-${i}" aria-selected="false" data-em="${esc(em)}"><b>${esc(em)}</b><span>${esc(d)}</span></div>`).join("")}`;
-  input.setAttribute("aria-expanded", "true"); tsug = { input, list, items, active: -1 };
+  list.innerHTML = items.map((em, i) => `<div class="tsugo" role="option" id="${id}-${i}" aria-selected="false" data-em="${esc(em)}">${esc(em)}</div>`).join("");
+  input.setAttribute("aria-expanded", "true"); tsug = { input, list, items, active: -1 }; sugPlace();
 }
 function sugActive(n) { if (!tsug) return; const o = [...tsug.list.querySelectorAll(".tsugo")]; if (!o.length) return; tsug.active = (n + o.length) % o.length;
-  o.forEach((x, i) => x.setAttribute("aria-selected", i === tsug.active)); tsug.input.setAttribute("aria-activedescendant", o[tsug.active].id); o[tsug.active].scrollIntoView({ block: "nearest" }); }
+  o.forEach((x, i) => x.setAttribute("aria-selected", i === tsug.active)); tsug.input.setAttribute("aria-activedescendant", o[tsug.active].id); }
 function sugPick(em) {
   if (!tsug) return; const input = tsug.input; input.value = em; input.removeAttribute("aria-invalid"); input.dispatchEvent(new Event("input", { bubbles: true })); sugClose();
   const pw = TEST_PWF[input.id] && document.getElementById(TEST_PWF[input.id]); if (pw && !pw.value) pw.value = TEST_PW;
@@ -520,9 +528,10 @@ document.addEventListener("input", e => { if (e.target.matches && e.target.match
 document.addEventListener("focusout", e => { if (tsug && e.target === tsug.input) setTimeout(() => { if (tsug && document.activeElement !== tsug.input) sugClose(); }, 0); });
 document.addEventListener("keydown", e => { if (!tsug || e.target !== tsug.input) return;
   if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); sugActive(tsug.active + (e.key === "ArrowDown" ? 1 : -1)); }
-  else if (e.key === "Enter" && tsug.active >= 0) { e.preventDefault(); sugPick(tsug.items[tsug.active][0]); }
+  else if (e.key === "Enter" && tsug.active >= 0) { e.preventDefault(); sugPick(tsug.items[tsug.active]); }
   else if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); sugClose(); } }, true);
 document.addEventListener("mousedown", e => { const o = e.target.closest && e.target.closest(".tsugo"); if (o) { e.preventDefault(); sugPick(o.dataset.em); } }, true);
+addEventListener("resize", sugPlace); document.addEventListener("scroll", sugPlace, true); document.addEventListener("animationend", sugPlace); // a dialog that was still easing in moves the field
 
 // SSO: a company email finds the company's sign-in. A personal email, or a company without SSO, says what to do instead.
 const SSO_DOMAINS = ["taskly.io", "acme.io"];
@@ -1542,7 +1551,7 @@ function dialog(html, cls = "") {
 const dh = (t, p) => `<div class="dh"><div><h3>${t}</h3>${p ? `<p>${p}</p>` : ""}</div><button class="iconbtn" data-act="closedlg" aria-label="Close">${icon("close")}</button></div>`;
 function closeLayers(keepOpener) {
   const had = document.querySelector(".scrim,.drawer");
-  document.querySelectorAll(".scrim,.pop,.drawer").forEach(x => x.remove());
+  document.querySelectorAll(".scrim,.pop,.drawer").forEach(x => x.remove()); if (typeof sugClose === "function") sugClose(); // the saved-email list lives on <body>
   if (had && !keepOpener) { if (layerOpener && document.contains(layerOpener)) layerOpener.focus({ preventScroll: true }); layerOpener = null; }
 }
 
@@ -1960,7 +1969,7 @@ function render() {
   // Settings pages and folders get their own tab title, so tabs and history can be told apart (IA fix W7)
   if (r === "settings") document.title = `${SET_LABEL[S.setPage] || "Settings"} · Settings · Clueso (redesign)`;
   if (r === "projects" && a) document.title = `${decodeURIComponent(a)} · Projects · Clueso (redesign)`;
-  $("#root").innerHTML = html;
+  $("#root").innerHTML = html; if (tsug && !document.contains(tsug.input)) sugClose();
   // Animate only when the feature changes (a new route or the AI panel opening), not on every re-render.
   const page = location.hash.split("?")[0];
   if (page !== lastPage) { const m = $(".main > *, .stage > main, .signin"); if (m) m.classList.add("arrive"); const n = $(".navitem.on"); if (n && lastPage !== null) n.classList.add("arrive"); }

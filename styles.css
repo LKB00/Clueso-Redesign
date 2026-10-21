@@ -2578,14 +2578,9 @@ a.emcta { text-decoration: none; }
 .fixbar.demo .ic { width: 12px; height: 12px; }
 @media (max-width: 760px) { .fixbar.demo { left: auto; right: 8px; top: 60px; bottom: auto; } } /* under the phone top bar, clear of the pinned composer */
 
-/* Test emails under an email field (prototype aid; see testEmails in app.js) — styled like a menu */
-/* It sits in the flow under the field (pushing the form down) rather than floating, so a dialog's edge, a bottom sheet or
-   the phone keyboard can't cut it off. */
-.tsug { margin-top: 2px; background: var(--surface); border: 1px solid var(--ring); border-radius: var(--r-menu); padding: 4px; text-align: left; }
-.tsugh { font-size: 11px; color: var(--muted); padding: 4px 8px 6px; }
-.tsugo { display: grid; gap: 1px; padding: 6px 8px; border-radius: 4px; cursor: pointer; }
-.tsugo b { font-weight: 500; font-size: 12px; color: var(--ink); }
-.tsugo span { font-size: 11px; color: var(--muted); }
+/* Saved-email suggestions: a small floating list under the field, like the browser's own autofill (see testEmails in app.js) */
+.tsug { position: fixed; z-index: 140; background: var(--surface); border: 1px solid var(--ring); border-radius: var(--r-menu); box-shadow: var(--sh-menu); padding: 4px; max-height: 220px; overflow-y: auto; }
+.tsugo { padding: 0 10px; height: 32px; display: flex; align-items: center; border-radius: 4px; font-size: 13px; color: var(--ink); cursor: default; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .tsugo:hover { box-shadow: inset 0 0 0 100vmax var(--ix-hover-subtle); }
 .tsugo[aria-selected="true"] { box-shadow: inset 0 0 0 100vmax var(--ix-hover); }
-@media (max-width: 760px) { .tsugo { padding: 10px 12px; min-height: 48px; } .tsugo b { font-size: 15px; } .tsugo span { font-size: 13px; } }
+@media (max-width: 760px) { .tsugo { height: 44px; font-size: 15px; padding: 0 12px; } }
