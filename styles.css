@@ -2446,14 +2446,16 @@ a.emcta { text-decoration: none; }
   .app.phone .create .hero svg { width: 28px; height: 28px; }
   .app.phone.focus .top { height: 52px; }
   .app.phone.focus .top .btn { min-height: 36px; font-size: 14px; }
-  .app.phone .create .starters { justify-content: center; margin-bottom: 10px; }
-  .app.phone .create .starters > .mut { flex-basis: 100%; text-align: center; }
-  .app.phone .create .starters .choice { min-height: 36px; font-size: 14px; }
+  /* Four examples as an even 2 × 2 grid: no lone chip on a row of its own */
+  .app.phone .create .starters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 0 0 8px; }
+  .app.phone .create .starters > .mut { grid-column: 1 / -1; text-align: center; font-size: 13px; }
+  .app.phone .create .starters .choice { height: 40px; min-width: 0; padding: 0 8px; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .app.phone .create > .prompt { order: 99; position: sticky; bottom: 0; z-index: 5; width: 100%; margin-top: auto; margin-bottom: calc(8px + env(safe-area-inset-bottom, 0px)); background: var(--surface); box-shadow: 0 -16px 16px var(--main); }
   .app.phone .create > .hasacct, .app.phone .create > .hello, .app.phone .create > .resume { order: -3; }
   .app.phone .create > .hero { order: -2; }
   .app.phone .create > .starters, .app.phone .create > .nextline { order: -1; } /* examples sit right under the greeting, in the first screen */
-  .app.phone .create > .vterms { order: 100; }
+  .app.phone .create > .vterms { order: 100; margin-top: 4px; }
+  .app.phone .create .cluerow { margin-top: 28px; margin-bottom: 16px; } /* desktop's 72px gap leaves an empty band on a phone */
   .app.phone .create .recent, .app.phone .create .ways, .app.phone .create .orline { width: 100%; }
   .app.phone .create .recent { margin: 24px 0; }
   .app.phone .create .orline { margin: 24px 0 12px; }
