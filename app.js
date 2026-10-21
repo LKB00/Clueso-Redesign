@@ -80,11 +80,11 @@ const SUGGEST = {
   demo: ["Walk through our sign-up flow in 60 seconds", "Show how to create a first project"],
   training: ["Train new managers on our weekly review", "Explain our expense policy to new hires"],
   marketing: ["30-second teaser for our new dashboard", "Launch video for our mobile app"],
-  sop: ["Turn our refund process into a guide", "Document how to reset a customer password"],
+  sop: ["Turn our refund process into a how-to article", "Document how to reset a customer password"],
   slides: ["Narrate my sales deck in a friendly tone"],
   translate: ["Make a Spanish version of my latest video"],
   animation: ["Animate our logo with a soft reveal", "Kinetic text: 3 reasons teams switch"],
-  none: ["Walk through our sign-up flow in 60 seconds", "Turn our refund process into a guide", "30-second teaser for our new dashboard"],
+  none: ["Walk through our sign-up flow in 60 seconds", "Turn our refund process into a how-to article", "30-second teaser for our new dashboard"],
 };
 
 const PROJECTS = [
@@ -145,20 +145,20 @@ const FIXES = {
     ["One compact usage line (export minutes and credits) links to Plan and usage, replacing a two-meter card and an upgrade ad. A bar appears only when credits run low, showing what is left.", "C5, C6", "Research: Loom and Tango show free limits as one counter (competitor benchmark); cognitive load."],
     ["Clueso AI stays in the header on every page.", "C12", "Observed: the button disappeared on Home."],
     ["The composer keeps Clueso's controls, with its record button folded into + (Record your screen first, then Attach files, Add a project, Add a Clueprint): both add source material, \"Choose recording\" duplicated Attach files, and Record your screen is also a card right below. Then check-in mode (Ask, Plan, Auto, with Clueso's descriptions), model and brand. Ask and Plan stop at a plan card with the cost; Auto builds as soon as you send, with the cost shown beside Send first. No sale banner, survey or footer links. What's new moves from a sidebar card into Help, and Help stays in the top bar where Clueso has it.", "C3, C6, O9, P14", "Clueso: mode labels from its own menu. Observed: seven attention-seekers on first load. Research: progressive disclosure; ProductLed, no pricing before value."],
-    ["First visit, no wizard: a 40-second before/after (a rough recording becoming a finished video) plays muted, the composer is ready with optional example starters (Product demo, How-to guide, Training video, Launch teaser) that fill an editable brief, and the starts are ordered by effort: describe it, drop a file anywhere, or record (\"about 2 minutes, open your product first\"; on a phone, a link to record on your computer). Your cost shows in credits and videos (\"about 5 videos\"). Greeting by name only when Google gave us the name. Explorers open the sample in the editor.", "B1, B7, B12, B13, O1", "Research: NN/g, tutorials don't improve success and make tasks feel harder; onboarding ends at value; ask only what changes the path (Appcues); loss aversion. Proposal: first video free needs Clueso's confirmation."],
+    ["First visit, no wizard: a 40-second before/after (a rough recording becoming a finished video) plays muted, the composer is ready with optional example starters (Product demo, How-to article, Training video, Launch teaser) that fill an editable brief, and the starts are ordered by effort: describe it, drop a file anywhere, or record (\"about 2 minutes, open your product first\"; on a phone, a link to record on your computer). Your cost shows in credits and videos (\"about 5 videos\"). Greeting by name only when Google gave us the name. Explorers open the sample in the editor.", "B1, B7, B12, B13, O1", "Research: NN/g, tutorials don't improve success and make tasks feel harder; onboarding ends at value; ask only what changes the path (Appcues); loss aversion. Proposal: first video free needs Clueso's confirmation."],
     ["Search (⌘K) keeps Clueso's fixed 680 × 480 frame with the input pinned at the top, its scopes and p; n; a; prefixes, and Tab to ask AI. When empty it shows recent projects and quick actions instead of a blank panel. It lists only real matches, highlighted and ranked, with at most 5 per group and \"Show all\". When nothing matches it says so and offers Ask AI or Create. Old names (Chats, MCP, Styles) find their new home.", "N12", "Observed on web.clueso.io: the empty panel is blank; \"xyzq\" still returns 5 projects; \"brand\" returns Home; Navigation is always listed first. Research: Nielsen #6 recognition over recall; NN/g search results (relevance, highlight the query, a useful no-results page); Hick's law; WAI-ARIA combobox pattern for ↑↓ and Enter."],
     ["A build keeps its status in the top bar on every page (\"Building · 2 of 6\"), and its finish toast has an Open button that waits 6 s and pauses on hover. Toasts are read out by screen readers; dialogs keep keyboard focus inside and return it when closed.", "A5, G5", "Research: Nielsen #1 visibility of system status; WCAG 2.2.1 timing, 4.1.3 status messages and 2.4.3 focus order; WAI-ARIA dialog pattern."],
-    ["Clueso AI keeps Clueso's three views, names and icons (Sidebar, Floating, Full screen), and each now works: Sidebar (the default on wide screens) keeps the top bar intact, Floating floats, and Full screen expands in place without leaving the page. The choice is remembered, the header icon shows it, and each option's description is visible instead of hidden in a tooltip. The composer mirrors Clueso's row (+, check-in mode, model). The title becomes an editable conversation name, starters sit just above the composer, and the low-credit banner appears only under 150 credits. It names the page or video it is on, offers chips for that page, runs chips a button can do (translate, write the guide, record) directly with no credits, shows credits per reply before sending, attaches context with Clueso's + menu, moves focus to the composer, and Escape closes one layer at a time.", "N14, N15", "Clueso (live, 17 Oct 2026): View mode Sidebar / Floating / Full screen; full screen routes to /home/chat; sidebar hides New project; same 3 chips everywhere; Escape on a menu closes the panel; a reply cost 13 credits. Research: HAX G3, G4; Shape of AI cost estimates; Nielsen #3; WAI-ARIA."],
+    ["Clueso AI keeps Clueso's three views, names and icons (Sidebar, Floating, Full screen), and each now works: Sidebar (the default on wide screens) keeps the top bar intact, Floating floats, and Full screen expands in place without leaving the page. The choice is remembered, the header icon shows it, and each option's description is visible instead of hidden in a tooltip. The composer mirrors Clueso's row (+, check-in mode, model). The title becomes an editable conversation name, starters sit just above the composer, and the low-credit banner appears only under 150 credits. It names the page or video it is on, offers chips for that page, runs chips a button can do (translate, write the article, record) directly with no credits, shows credits per reply before sending, attaches context with Clueso's + menu, moves focus to the composer, and Escape closes one layer at a time.", "N14, N15", "Clueso (live, 17 Oct 2026): View mode Sidebar / Floating / Full screen; full screen routes to /home/chat; sidebar hides New project; same 3 chips everywhere; Escape on a menu closes the panel; a reply cost 13 credits. Research: HAX G3, G4; Shape of AI cost estimates; Nielsen #3; WAI-ARIA."],
   ],
   projects: [
     ["Language versions and AI spin-offs are grouped under their source.", "N4", "Observed: the Spanish copy and the two PDF spin-offs were loose, unlinked projects."],
-    ["Rows show only what helps you pick: name, type, guide, a version count, length and when it was edited. The owner and versions columns are dropped for a one-person workspace.", "H7, N3", "Research: cognitive load; NN/g, show information when it supports a decision."],
+    ["Rows show only what helps you pick: name, type, article, a version count, length and when it was edited. The owner and versions columns are dropped for a one-person workspace.", "H7, N3", "Research: cognitive load; NN/g, show information when it supports a decision."],
     ["One Filter button replaces seven filters.", "H6, H7", "Observed: the filter bar clipped New folder at 1294 px."],
     ["Search filters projects, their language versions and spin-offs as you type, bolds the match, and says so when nothing matches.", "N4, N12", "Observed: the prototype's search box did nothing. Research: NN/g search (highlight the query, a useful no-results page)."],
     ["Every Projects ability Clueso has, in fewer controls: sortable Name, Length and Edited headers instead of a sort menu that repeats them; one Filter with removable chips; a row menu (copy link, rename, duplicate, pin, move, delete) that shows on hover and keyboard focus; titles that are real links for opening in a new tab; and a Deleted tab that keeps projects 30 days, with Undo on delete.", "N16", "Clueso (live, 17 Oct 2026): All/Deleted tabs (30 days), 5 filters, 8 sort options, a 9-item row menu shown on hover only, New folder clipped. Research: Jakob's law (sortable headers); Hick's law; NN/g, undo over confirmation; WCAG 2.1.1 keyboard."],
   ],
   project: [
-    ["One project page with three things beside the video: its guide, its versions (languages and spin-offs together), and a link to its analytics.", "N3, N4", "Research: Dan Brown, objects (one home per object); cognitive load, fewer boxes."],
+    ["One project page with three things beside the video: its article, its versions (languages and spin-offs together), and a link to its analytics.", "N3, N4", "Research: Dan Brown, objects (one home per object); cognitive load, fewer boxes."],
     ["Scene-by-scene progress with an estimate; leave and get notified.", "G5, A5, A10", "Observed: a 9 min 37 s build with only elapsed time. Research: Nielsen \"Slow AI\" three-layer progress; NN/g, waits over 10 s need percent-done."],
     ["\"Generate article\" when a video has no article yet.", "F14, N8", "Clueso pricing: \"Generate step-by-step guides/documentation\" is on Free. Observed: articles were blank, behind a Prompt hub."],
     ["A breadcrumb shows where you are.", "N2", "Research: Dan Brown, front doors."],
@@ -190,7 +190,7 @@ const FIXES = {
     ["Included on Free is stated first: create from a brief, and use it from Claude, ChatGPT or Cursor.", "D1, I3", "Clueso pricing: \"Create video from chat\" and \"Clueso MCP\" are included on Free."],
     ["Each conversation shows its status and the credits it used.", "N15", "Clueso: chats show a per-message credit count (for example, 13 credits)."],
     ["Chats, redesigned around why people open it. The list is one list, newest activity first, with no group headings. Each row is two lines: the title with its time and a status dot at the right edge, then what helps you choose (the question itself, the plan's cost, the scene it's on, or the video it made). The dot is yellow when Clueso AI needs you, blue for a result you haven't opened, grey and softly pulsing while running, red when something failed, and absent otherwise, so a row without a status has no empty space. The row menu takes no space; it replaces the time and dot on hover or focus. The Chats item in the sidebar carries one dot when something needs you (yellow) or failed (red), so it's visible from every page; the page title has no count. Credits moved into the thread. Search, a Sort menu (last activity or date created) and a row menu with Rename and Delete (with Undo) keep Clueso's own controls.", "N17", "Clueso (live, 17 Oct 2026): Chats is a table of name, date created, last updated and creator, with Created and Modified filters, search, New chat, and a row menu with Open chat and Delete. Research: list-detail pattern; NN/g, show information when it supports a decision; Hick's law for one sort control."],
-    ["Each conversation has a body for its state, with one primary action. A question uses Clueso's numbered choices plus \"Something else\". A plan shows its cost and Build. A build shows the scene, time left, Cancel and that you can leave. A failure says which scene failed, what was kept and charged, and offers Continue (with its estimate) or Start over. A finished video leads with the result, Open video and Share, then a \"check before sharing\" list, feedback, its credits, and follow-ups (shorten, translate, make the guide). Long briefs collapse with Show more, and the agent's steps sit behind \"Ran n steps\", as in Clueso.", "N15, N17", "Clueso (live): numbered choices for decisions, \"Show more\" on long briefs, \"Ran 5 steps\", \"Ran 4 steps (2 failed)\", caveats after a build, thumbs and copy, per-message credits. Research: Nielsen #1 and #9 (status, recovery); HAX G11 (make clear why the system did what it did)."],
+    ["Each conversation has a body for its state, with one primary action. A question uses Clueso's numbered choices plus \"Something else\". A plan shows its cost and Build. A build shows the scene, time left, Cancel and that you can leave. A failure says which scene failed, what was kept and charged, and offers Continue (with its estimate) or Start over. A finished video leads with the result, Open video and Share, then a \"check before sharing\" list, feedback, its credits, and follow-ups (shorten, translate, make the article). Long briefs collapse with Show more, and the agent's steps sit behind \"Ran n steps\", as in Clueso.", "N15, N17", "Clueso (live): numbered choices for decisions, \"Show more\" on long briefs, \"Ran 5 steps\", \"Ran 4 steps (2 failed)\", caveats after a build, thumbs and copy, per-message credits. Research: Nielsen #1 and #9 (status, recovery); HAX G11 (make clear why the system did what it did)."],
     ["Filters answer the questions people actually bring to Chats. Status (Needs you, Running, Failed, Finished, with counts) comes first; Clueso has none. Clueso's two date filters, Created and Modified with 7 options each, become one Date filter with a Last active / Created switch over Clueso's own options, including a custom range. Created by appears only when the workspace has more than one member and defaults to Anyone, where Clueso silently defaults to you. One Filter button next to search (as on Projects), removable chips with Clear all, a no-results message that names the filters, and \"n need you\" in the title applies that filter.", "N17", "Clueso (live, 17 Oct 2026): Created and Modified (All time, Today, Yesterday, Last 7, 30, 90 days, Custom) and a creator filter preset to the signed-in user. Research: Hick's law (half the date options); Nielsen #4 (same filter pattern as Projects) and #1 (show what's applied)."],
     ["Brand sits on the chat composer too (Chats and the Clueso AI panel), after the model, as on Home, so what a reply will build with is visible before you send. The plan card no longer repeats model, check-in and brand in an Options panel; one line says what it will use and that it's changed in the box below. One control per setting.", "C2, N17", "User review. Clueso (live): the chat composer has +, Record, Ask and model but no brand, while Home has it. Research: Nielsen #4 consistency; #1 visibility of system status; no duplicate controls for one setting."],
     ["Two views of Chats. Browse (the default) keeps the list beside the conversation for triage. Focus is Clueso's own view: one conversation fills the area at a readable 720 px, with a \"Made in this chat\" panel (Clueso's Projects panel) listing everything it made, each with Open and Copy link. Enter Focus from the expand button in the header or by double-clicking a row; leave by the back arrow, the list button or Escape. The choice and the panel are remembered. Below 1100 px the panel steps aside; phones show the list or one chat.", "N17", "Clueso (live): a chat opens across the whole content area with a back arrow, a Projects panel of outputs with Open, and header toggles. Keeping Browse as the default avoids going back to the list to move between chats that need you."],
@@ -204,7 +204,7 @@ const FIXES = {
     ["The detailed timeline (video, voice, captions and music tracks with a playhead) is one click away under the strip, for precise edits.", "R-ED5", "Clueso keeps a full timeline; most people need scene-level changes first. Research: progressive disclosure."],
     ["Top bar as live: the logo opens the project menu (Back to projects, Duplicate, Move to folder, Save, View original media, Keyboard shortcuts, Editor preferences, Version history, Delete), then the title, the cloud for saved, Video | Article; avatar, Help, Comments, Translate, Clueso AI and Share. Icons are named on hover. Clueso AI knows the scene (\"On: Scene 4: Track progress\").", "R-ED6", "Clueso (live, 18 Oct 2026): the same controls."],
     ["Every control has a name (0 unnamed, against about 60 in Clueso's editor). The scene strip is a listbox: arrow keys move between scenes and focus follows; Space plays and pauses outside text fields.", "R-ED7", "Research: WCAG 4.1.2 name, role, value; WAI-ARIA listbox pattern."],
-    ["Live's editing controls stay: skip to start and end, previous and next, 1x, Loop, High res; Split at the playhead, Add a scene, Undo and Redo (⌘Z, ⇧⌘Z); a voice per scene, Add pause (Clueso's Sync Point, named for what it does), Search script; media tabs and filters; the guide's formatting toolbar.", "R-ED8", "Clueso (live, 17 Oct 2026): all present in the editor. Removing them had no evidence."],
+    ["Live's editing controls stay: skip to start and end, previous and next, 1x, Loop, High res; Split at the playhead, Add a scene, Undo and Redo (⌘Z, ⇧⌘Z); a voice per scene, Add pause (Clueso's Sync Point, named for what it does), Search script; media tabs and filters; the article's formatting toolbar.", "R-ED8", "Clueso (live, 17 Oct 2026): all present in the editor. Removing them had no evidence."],
     ["On smaller screens (900–1280 px) a tool panel and the Clueso AI sidebar take turns: opening one closes the other, so the canvas stays at least about 440 px wide. The playbar and canvas tools fit the column they're in, moving the time and options to a second row when it's narrow.", "R-ED9", "Side by side they left the canvas 108–343 px wide and broke the playbar. Canva and Figma swap side panels the same way."],
     ["Every control has a flow, matched to live's: the project menu and its dialogs, rename, Text and Shapes as canvas tools, selection and moving, every panel's tabs and items, size, zoom, speed, full-screen preview, timeline settings, and in Article view the formatting rail. AI Rewrite asks what to rewrite and can be undone.", "R-ED10", "Clueso (live, 18 Oct 2026): the same menus and options. Live's AI Rewrite rewrote the whole transcript at once with no undo (Nielsen #3)."],
     ["Second check against live: a timeline ruler and playhead with click to seek, live's timecode, an inspector for the selected element, \"/\" commands in the script and article, and live's remaining editor preferences. Sizes follow one scale measured from live: 16 px margin, 8 px gaps, 6 px cards, 28 px controls, 24 px chips, 12 and 14 px text.", "R-ED11", "Clueso (live, 18 Oct 2026): measured with computed styles at 1440 × 900."],
@@ -254,18 +254,23 @@ const helpDot = () => updatesUnseen() ? `<i class="udot" aria-hidden="true"></i>
 // Named for all three groups; "Help" stays first because it's the word people look for when they're stuck.
 const HELP_NAME = "Help & resources";
 const helpLabel = () => updatesUnseen() ? `${HELP_NAME}, ${updatesUnseen()} new ${updatesUnseen() === 1 ? "update" : "updates"}` : HELP_NAME;
+// One account menu for the whole product, the app's workspace button and the editor's avatar alike (IA fix W8, 21 Oct 2026).
+// Help lives only in the Help button, so it isn't repeated here.
+const accountMenu = () => `<div class="lab">Workspace</div><button class="mi" role="menuitemradio" aria-checked="true"><span class="ava wsava" aria-hidden="true">${esc(wsIni())}</span>${esc(wsName())}<small>Free plan</small></button>
+      <div class="sep"></div><div class="me"><span class="ava person" aria-hidden="true">${S.user.ini}</span><span><b>${esc(S.user.first)} ${esc(S.user.last)}</b>${esc(S.user.email)}</span></div>
+      <div class="themerow">${themeControl()}</div><button class="mi" data-go="/settings/profile">${icon("users")}Profile settings</button><div class="sep"></div><button class="mi" data-act="signout">${icon("chevLeft")}Sign out</button>`;
 function helpMenu() {
   if (firstRun() && S.guest) return `<div class="lab">Get help</div>
     <button class="mi mi2" data-act="helpchat">${icon("chat")}<span class="mt"><span>Chat with support</span><small>We usually reply within a few hours</small></span></button>
     <div class="sep"></div><div class="lab">Learn</div>
     <a class="mi" href="https://www.youtube.com/@CluesoAI" target="_blank" rel="noopener noreferrer">${icon("video")}<span class="grow">How to make your first video</span>${icon("external")}</a>
-    <a class="mi" href="https://help.clueso.io" target="_blank" rel="noopener noreferrer">${icon("doc")}<span class="grow">Knowledge base</span>${icon("external")}</a>`;
+    <a class="mi" href="https://help.clueso.io" target="_blank" rel="noopener noreferrer">${icon("doc")}<span class="grow">Help center</span>${icon("external")}</a>`;
   return `<div class="lab">Get help</div>
     <button class="mi" data-act="helpchat">${icon("chat")}Chat with support</button>
     <button class="mi" data-act="helpreq">${icon("send")}Request a feature</button>
     <div class="sep"></div><div class="lab">Learn</div>
     ${firstRun() ? `<a class="mi" href="https://www.youtube.com/@CluesoAI" target="_blank" rel="noopener noreferrer">${icon("video")}<span class="grow">How to make your first video</span>${icon("external")}</a>` : ""}
-    <a class="mi" href="https://help.clueso.io" target="_blank" rel="noopener noreferrer">${icon("doc")}<span class="grow">Knowledge base</span>${icon("external")}</a>
+    <a class="mi" href="https://help.clueso.io" target="_blank" rel="noopener noreferrer">${icon("doc")}<span class="grow">Help center</span>${icon("external")}</a>
     <a class="mi" href="https://www.youtube.com/@CluesoAI" target="_blank" rel="noopener noreferrer">${icon("video")}<span class="grow">Video tutorials</span>${icon("external")}</a>
     <button class="mi" data-act="helpkeys">${icon("keyboard")}<span class="grow">Keyboard shortcuts</span><span class="kbd">?</span></button>
     <div class="sep"></div><div class="lab">What's new</div>
@@ -289,7 +294,17 @@ function accounts() { let a = {}; try { a = JSON.parse(localStorage.getItem(ACCO
 function saveAccount(u) { if (!u || !u.email) return; const a = accounts(); a[u.email.toLowerCase()] = { first: u.first, last: u.last, email: u.email, ini: u.ini, known: u.known }; try { localStorage.setItem(ACCOUNTS_KEY, JSON.stringify(a)); } catch (e) {} }
 // "Have an account? Sign in to see your videos" shows only to a browser that has signed in before (a first-time visitor has no videos to find)
 function toEntry() { applyScenario("new"); seeUpdates(); S.guest = true; S.verified = undefined; S.user = { first: "", last: "", email: "", ini: "", known: false }; }
-function route() { const h = location.hash.replace(/^#\/?/, "") || "try"; return h.split("/"); }
+// URLs follow the visible labels (IA fix W6, 21 Oct 2026): /home, /clueprints, /brand-kit, /settings/plan-and-usage …
+// route() maps them to the prototype's internal page keys; canonicalPath() sends the old paths to the new ones.
+const URL_ALIAS = { home: ["create"], clueprints: ["library", "styles"], "brand-kit": ["library", "brand"] };
+const SET_SLUG = { "plan-and-usage": "plan", "player-and-links": "sharing", "video-defaults": "defaults", "language-and-voice": "language" };
+const SET_URL = Object.fromEntries(Object.entries(SET_SLUG).map(([u, k]) => [k, u]));
+function route() { const h = location.hash.replace(/^#\/?/, "") || "try"; let p = h.split("/"); if (URL_ALIAS[p[0]]) p = [...URL_ALIAS[p[0]], ...p.slice(1)]; if (p[0] === "settings" && SET_SLUG[p[1]]) p[1] = SET_SLUG[p[1]]; return p; }
+function canonicalPath() { const p = location.hash.replace(/^#\/?/, "").split("/");
+  if (p[0] === "create") return ["home", ...p.slice(1)].join("/");
+  if (p[0] === "library") return p[1] === "brand" ? "brand-kit" : "clueprints";
+  if (p[0] === "settings" && SET_URL[p[1]]) return ["settings", SET_URL[p[1]], ...p.slice(2)].join("/");
+  return null; }
 // Pages that need an account: opened signed out, they show the Sign in page, then go where the link pointed
 const NEEDS_ACCOUNT = ["projects", "project", "edit", "library", "chats", "analytics", "settings"];
 // Signing out keeps that account's work aside (the prototype holds one workspace at a time), so signing back in restores it
@@ -298,7 +313,7 @@ function signOut() { saveWork(); const u = S.user || {}; try { const st = JSON.p
   closeLayers(); go("/try"); toast("Signed out"); }
 // Signing in from the try screen as an account that has work: restore it (unless the visitor started something here, which is kept)
 function signInRestore(email, after) { const started = TASKS.length > 0 || PROJECTS.some(p => !p.sample); if (started) return false; let st = {}; try { st = JSON.parse(sessionStorage.getItem(SIGNEDOUT_KEY) || "{}"); } catch (e) {}
-  const w = st[email.toLowerCase()]; const dest = after || "/create";
+  const w = st[email.toLowerCase()]; const dest = after || "/home";
   if (!w && email.toLowerCase() !== DEMO_ACCT.email) return false;
   clearTimeout(saveWorkT); removeEventListener("pagehide", saveWork);
   try { if (w) { if (w.work) sessionStorage.setItem(WORK_KEY, w.work); else sessionStorage.removeItem(WORK_KEY); if (w.scenario) localStorage.setItem(SCENARIO_KEY, w.scenario); if (w.progress) localStorage.setItem(PROGRESS_KEY, w.progress); delete st[email.toLowerCase()]; sessionStorage.setItem(SIGNEDOUT_KEY, JSON.stringify(st)); }
@@ -340,18 +355,18 @@ function sidebar(active) {
   return `<aside class="side">
     <div class="brandrow"><div class="wm">${LOGO}<span>Clueso</span></div><button class="iconbtn" data-act="collapse" aria-label="${S.collapsed ? "Expand sidebar" : "Collapse sidebar"}" title="${S.collapsed ? "Expand sidebar" : "Collapse sidebar"}">${icon("collapse")}</button></div>
     <nav class="nav" ${fix(1)}>
-      ${item("create", "home", "Home", "create")}
+      ${item("create", "home", "Home", "home")}
       ${item("projects", "folder", "Projects", "projects")}
       ${(() => { const need = TASKS.filter(c => ["Needs your reply", "Waiting for you"].includes(c.st)).length, failed = TASKS.filter(c => c.st === "Failed").length;
         const lab = need ? `${need} need${need === 1 ? "s" : ""} you` : failed ? `${failed} failed` : "";
         return item("chats", "chat", "Chats", "chats", lab ? `<span class="navdot ${need ? "attn" : "err"}" role="img" aria-label="${lab}" title="${lab}"></span>` : ""); })()}
-      ${item("library-styles", "clueprint", "Clueprints", "library/styles")}
-      ${item("library-brand", "brand", "Brand kit", "library/brand")}
+      ${item("library-styles", "clueprint", "Clueprints", "clueprints")}
+      ${item("library-brand", "brand", "Brand kit", "brand-kit")}
       ${item("analytics", "analytics", "Analytics", "analytics", `<span class="tag lbl">${icon("lock")}</span>`)}
     </nav>
     <div class="spacer"></div>
     ${(() => { const low = credLeft() / S.credits.total <= .2;
-      return `<a class="usage ${low ? "low" : ""}" href="#/settings/plan" ${fix(7)} title="${S.minutes.total - S.minutes.used} of ${S.minutes.total} export minutes and ${credLeft()} of ${S.credits.total.toLocaleString("en")} AI credits left this month · Plan and usage">
+      return `<a class="usage ${low ? "low" : ""}" href="#/settings/plan-and-usage" ${fix(7)} title="${S.minutes.total - S.minutes.used} of ${S.minutes.total} export minutes and ${credLeft()} of ${S.credits.total.toLocaleString("en")} AI credits left this month · Plan and usage">
       <div class="kv"><span>${S.minutes.total - S.minutes.used} export min</span><span>${credLeft()} credits</span></div>
       ${low ? `<div class="meter" role="img" aria-label="${credLeft()} of ${S.credits.total} credits left"><i style="width:${credLeft() / S.credits.total * 100}%"></i></div>` : ""}
     </a>`; })()}
@@ -464,14 +479,14 @@ addEventListener("hashchange", e => { const from = (e.oldURL.split("#/")[1] || "
 // A review page for the prototype (Clueso's lifecycle tool would send them); not part of the product UI.
 const EMAILS = [
   ["A teammate invites them", "Priya Shah invited you to Taskly on Clueso", "Join Taskly's workspace to see the team's videos and make your own with the same brand. It takes a few seconds.", "Join Taskly", "Sent when the invite is made; one reminder after 3 days", "#/invite"],
-  ["Signed up, no brief after 1 day", "Your 1,000 free credits are waiting", "You signed up yesterday but haven't made a video yet. Pick a starting point and Clueso drafts it in minutes: a product demo, a how-to guide, a training video or a launch teaser.", "Start my video", "Stops once a brief is sent"],
+  ["Signed up, no brief after 1 day", "Your 1,000 free credits are waiting", "You signed up yesterday but haven't made a video yet. Pick a starting point and Clueso drafts it in minutes: a product demo, a how-to article, a training video or a launch teaser.", "Start my video", "Stops once a brief is sent"],
   ["Brief written, plan not built after 1 day", "Your plan is ready to build", "Your plan for “A 1-minute demo of our product” is waiting. It uses about 150–250 of your 1,000 credits, takes about 10 minutes, and you can change anything after.", "Build it", "Stops once Build is pressed"],
-  ["Video ready, not watched after 2 hours", "Your video is ready", "“A 1-minute demo of our product” is done: about a minute, with voiceover, zooms and captions, plus a step-by-step guide.", "Watch it", "Sent when the build finishes; the reminder only if it's still unwatched"],
+  ["Video ready, not watched after 2 hours", "Your video is ready", "“A 1-minute demo of our product” is done: about a minute, with voiceover, zooms and captions, plus a step-by-step article.", "Watch it", "Sent when the build finishes; the reminder only if it's still unwatched"],
   ["Watched, not shared after 2 days", "Share it with your team", "Your video is ready to send. A view-only link takes one click and uses about 1 of your 10 free export minutes.", "Share a link", "Stops once a link is made"],
-  ["Shared, no second video after 5 days", "Make the next one from what you have", "Turn the same recording into a how-to guide, translate it, or make a 30-second teaser. Your brand and style carry over.", "Make another", "Stops once a second video starts"],
+  ["Shared, no second video after 5 days", "Make the next one from what you have", "Turn the same recording into a how-to article, translate it, or make a 30-second teaser. Your brand and style carry over.", "Make another", "Stops once a second video starts"],
 ];
 function vEmails() {
-  return `<div class="emailsp"><header><div class="wm">${LOGO}<span>Clueso</span></div><a class="btn ghost" href="#/create">Back to the prototype</a></header>
+  return `<div class="emailsp"><header><div class="wm">${LOGO}<span>Clueso</span></div><a class="btn ghost" href="#/home">Back to the prototype</a></header>
     <h1>Follow-up emails</h1><p class="sub">Gap 3 of the onboarding review: what Clueso sends when someone stalls on the way to their first video, and after it. Each is triggered by what the person did or didn't do, goes out once, and stops as soon as they take the step. Review page, not product UI.</p>
     <div class="emlist">${EMAILS.map(([trig, subj, body, cta, stop, href], i) => `<article class="em"><div class="emmeta"><span class="bdg">${i + 1}</span><span><b>When</b> ${esc(trig)}</span><span class="mut">${esc(stop)}</span></div>
       <div class="emcard"><div class="emhd"><span class="emfrom">${LOGO}Clueso</span><b>${esc(subj)}</b></div><p>Hi ${esc(S.user && S.user.known && S.user.first ? S.user.first : "there")},</p><p>${esc(body)}</p>${href ? `<a class="emcta" href="${href}">${esc(cta)}</a>` : `<span class="emcta">${esc(cta)}</span>`}<p class="mut">You're getting this because you signed up for Clueso. <u>Email settings</u></p></div></article>`).join("")}</div>
@@ -534,11 +549,11 @@ function finishGate(first, last, email, verified, existing) {
   S.guest = false; S.verified = existing ? undefined : verified; const p = S.pending || {}; S.pending = null; closeLayers(); saveAccount(S.user); takeInvite();
   if (p.kind === "build") { const c = chatById(p.chat); if (c) { const brief = c.q && c.answer ? c.answer : c.ask; S.prompt = brief; startBuild("new", brief, c.id); toast(existing ? "Signed in. Building your video" : "Account created. Building your video"); return; } }
   if (p.kind === "record") { startBuild("new", p.name || "Screen recording"); return; }
-  if (p.kind === "clueedit") { go("/create"); render(); toast(`${existing ? "Signed in" : "Account created"}. A copy of “${STYLES[p.clue][0]}” is in your Workspace Clueprints, ready to edit`); return; }
+  if (p.kind === "clueedit") { go("/home"); render(); toast(`${existing ? "Signed in" : "Account created"}. A copy of “${STYLES[p.clue][0]}” is in your Workspace Clueprints, ready to edit`); return; }
   if (p.kind === "recordlater") { render(); toast(`Account created. We emailed ${S.user.email} a link to record on your computer`); return; }
   const after = S.after; S.after = null;
-  if (after && !existing) { go("/create"); render(); toast("Account created. That link is in someone else's workspace: ask them to invite you"); return; } // a new account can't see another workspace's page
-  go(after || "/create"); render(); toast(existing ? (TASKS.length || S.prompt ? "Signed in. What you started is still here" : "Signed in") : "Account created");
+  if (after && !existing) { go("/home"); render(); toast("Account created. That link is in someone else's workspace: ask them to invite you"); return; } // a new account can't see another workspace's page
+  go(after || "/home"); render(); toast(existing ? (TASKS.length || S.prompt ? "Signed in. What you started is still here" : "Signed in") : "Account created");
 }
 // An invite opened while signed in: join the team's workspace (your videos move with you), or not now
 function inviteSignedIn() { const d = "taskly.io", t = TEAMS[d]; if (S.team === d) return toast(`You're already in ${t.name}'s workspace`);
@@ -556,7 +571,7 @@ function newAccount(first, last, email, verified) {
   applyScenario("new"); seeUpdates();
   const f = (first || "").trim(), l = (last || "").trim();
   S.user = { first: f || email.split("@")[0], last: l, email, ini: ((f[0] || email[0]) + (l[0] || "")).toUpperCase(), known: !!f };
-  S.verified = verified; S.invite = inv; saveAccount(S.user); takeInvite(); go("/create");
+  S.verified = verified; S.invite = inv; saveAccount(S.user); takeInvite(); go("/home");
 }
 document.addEventListener("change", e => { if (e.target && e.target.dataset && e.target.dataset.wsname) { const v = e.target.value.trim(); S.wsName = v || null; render(); toast(v ? `Workspace renamed to ${v}` : "Workspace name reset"); } });
 document.addEventListener("submit", e => {
@@ -568,11 +583,11 @@ document.addEventListener("submit", e => {
     if (!acct) { fErr("siErr", `There's no account for ${esc(em)}. <a href="#/signup">Create one</a>, or try another email.`); $("#em").focus(); return; }
     if (pw.length < 1) { fErr("siPwErr", "Enter your password."); $("#pw").focus(); return; }
     markAccount(); const same = S.user && S.user.email && S.user.email.toLowerCase() === acct.email.toLowerCase();
-    if (S.invite) { S.guest = false; S.user = { ...acct }; takeInvite(); go("/create"); return; }
+    if (S.invite) { S.guest = false; S.user = { ...acct }; takeInvite(); go("/home"); return; }
     const after = S.after; S.after = null;
-    if (S.guest) { if (signInRestore(acct.email, after)) return; S.guest = false; S.user = { ...acct }; S.verified = undefined; toast("Signed in. What you started is still here"); go(after || "/create"); return; }
+    if (S.guest) { if (signInRestore(acct.email, after)) return; S.guest = false; S.user = { ...acct }; S.verified = undefined; toast("Signed in. What you started is still here"); go(after || "/home"); return; }
     if (!same && acct.email !== DEMO_ACCT.email) { applyScenario("new"); seeUpdates(); } // another account made here: its own workspace (the prototype keeps one workspace's work at a time)
-    S.user = { ...acct }; go(after || "/create"); return; }
+    S.user = { ...acct }; go(after || "/home"); return; }
   if (f === "signup") { const em = v("sem"), pw = ($("#spw") || {}).value || ""; let bad = false;
     if (!okEmail(em)) { fErr("semErr", "Enter an email address, like name@company.com."); bad = true; }
     else if (accounts()[em.toLowerCase()]) { fErr("semErr", `There's already an account for this email. <a href="#/signin">Sign in instead</a>.`); bad = true; } else fErr("semErr", "");
@@ -587,7 +602,7 @@ document.addEventListener("submit", e => {
     const parts = (nm || em.split("@")[0].split(/[._-]/).map(x => x.charAt(0).toUpperCase() + x.slice(1)).join(" ")).trim().split(/\s+/), first = parts[0] || "", last = parts.slice(1).join(" ");
     const acct = accounts()[em.toLowerCase()]; closeLayers();
     if (S.guest) { if (acct && !S.pending && signInRestore(acct.email, S.after)) return; finishGate(acct ? acct.first : first, acct ? acct.last : last, em, true); return; } // finishGate goes on to what they were doing
-    if (acct) { markAccount(); if (!(S.user && S.user.email && S.user.email.toLowerCase() === acct.email.toLowerCase()) && acct.email !== DEMO_ACCT.email) { applyScenario("new"); seeUpdates(); } S.user = { ...acct }; S.verified = true; if (S.invite) takeInvite(); go("/create"); toast("Welcome back"); return; }
+    if (acct) { markAccount(); if (!(S.user && S.user.email && S.user.email.toLowerCase() === acct.email.toLowerCase()) && acct.email !== DEMO_ACCT.email) { applyScenario("new"); seeUpdates(); } S.user = { ...acct }; S.verified = true; if (S.invite) takeInvite(); go("/home"); toast("Welcome back"); return; }
     newAccount(first, last, em, true); return; }
   if (f === "gate") { const em = v("gem"), pw = ($("#gpw") || {}).value || "", mode = (S.pending || {}).mode || "signup"; let bad = false;
     if (!okEmail(em)) { fErr("gemErr", "Enter an email address, like name@company.com."); bad = true; }
@@ -636,8 +651,8 @@ const JOBS = [
     brief: "A 1-minute demo of our product for new customers: how to create your first project, step by step." },
   { k: "training", ic: "users", t: "Training video", d: "Teach a tool or process to your team", have: "slides", clue: 6, title: "Running the weekly review", makes: "a narrated training video",
     brief: "A 2-minute training video for new team members: how we run the weekly review." },
-  { k: "sop", ic: "doc", t: "How-to guide", d: "Step-by-step help with screenshots", have: "record", clue: 0, title: "Reset a customer's password", makes: "a step-by-step guide and a video",
-    brief: "A step-by-step guide for our support team: how to reset a customer's password." },
+  { k: "sop", ic: "doc", t: "How-to article", d: "Step-by-step help with screenshots", have: "record", clue: 0, title: "Reset a customer's password", makes: "a step-by-step article and a video",
+    brief: "A step-by-step article for our support team: how to reset a customer's password." },
   { k: "marketing", ic: "bolt", t: "Launch teaser", d: "Announce a product or feature", have: "idea", clue: 2, title: "Meet the new dashboard", makes: "a 30-second launch teaser",
     brief: "A 30-second teaser for our new dashboard, for existing customers. Hook on the pain, show it working, end with where to find it." },
 ];
@@ -689,7 +704,7 @@ function promptBox(ph) {
       ${firstRun() ? "" : `<button class="pill" data-act="mode" aria-haspopup="menu" aria-label="Check in: ${S.mode}" title="${(CHECKIN.find(c => c[0] === S.mode) || CHECKIN[0])[2]}">${esc(S.mode)}${icon("chevDown")}</button>
       ${modelPill(fix(2))}
       <button class="pill" data-act="brandchip" aria-haspopup="menu" aria-label="Brand: ${curKit().name}" ${(nextStep() || {}).k === "brand" ? 'aria-describedby="nextline"' : ""} ${fix(3)}>${kitDots(curKit())}${curKit().name}${icon("chevDown")}</button>`}
-      ${freeFirst() ? `<span class="cost free" ${fix(4)} title="No credits are taken for your first video">${icon("sparkle")}Your first video is on us</span>` : `<span class="cost ${outOfCredits() || (has && !canBuild()) ? "warn" : ""}" ${fix(4)} title="${has ? "Estimate for this video. Credits are taken as Clueso builds it; in Ask and Plan you approve the plan and its cost first" : "Replies use a few credits; a video's cost is shown here before you send"}">${icon("coin")}${outOfCredits() ? `Out of credits · <a href="#/settings/plan">See plans</a>` : has ? (canBuild() ? `About ${costRange()} credits · ${credLeft().toLocaleString("en-US")} left` : `Needs about ${costRange()} · only ${credLeft().toLocaleString("en-US")} left`) : credWords(credLeft())}</span>`}
+      ${freeFirst() ? `<span class="cost free" ${fix(4)} title="No credits are taken for your first video">${icon("sparkle")}Your first video is on us</span>` : `<span class="cost ${outOfCredits() || (has && !canBuild()) ? "warn" : ""}" ${fix(4)} title="${has ? "Estimate for this video. Credits are taken as Clueso builds it; in Ask and Plan you approve the plan and its cost first" : "Replies use a few credits; a video's cost is shown here before you send"}">${icon("coin")}${outOfCredits() ? `Out of credits · <a href="#/settings/plan-and-usage">See plans</a>` : has ? (canBuild() ? `About ${costRange()} credits · ${credLeft().toLocaleString("en-US")} left` : `Needs about ${costRange()} · only ${credLeft().toLocaleString("en-US")} left`) : credWords(credLeft())}</span>`}
       <button class="sendbtn" data-act="send" aria-label="Send" ${has && (freeFirst() || !outOfCredits()) ? "" : "disabled"}>${icon("send")}</button>
     </div></div>`;
 }
@@ -715,10 +730,10 @@ function clueRow() {
 }
 function firstDemo() {
   return `<div class="firstdemo" ${fix(10)}><div class="fdv" aria-hidden="true"><div class="thumb raw"><span class="wave"></span></div><div class="thumb t-plum fda">Work is everywhere.</div><span class="fdl">Example</span></div>
-    <div class="fdt"><b>See what Clueso does</b><span>A rough 2-minute recording becomes a 1-minute video with voiceover, zooms, captions and a guide.</span><span class="fdb"><button class="btn" data-act="toast" data-m="Plays the 40-second example with sound">${icon("play")}Watch with sound · 0:40</button><button class="linkbtn" data-act="stexplore">Open this sample in the editor</button></span></div></div>`;
+    <div class="fdt"><b>See what Clueso does</b><span>A rough 2-minute recording becomes a 1-minute video with voiceover, zooms, captions and an article.</span><span class="fdb"><button class="btn" data-act="toast" data-m="Plays the 40-second example with sound">${icon("play")}Watch with sound · 0:40</button><button class="linkbtn" data-act="stexplore">Open this sample in the editor</button></span></div></div>`;
 }
-// One optional question, only after the first share: what they'll mostly make, to suggest templates. Never before value.
-const VTYPES = { demo: "a 1-minute product demo", training: "a 2-minute training video", sop: "a how-to guide with a short video", marketing: "a 30-second launch teaser", video: "a 1-minute video" };
+// One optional question, only after the first share: what they'll mostly make, to suggest Clueprints. Never before value.
+const VTYPES = { demo: "a 1-minute product demo", training: "a 2-minute training video", sop: "a how-to article with a short video", marketing: "a 30-second launch teaser", video: "a 1-minute video" };
 // The video type is read from the brief rather than asked: no wrong first pick to undo
 function inferType(t) { t = (t || "").toLowerCase(); return /teaser|launch|announce|promo|marketing|new feature/.test(t) ? "marketing" : /\bdemo\b|walkthrough|walk through/.test(t) ? "demo" : /train|onboard|new hires|team members|course|lesson/.test(t) ? "training" : /how to|how-to|guide|steps|step-by-step|sop|reset|set up|setup/.test(t) ? "sop" : /show (customers|how)|product/.test(t) ? "demo" : "video"; } // an explicit "demo" wins over "step by step"
 function askLater() {
@@ -800,8 +815,11 @@ function projRowMenu(id) {
     <div class="sep"></div>
     <button class="mi danger" data-act="pm" data-op="del" data-id="${id}">${icon("close")}Delete<small>Kept 30 days</small></button>`;
 }
-function vProjects() {
-  const tab = S.projTab;
+function vProjects(fArg) {
+  const tab = fArg ? "all" : S.projTab; // a folder lists its projects; Deleted is one list for the whole workspace
+  S.folders = S.folders || [];
+  const folder = fArg ? decodeURIComponent(fArg) : null;
+  if (folder && !S.folders.includes(folder)) return shell("projects", `<div class="page"><div class="crumbs"><a href="#/projects">Projects</a></div><div class="drop" style="max-width:640px;margin-top:16px" role="status">${icon("folder")}<b style="color:var(--ink);font-weight:500">This folder doesn't exist</b>It may have been deleted or renamed.<a class="btn" href="#/projects">All projects</a></div></div>`);
   let body;
   if (tab === "deleted") {
     const day = 864e5; const fmt = d => new Date(d).toLocaleDateString("en-GB", { day: "numeric", month: "short" });
@@ -813,13 +831,13 @@ function vProjects() {
     const hit = n => words.every(w => n.toLowerCase().includes(w));
     const { key, dir } = S.projSort; const sgn = dir === "asc" ? 1 : -1;
     const cmp = (a, b) => sgn * (key === "name" ? a.name.localeCompare(b.name) : key === "dur" ? durSec(a.dur) - durSec(b.dur) : agoMin(a.mod) - agoMin(b.mod));
-    const shownList = PROJECTS.filter(p => (!q || hit(p.name) || [...p.versions, ...p.madeFrom].some(k => hit(k.name))) && (!S.pf.types.size || S.pf.types.has(p.type)) && editedOk(p))
+    const shownList = PROJECTS.filter(p => (!q || hit(p.name) || [...p.versions, ...p.madeFrom].some(k => hit(k.name))) && (!S.pf.types.size || S.pf.types.has(p.type)) && editedOk(p) && (folder ? p.folder === folder : (q || S.pf.types.size || S.pf.edited !== "any") || !p.folder || !S.folders.includes(p.folder)))
       .sort((a, b) => (S.pinned.has(b.id) - S.pinned.has(a.id)) || cmp(a, b));
     const rows = shownList.map(p => {
       const kids = [...p.versions.map(v => ({ ...v, kind: v.lang, th: p.th, isLang: true })), ...p.madeFrom];
       const kidHit = q && kids.some(k => hit(k.name));
       const open = S.expanded.has(p.id) || kidHit; const showKids = q && !hit(p.name) ? kids.filter(k => hit(k.name)) : kids;
-      return `<tr class="row" data-go="/project/${p.id}"><td><div class="nm">${kids.length ? `<button class="iconbtn" data-act="expand" data-id="${p.id}" aria-expanded="${open}" aria-label="${open ? "Hide" : "Show"} ${kids.length} version${kids.length > 1 ? "s" : ""}">${icon(open ? "chevDown" : "chevRight")}</button>` : `<span style="width:24px"></span>`}<div class="thumb ${p.th}"></div><div class="tw"><a class="ttl" href="#/project/${p.id}">${hl(p.name, words)}</a><span class="sub">${S.pinned.has(p.id) ? `<span class="bdg pink">${icon("bolt")}Pinned</span>` : ""}<span class="bdg">${p.type}</span>${p.article ? `<span class="bdg">${icon("doc")}Guide</span>` : ""}${kids.length ? `<span class="mut" style="font-size:11px">+${kids.length} version${kids.length > 1 ? "s" : ""}</span>` : ""}</span></div></div></td>
+      return `<tr class="row" data-go="/project/${p.id}"><td><div class="nm">${kids.length ? `<button class="iconbtn" data-act="expand" data-id="${p.id}" aria-expanded="${open}" aria-label="${open ? "Hide" : "Show"} ${kids.length} version${kids.length > 1 ? "s" : ""}">${icon(open ? "chevDown" : "chevRight")}</button>` : `<span style="width:24px"></span>`}<div class="thumb ${p.th}"></div><div class="tw"><a class="ttl" href="#/project/${p.id}">${hl(p.name, words)}</a><span class="sub">${S.pinned.has(p.id) ? `<span class="bdg pink">${icon("bolt")}Pinned</span>` : ""}<span class="bdg">${p.type}</span>${p.article ? `<span class="bdg">${icon("doc")}Article</span>` : ""}${kids.length ? `<span class="mut" style="font-size:11px">+${kids.length} version${kids.length > 1 ? "s" : ""}</span>` : ""}</span></div></div></td>
         <td class="mut">${p.dur}</td><td class="mut">${p.mod}</td><td class="rowact"><button class="iconbtn" data-act="rowmenu" data-id="${p.id}" aria-label="More actions for ${esc(p.name)}" aria-haspopup="menu">${icon("dots")}</button></td></tr>
         ${open ? showKids.map(k => `<tr class="row child" data-go="/project/${k.id}"><td><div class="nm indent"><div class="thumb ${k.th}"></div><div class="tw"><a class="ttl" href="#/project/${k.id}" style="font-size:14px">${hl(k.name, words)}</a><span class="sub">${k.isLang ? `<span class="bdg green">${icon("translate")}${k.kind}</span>` : `<span class="bdg pink">${icon("sparkle")}Made from this · ${k.kind}</span>`}</span></div></div></td><td class="mut">${k.dur}</td><td class="mut">${k.mod}</td><td></td></tr>`).join("") : ""}`;
     }).join("");
@@ -827,19 +845,23 @@ function vProjects() {
       const hint = k === "edited" ? (on && d === "asc" ? "newest first" : on ? "oldest first" : "") : k === "name" ? (on ? (d === "asc" ? "A to Z" : "Z to A") : "") : (on ? (d === "asc" ? "shortest first" : "longest first") : "");
       return `<th scope="col" aria-sort="${aria}"><button class="sorth ${on ? "on" : ""}" data-act="psort" data-k="${k}" title="Sort by ${l.toLowerCase()}">${l}${on ? `<span class="sarr" aria-hidden="true">${(aria === "ascending") ? "↑" : "↓"}</span><span class="sr">, sorted ${hint}</span>` : ""}</button></th>`; };
     const filtered = S.pf.types.size || S.pf.edited !== "any";
-    body = shownList.length ? `<table class="list" ${fix(2)}><thead><tr>${th("name", "Name")}${th("dur", "Length")}${th("edited", "Edited")}<th scope="col"><span class="sr">Actions</span></th></tr></thead><tbody ${fix(1)}>${rows}</tbody></table>`
-      : !PROJECTS.length && !q && !filtered ? `<div class="drop" style="max-width:720px" role="status">${icon("folder")}<b style="color:var(--ink);font-weight:500">No projects yet</b>Videos you make on Home show up here.${S.deleted.length ? ` ${S.deleted.length} deleted ${S.deleted.length === 1 ? "project is" : "projects are"} in Deleted for 30 days.` : ""}<a class="btn dark" href="#/create">${icon("plus")}Make a video</a></div>`
+    // Folders sit above projects at the top level (as in Drive and Finder); searching or filtering looks inside them too
+    const fRows = folder || q || filtered ? "" : S.folders.map(f => { const n = PROJECTS.filter(p => p.folder === f).length, u = "/projects/" + encodeURIComponent(f);
+      return `<tr class="row" data-go="${u}"><td><div class="nm"><span style="width:24px"></span><div class="thumb fthumb">${icon("folder")}</div><div class="tw"><a class="ttl" href="#${u}">${esc(f)}</a><span class="sub"><span class="mut" style="font-size:11px">Folder · ${n} project${n === 1 ? "" : "s"}</span></span></div></div></td><td class="mut"></td><td class="mut"></td><td class="rowact"><button class="iconbtn" data-act="foldermenu" data-k="${esc(f)}" aria-label="More actions for folder ${esc(f)}" aria-haspopup="menu">${icon("dots")}</button></td></tr>`; }).join("");
+    body = shownList.length || fRows ? `<table class="list" ${fix(2)}><thead><tr>${th("name", "Name")}${th("dur", "Length")}${th("edited", "Edited")}<th scope="col"><span class="sr">Actions</span></th></tr></thead><tbody ${fix(1)}>${fRows}${rows}</tbody></table>`
+      : folder && !q && !filtered ? `<div class="drop" style="max-width:720px" role="status">${icon("folder")}<b style="color:var(--ink);font-weight:500">This folder is empty</b>Move projects here from their ⋯ menu, or from the editor's project menu.<a class="btn" href="#/projects">All projects</a></div>`
+      : !PROJECTS.length && !q && !filtered ? `<div class="drop" style="max-width:720px" role="status">${icon("folder")}<b style="color:var(--ink);font-weight:500">No projects yet</b>Videos you make on Home show up here.${S.deleted.length ? ` ${S.deleted.length} deleted ${S.deleted.length === 1 ? "project is" : "projects are"} in Deleted for 30 days.` : ""}<a class="btn dark" href="#/home">${icon("plus")}Make a video</a></div>`
       : `<div class="drop" style="max-width:720px" role="status">${icon(q ? "search" : "filter")}<b style="color:var(--ink);font-weight:500">${q ? `No projects match “${esc(S.projQ.trim())}”` : "No projects match these filters"}</b>${q ? "Names are searched, including language versions and videos made from another." : "Try another type or a longer time range."}<span style="display:flex;gap:8px">${q ? `<button class="btn" data-act="clearpq">Clear search</button>` : ""}${filtered ? `<button class="btn" data-act="pfclear">Clear filters</button>` : ""}<button class="btn" data-act="cmdk">Search everything</button></span></div>`;
   }
   const chips = tab === "all" ? [...[...S.pf.types].map(t => `<button class="fchip" data-act="pftype" data-k="${esc(t)}" aria-label="Remove filter: type ${esc(t)}">Type: ${esc(t)}${icon("close")}</button>`), S.pf.edited !== "any" ? `<button class="fchip" data-act="pfedited" data-k="any" aria-label="Remove filter: edited ${EDITED.find(e => e[0] === S.pf.edited)[1]}">Edited: ${EDITED.find(e => e[0] === S.pf.edited)[1].toLowerCase()}${icon("close")}</button>` : ""].filter(Boolean) : [];
   const nf = S.pf.types.size + (S.pf.edited !== "any" ? 1 : 0);
   return shell("projects", `<div class="page">
-    <div class="ptitle">${icon("folder")}Projects</div>
-    <div class="toolbar"><div class="tabs">${[["all", "All"], ["deleted", "Deleted"]].map(([k, l]) => `<button class="${tab === k ? "on" : ""}" data-act="projtab" data-k="${k}">${l}${k === "deleted" && S.deleted.length ? ` <span class="tabn">${S.deleted.length}</span>` : ""}</button>`).join("")}</div>
+    ${folder ? `<div class="crumbs"><a href="#/projects">Projects</a>${icon("chevRight")}<b>${esc(folder)}</b></div><div class="ptitle" style="margin-top:6px">${icon("folder")}${esc(folder)}</div>` : `<div class="ptitle">${icon("folder")}Projects</div>`}
+    <div class="toolbar"><div class="tabs" ${folder ? "hidden" : ""}>${[["all", "All"], ["deleted", "Deleted"]].map(([k, l]) => `<button class="${tab === k ? "on" : ""}" data-act="projtab" data-k="${k}">${l}${k === "deleted" && S.deleted.length ? ` <span class="tabn">${S.deleted.length}</span>` : ""}</button>`).join("")}</div>
       <div style="flex:1"></div>
       ${tab === "all" ? `<label class="searchbox" style="width:220px">${icon("search")}<input id="pq" type="search" aria-label="Search projects" placeholder="Search projects" value="${esc(S.projQ || "")}" autocomplete="off" style="border:0;background:none;outline:none;flex:1;font-size:12px;min-width:0"></label>
       <button class="btn ${nf ? "on" : ""}" data-act="filter" aria-haspopup="menu" ${fix(3)}>${icon("filter")}Filter${nf ? ` <span class="tabn">${nf}</span>` : ""}</button>` : ""}
-      <button class="btn" data-act="toast" data-m="New folder created">${icon("folder")}New folder</button></div>
+      ${folder ? "" : `<button class="btn" data-act="newfolder">${icon("folder")}New folder</button>`}</div>
     ${chips.length ? `<div class="fchips">${chips.join("")}<button class="btn ghost" data-act="pfclear" style="height:24px;font-size:12px">Clear all</button></div>` : ""}
     ${body}</div>`);
 }
@@ -849,6 +871,22 @@ function renameDialog(id) {
   dialog(dh("Rename project") + `<div class="db"><label class="field">Name<input id="rnm" value="${esc(p.name)}" maxlength="120"></label></div><div class="df"><button class="btn" data-act="closedlg">Cancel</button><button class="btn pink" data-act="dorename" data-id="${id}">Save</button></div>`);
   const i = $("#rnm"); i.select(); i.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); document.querySelector('[data-act="dorename"]').click(); } });
 }
+// Folders: one level, made from Projects or from Move to folder (here or in the editor); "Projects" is the top level
+const ROOT_F = "Projects";
+function moveDialog(id, sel) {
+  const p = PROJECTS.find(x => x.id === id); if (!p) return; S.folders = S.folders || []; const cur = p.folder && S.folders.includes(p.folder) ? p.folder : ROOT_F; sel = sel || cur;
+  dialog(dh(`Move “${esc(p.name)}”`, `Current location: ${esc(cur)}`) + `<div class="db edmove" role="radiogroup" aria-label="Folders">${[ROOT_F, ...S.folders].map(f => `<button class="edrow ${f === sel ? "on" : ""}" role="radio" aria-checked="${f === sel}" data-act="mvpick" data-id="${id}" data-k="${esc(f)}">${icon("folder")}<span><b>${esc(f)}</b>${f === cur ? `<span class="mut">Current location</span>` : ""}</span></button>`).join("")}
+    <div class="edrep"><input id="mvnew" placeholder="New folder name" aria-label="New folder name" maxlength="60"><button class="btn" data-act="mvmk" data-id="${id}">${icon("plus")}Create folder</button></div></div>
+    <div class="df"><button class="btn" data-act="closedlg">Cancel</button><button class="btn dark" data-act="mvdo" data-id="${id}" data-k="${esc(sel)}" ${sel === cur ? "disabled" : ""}>Move here</button></div>`);
+  const i = $("#mvnew"); if (i) i.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); $('[data-act="mvmk"]').click(); } });
+}
+// Name a folder: new (old = null) or rename. Names are unique; "Projects" is taken by the top level.
+function folderDialog(old) {
+  dialog(dh(old ? "Rename folder" : "New folder") + `<div class="db"><label class="field">Name<input id="fnm" value="${esc(old || "")}" maxlength="60" placeholder="e.g. Onboarding videos" aria-describedby="fnmErr"></label><p class="ferr" id="fnmErr" role="alert" hidden></p></div><div class="df"><button class="btn" data-act="closedlg">Cancel</button><button class="btn dark" data-act="dofolder" data-k="${esc(old || "")}">${old ? "Save" : "Create folder"}</button></div>`);
+  const i = $("#fnm"); i.select(); i.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); $('[data-act="dofolder"]').click(); } });
+}
+const folderErr = (v, old) => !v ? "Give the folder a name" : v.toLowerCase() === ROOT_F.toLowerCase() ? "“Projects” is the top level. Pick another name" : S.folders.some(f => f !== old && f.toLowerCase() === v.toLowerCase()) ? `There's already a folder called “${v}”` : "";
+
 /* ---------- project hub ---------- */
 function vProject(id) {
   const all = [...PROJECTS, ...PROJECTS.flatMap(p => p.madeFrom.map(m => ({ ...m, type: m.kind, parent: p, versions: [], madeFrom: [] }))), ...PROJECTS.flatMap(p => p.versions.map(v => ({ ...v, type: "Translation", th: p.th, parent: p, article: false, chat: null, versions: [], madeFrom: [] })))];
@@ -872,7 +910,7 @@ function vProject(id) {
         <div class="vmeta"><span>${p.type} · ${p.dur || ""} · Edited ${p.mod || "just now"}</span>${(() => { const c = TASKS.find(x => x.pid === (p.parent ? p.parent.id : p.id)); return c ? `<button class="linkbtn madewith" data-act="openchat" data-id="${c.id}" title="Open the conversation">${icon("sparkle")}<span>Made with Clueso AI from “${esc(c.t)}”</span></button>` : ""; })()}</div>
       </div>
       <div style="display:grid;gap:12px;align-content:start" ${fix(1)}>
-        <div class="box" ${fix(3)}><h3>${icon("doc")}Step-by-step guide</h3>${p.article ? `<div class="kv"><span class="mut" style="font-size:12px">6 steps with screenshots</span><button class="btn" data-act="toast" data-m="Opens the guide">Open</button></div>` : `<div class="kv"><span class="mut" style="font-size:12px">Not made yet</span><button class="${gen || (S.ready === p.id && !S.watched) ? "btn" : "btn dark"}" data-act="genarticle">${icon("sparkle")}Make guide</button></div>`}</div>
+        <div class="box" ${fix(3)}><h3>${icon("doc")}Article</h3>${p.article ? `<div class="kv"><span class="mut" style="font-size:12px">6 steps with screenshots</span><button class="btn" data-act="toast" data-m="Opens the article">Open</button></div>` : `<div class="kv"><span class="mut" style="font-size:12px">Not made yet</span><button class="${gen || (S.ready === p.id && !S.watched) ? "btn" : "btn dark"}" data-act="genarticle">${icon("sparkle")}Make article</button></div>`}</div>
         <div class="box"><h3>${icon("translate")}Versions</h3>
           ${related.length ? related.map(r => `<a class="vrow vtwo" href="#/project/${r.id}"><span class="grow"><span class="vn">${esc(r.n)}</span><span class="bdg ${r.cls}">${r.tag}</span></span><span class="mut">${r.d}</span></a>`).join("") : `<span class="mut" style="font-size:12px">Translations and videos made from this one appear here.</span>`}
           <div><button class="btn ghost" data-act="create" data-k="translate">${icon("plus")}Add a language</button></div></div>
@@ -899,7 +937,7 @@ const quietCost = () => canBuild() && !PROJECTS.some(p => !p.sample && !p.cancel
 function includesFor(t) { const guide = S.guideOn !== false;
   if (t === "marketing") return "Includes music, captions and animated text.";
   if (t === "video") return "Includes an AI voiceover and captions.";
-  return `Includes an AI voiceover, captions and zooms${guide ? ", plus a step-by-step guide" : ""}.`; }
+  return `Includes an AI voiceover, captions and zooms${guide ? ", plus a step-by-step article" : ""}.`; }
 const END_CARDS = { marketing: ["Try it free", "Start free"], demo: ["Try it today", "Get started"], sop: ["You're all set", ""], training: ["That's a wrap", ""], video: ["Thanks for watching", ""] };
 function sceneArt(title, k, n, type) { if (k === 0) return `<span class="cfcard">${esc(title)}</span>`; if (k === n - 1) { const [t, b] = END_CARDS[type] || END_CARDS.marketing; return `<span class="cfcard end"><span>${t}</span>${b ? `<i class="cfcta">${b}</i>` : ""}</span>`; }
   const body = [`<i class="frl w1"></i><i class="frl w2"></i><i class="frbtn"></i>`, `<i class="frl w1"></i>${"<i class=\"frrow\"><b></b><i class=\"frl w2\"></i></i>".repeat(3)}`, `<i class="frl w1"></i><i class="frbars">${[60, 85, 45, 100, 70].map(h => `<b style="height:${h}%"></b>`).join("")}</i>`][k % 3];
@@ -1063,7 +1101,7 @@ function vChats() {
     return shell("chats", `<div class="page chatpage has-chat chatfocus ${panel ? "withpanel" : ""}"><section class="chatmain" aria-label="Conversation">${head}</section>${panel}</div>`); }
   if (chat && wide) thread = thread.replace('<button class="iconbtn" data-act="chatmenu"', `<button class="iconbtn" data-act="chatfocus" aria-label="Open this chat full width" title="Full width">${icon("expand")}</button><button class="iconbtn" data-act="chatmenu"`);
   return shell("chats", `<div class="page chatpage ${chat || isNew ? "has-chat" : ""}">
-    <div class="toolbar"><div class="ptitle">${icon("chat")}Chats </div><div style="flex:1"></div>
+    <div class="toolbar"><div class="ptitle">${icon("chat")}Chats <span class="mut" style="font-size:12px;font-weight:400;margin-left:4px">Your conversations with Clueso AI</span></div><div style="flex:1"></div>
       ${TASKS.length || isNew ? `<button class="btn dark" data-act="chatnew" ${fix(3)}>${icon("plus")}New chat</button>` : ""}</div>
     <div class="chatgrid ${TASKS.length || isNew ? "" : "none"}">
       <div class="chatside" ${TASKS.length || isNew ? "" : "hidden"}>
@@ -1122,6 +1160,7 @@ function vIntegrations() {
 }
 
 /* ---------- settings ---------- */
+const SET_LABEL = { profile: "Profile", general: "General", plan: "Plan and usage", members: "Members", defaults: "Video defaults", language: "Language and voice", sharing: "Player and links" };
 function vSettings(page) {
   S.setPage = page || "general";
   const lock = (plan) => `<span class="bdg amber">${icon("lock")}${plan}</span>`;
@@ -1155,13 +1194,14 @@ function vSettings(page) {
     <div class="tabs">${[["pron", "Pronunciations"], ["trans", "Transcription keywords"], ["gloss", "Translation terms and rules"]].map(([k, l]) => `<button class="${L === k ? "on" : ""}" data-act="langtab" data-k="${k}">${l}</button>`).join("")}</div>
     <p class="d">${T[0]}</p><div style="display:flex;gap:8px"><input class="inp" placeholder="${L === "gloss" ? "Original term" : "Word"}" aria-label="${T[1]}" style="flex:1"><button class="btn dark" data-act="toast" data-m="Added">${icon("plus")}${T[1]}</button>${L === "gloss" ? `<button class="btn" data-act="toast" data-m="File picker">Import CSV</button>` : ""}</div>
     <div class="mut" style="font-size:12px">${T[2]}</div>${L === "gloss" ? `<div class="kv" style="border-top:1px solid var(--line);padding-top:12px"><span>Rules<span class="mut" style="display:block;font-size:12px">Instructions for translating into each language.</span></span><button class="btn" data-act="toast" data-m="New rule">${icon("plus")}New rule</button></div>` : ""}</div>`; }
-  if (P === "sharing") card = `<div class="setcard"><h3>View-only links</h3><p class="d">The page people see when you share a link. Included on every plan.</p>
+  if (P === "sharing") card = `<div class="setcard"><h3>Player and links</h3><p class="d">What people see when you share a link or embed a video.</p>
+    <b class="setsub">View-only links <span class="mut">· included on every plan</span></b>
     <div class="kv"><span>Domain</span><span class="mut" style="font-size:12px">heavy-cobra-of-assurance.clueso.site</span></div>
     <div class="kv"><span>Appearance<span class="mut" style="display:block;font-size:12px">Theme, colors, logo, header links, feedback, author</span></span><button class="btn">Edit</button></div>
-    <div class="kv"><span>Authentication<span class="mut" style="display:block;font-size:12px">Who can open your links</span></span><button class="btn">Edit</button></div></div>
-    <div class="setcard" style="margin-top:12px"><h3>Embedded player ${lock("Business")}</h3><p class="d">Match your embedded video player to your brand: colors, controls and style.</p></div>`;
+    <div class="kv"><span>Authentication<span class="mut" style="display:block;font-size:12px">Who can open your links</span></span><button class="btn">Edit</button></div>
+    <b class="setsub">Embedded player ${lock("Business")}</b><p class="d" style="margin:0">Match your embedded video player to your brand: colors, controls and style.</p></div>`;
   return shell("settings", `<div class="page"><div class="ptitle">${icon("settings")}Settings</div>
-    <div class="setgrid"><nav class="setnav" aria-label="Settings" ${fix(1)}>${nav.map(items => items.map(([k, l, ic]) => `<a class="navitem ${P === k ? "on" : ""}" href="#/settings/${k}" ${P === k ? 'aria-current="page"' : ""}>${icon(ic)}<span class="lbl">${l}</span></a>`).join("")).join(`<div class="setsep" role="separator"></div>`)}</nav><div>${card}</div></div></div>`);
+    <div class="setgrid"><nav class="setnav" aria-label="Settings" ${fix(1)}>${nav.map(items => items.map(([k, l, ic]) => `<a class="navitem ${P === k ? "on" : ""}" href="#/settings/${SET_URL[k] || k}" ${P === k ? 'aria-current="page"' : ""}>${icon(ic)}<span class="lbl">${l}</span></a>`).join("")).join(`<div class="setsep" role="separator"></div>`)}</nav><div>${card}</div></div></div>`);
 }
 
 /* ---------- analytics ---------- */
@@ -1249,7 +1289,7 @@ function vAnalytics(id) {
       <select class="btn" aria-label="Project" data-act2="anproj" style="padding-right:24px;max-width:240px;text-overflow:ellipsis">${[["", "All projects"], ...AN.map(a => [a.id, a.n])].map(([v, l]) => `<option value="${v}" ${(id || "") === v ? "selected" : ""}>${esc(l)}</option>`).join("")}</select>
       <div class="seg" role="group" aria-label="Date range">${[["7d", "7d"], ["14d", "14d"], ["30d", "30d"], ["90d", "90d"], ["custom", "Custom"]].map(([k, l]) => `<button class="${R.key === k ? "on" : ""}" aria-pressed="${R.key === k}" data-act="anrange" data-k="${k}" ${k === "custom" ? 'aria-haspopup="dialog"' : `title="Last ${k.replace("d", "")} days, including today"`}>${l}</button>`).join("")}</div>
       <button class="btn" data-act="toast" data-m="Downloads the top content table as CSV" ${empty ? "disabled" : ""}>${icon("upload")}Download CSV</button></div>
-    <section class="anup" ${fix(2)} aria-labelledby="anupt"><div class="anupc"><span class="bdg amber">${icon("lock")}Business</span><h2 id="anupt">See how your real videos perform</h2><ul class="anupl"><li>${icon("check")}Every published video, link and embed</li><li>${icon("check")}Where viewers stop watching</li><li>${icon("check")}Where they're from, and what they search for</li></ul></div><div class="anupa"><button class="btn pink" data-act="toast" data-m="Opens checkout for the Business plan">Upgrade to Business</button><a class="btn ghost" href="#/settings/plan">Compare plans</a></div></section>
+    <section class="anup" ${fix(2)} aria-labelledby="anupt"><div class="anupc"><span class="bdg amber">${icon("lock")}Business</span><h2 id="anupt">See how your real videos perform</h2><ul class="anupl"><li>${icon("check")}Every published video, link and embed</li><li>${icon("check")}Where viewers stop watching</li><li>${icon("check")}Where they're from, and what they search for</li></ul></div><div class="anupa"><button class="btn pink" data-act="toast" data-m="Opens checkout for the Business plan">Upgrade to Business</button><a class="btn ghost" href="#/settings/plan-and-usage">Compare plans</a></div></section>
     <div class="anrange mut">${R.n ? `${R.key === "custom" ? "Custom range" : `Last ${R.n} days`} · ${rangeLabel}` : "Pick a start and end date"}${one ? ` · ${esc(one.n)}` : " · All projects"}</div>
     ${empty ? `<div class="drop anempty" role="status">${icon("analytics")}<b>No views in this period</b><span>${R.future ? "Analytics has data up to today." : "Nothing was opened in these dates. Try a longer range."}</span><button class="btn" data-act="anrange" data-k="30d">Show the last 30 days</button></div>` : `
     <div class="ansample"><div class="statgrid" ${fix(1)}>${stat("Impressions", tot.imp.toLocaleString("en"), "Times your content was opened, watched or not", "Each time someone opens the page, link or embed with your video, whether or not they press play.", chg(tot.imp, ptot.imp))}${stat("Plays", tot.plays.toLocaleString("en"), "Unique plays per viewing session", "A play is counted once per viewing session. Watching again in the same session doesn't add a play.", chg(tot.plays, ptot.plays))}${stat("Play rate", rate(tot) + "%", "Plays ÷ impressions", `${tot.plays.toLocaleString("en")} plays ÷ ${tot.imp.toLocaleString("en")} impressions = ${(tot.plays / tot.imp * 100).toFixed(1)}%, rounded.`, ratePt(tot, ptot))}</div>
@@ -1257,10 +1297,10 @@ function vAnalytics(id) {
     ${one ? `<div class="box" style="margin-top:12px" ${fix(3)}><h3>Audience retention · ${esc(one.n)} </h3><div class="kv"><span class="lab">Average watch</span><span>${one.dur} · ${one.pct}% of the video</span></div>${chart([{ v: ret, c: "var(--pink)" }], ret.map((_, i) => Math.round(i / 19 * 57) + "s"), 140)}<span class="mut" style="font-size:12px">Biggest drop-off at 0:34 (“Stay in sync” scene).</span><div><a class="btn" href="#/analytics">${icon("chevLeft")}All projects</a></div></div>` : ""}
     <div class="hubgrid angrid">
       <div class="box"><h3>Your top content in this period </h3>${rows.length ? `<div class="tablewrap"><table class="list antable"><thead><tr>${AN_SORT.map(([k, l]) => `<th scope="col" class="${k === "n" ? "" : "num"}" aria-sort="${so.k === k ? (so.dir > 0 ? "ascending" : "descending") : "none"}"><button class="ansort" data-act="ansort" data-k="${k}">${l}<span aria-hidden="true">${so.k === k ? (so.dir > 0 ? "↑" : "↓") : ""}</span></button></th>`).join("")}</tr></thead><tbody>
-        ${rows.map(a => `<tr class="row" data-go="/analytics/${a.id}"><td><div class="tw"><a class="ttl" href="#/analytics/${a.id}" style="font-weight:500;font-size:14px">${esc(a.n)}</a><span class="mut" style="font-size:11px">Created ${a.c} · <a class="mut" href="#/project/${a.id}">Open project</a></span></div></td><td class="num">${a.imp.toLocaleString("en")}</td><td class="num">${a.plays.toLocaleString("en")}</td><td class="num"><span>${a.dur}</span> <span class="mut">${a.pct}%</span></td></tr>`).join("")}</tbody></table></div>` : `<p class="mut" style="font-size:12px;margin:0">No video was opened in this period.</p>`}</div>
+        ${rows.map(a => `<tr class="row" data-go="/analytics/${a.id}"><td><div class="tw"><a class="ttl" href="#/analytics/${a.id}" style="font-weight:500;font-size:14px">${esc(a.n)}</a><span class="mut" style="font-size:11px">Created ${a.c} · ${PROJECTS.some(x => x.id === a.id) ? `<a class="mut" href="#/project/${a.id}">Open project</a>` : "Sample video"}</span></div></td><td class="num">${a.imp.toLocaleString("en")}</td><td class="num">${a.plays.toLocaleString("en")}</td><td class="num"><span>${a.dur}</span> <span class="mut">${a.pct}%</span></td></tr>`).join("")}</tbody></table></div>` : `<p class="mut" style="font-size:12px;margin:0">No video was opened in this period.</p>`}</div>
       <div style="display:grid;gap:16px;align-content:start">
         <div class="box"><h3>Breakdown by location <span class="mut anh">by impressions</span></h3>${[["India", 38], ["United States", 27], ["Germany", 12], ["United Kingdom", 9], ["Other", 14, "14 more countries, each under 3%"]].map(([c, v, t]) => `<div class="kv" style="font-size:12px" ${t ? `title="${t}"` : ""}><span style="width:110px">${c}${t ? `<span class="mut" style="font-size:11px"> (14)</span>` : ""}</span><div class="meter" style="flex:1" role="img" aria-label="${c}: ${v}% of impressions"><i style="width:${v / 38 * 100}%"></i></div><span class="mut num" style="width:34px;text-align:right">${v}%</span></div>`).join("")}</div>
-        <div class="box"><h3>Help center searches </h3><table class="list"><thead><tr><th scope="col">Date</th><th scope="col">Search</th><th scope="col">Clicked guide</th></tr></thead><tbody><tr><td class="mut num0">${anFmt(anDay(0))}</td><td>add a task</td><td class="mut">Add a task in Taskly</td></tr><tr><td class="mut num0">${anFmt(anDay(1))}</td><td>weekly review</td><td class="mut">3-step Taskly onboarding</td></tr><tr><td class="mut num0">${anFmt(anDay(3))}</td><td>export csv</td><td class="mut" title="No guide was clicked">None</td></tr></tbody></table></div>
+        <div class="box"><h3>Help center searches </h3><table class="list"><thead><tr><th scope="col">Date</th><th scope="col">Search</th><th scope="col">Clicked article</th></tr></thead><tbody><tr><td class="mut num0">${anFmt(anDay(0))}</td><td>add a task</td><td class="mut">Add a task in Taskly</td></tr><tr><td class="mut num0">${anFmt(anDay(1))}</td><td>weekly review</td><td class="mut">3-step Taskly onboarding</td></tr><tr><td class="mut num0">${anFmt(anDay(3))}</td><td>export csv</td><td class="mut" title="No article was clicked">None</td></tr></tbody></table></div>
       </div></div></div>`}</div>`);
 }
 
@@ -1294,12 +1334,12 @@ function aiChips(ctx) {
   if (!PROJECTS.some(p => !p.sample) && !["article"].includes(ctx.kind)) return [ask("Help me write a brief for a product demo"), { t: "Record your screen", act: "create", k: "record" }, ask("Which Clueprint fits my first video?")];
   const map = {
     create: [ask("Help me write a brief for a product demo"), { t: "Record your screen", act: "create", k: "record" }, ask("What will my first video cost?")],
-    projects: [ask("Which videos don't have a guide yet?"), ask("Find my onboarding videos"), { t: "Translate a video", act: "create", k: "translate" }],
-    project: [ctx.p && ctx.p.article === false ? { t: "Write the step-by-step guide", act: "genarticle" } : ask("Summarize this video in 3 lines"), { t: "Translate this video", act: "create", k: "translate" }, ask("Suggest a clearer title")],
+    projects: [ask("Which videos don't have an article yet?"), ask("Find my onboarding videos"), { t: "Translate a video", act: "create", k: "translate" }],
+    project: [ctx.p && ctx.p.article === false ? { t: "Write the article", act: "genarticle" } : ask("Summarize this video in 3 lines"), { t: "Translate this video", act: "create", k: "translate" }, ask("Suggest a clearer title")],
     article: [ask("Improve the content and writing"), ask("Add screenshots and visuals"), ask("Fix the structure and formatting")],
     chats: [ask("Which conversations still need my reply?"), ask("What can Clueso AI do on Free?")],
     analytics: [ask("Which video loses viewers fastest?"), ask("What counts as a play?")],
-    library: [ask("Which Clueprint fits a product demo?"), { t: "Open Brand kit", go: "/library/brand" }],
+    library: [ask("Which Clueprint fits a product demo?"), { t: "Open Brand kit", go: "/brand-kit" }],
     integrations: [ask("How do I use Clueso from Claude?")],
     settings: [ask("What uses AI credits?"), ask("How do export minutes count?")],
   };
@@ -1364,7 +1404,7 @@ function aiComposer(chat, ctx) {
         ${modelPill()}
         <button class="pill" data-act="brandchip" aria-haspopup="menu" aria-label="Brand: ${curKit().name}">${kitDots(curKit())}${curKit().name}${icon("chevDown")}</button>`}
         <button class="sendbtn" data-act="aisend" aria-label="Send" ${S.aiDraft && S.aiDraft.trim() && !outOfCredits() ? "" : "disabled"}>${icon("send")}</button></div></div>
-      <div class="aimeta ${outOfCredits() ? "warn" : ""}" title="An estimate for ${curModel().n}. Longer answers and attached files use more, shorter ones less. Credits are taken only when Clueso AI replies">${icon("coin")}${outOfCredits() ? `Not enough credits for a reply · <a href="#/settings/plan">See plans</a>` : `About ${replyCr()} credits a reply, estimated · ${left.toLocaleString("en-US")} left`}</div>`;
+      <div class="aimeta ${outOfCredits() ? "warn" : ""}" title="An estimate for ${curModel().n}. Longer answers and attached files use more, shorter ones less. Credits are taken only when Clueso AI replies">${icon("coin")}${outOfCredits() ? `Not enough credits for a reply · <a href="#/settings/plan-and-usage">See plans</a>` : `About ${replyCr()} credits a reply, estimated · ${left.toLocaleString("en-US")} left`}</div>`;
 }
 function aiThread(c, left, full) {
   const pr = c.pid && PROJECTS.find(p => p.id === c.pid);
@@ -1382,7 +1422,7 @@ function aiThread(c, left, full) {
       ${(() => { const m = !S.brandSet && (c.ask + " " + (c.answer || "")).match(/\b((?:https?:\/\/)?(?:www\.)?([a-z0-9-]+(?:\.[a-z0-9-]+)*\.(?:com|io|ai|co|app|dev|org|net|so|xyz|in|uk|de)))\b/i); return m ? `<div class="brandoffer inplan"><span class="grow">Use the logo and colours from ${esc(m[2])}?</span><button class="btn" data-act="brandfromemail" data-k="${esc(m[2])}">Use them</button></div>` : ""; })()}
       ${(() => { const anim = !c.sbShown; c.sbShown = true; const ttl = shortTitle(c.answer || c.ask) || "Your video", sc = scenesFor(c.vtype || inferType(c.ask + " " + (c.answer || ""))); return `<div class="sboard ${anim ? "anim" : ""}" role="list" aria-label="Storyboard: ${sc.length} scenes">${sc.map((n, k) => `<span role="listitem" class="sbtile" style="--i:${k}" title="${k + 1} · ${esc(n)}">${sceneThumb(ttl, k, sc.length, "t-plum", c.vtype || inferType(c.ask + " " + (c.answer || "")))}<span class="trunc">${k + 1} · ${esc(n)}</span></span>`).join("")}</div>
       <p class="sbinc">${esc(includesFor(c.vtype || inferType(c.ask + " " + (c.answer || ""))))}</p>`; })()}
-      ${freeFirst() ? `<div class="pcost free"><span>${icon("sparkle")}Your first video is on us</span><span class="mut">About 10 minutes</span></div>` : quietCost() ? "" : `<div class="pcost ${canBuild() ? "" : "short"}"><span>${icon("coin")}About ${costRange()} credits</span><span class="mut">${left.toLocaleString("en-US")} left · about 10 minutes</span></div>`}${canBuild() ? "" : `<div class="callout warnbox" role="status">${icon("info")}<span>${shortNote()}<a href="#/settings/plan">See plans</a></span></div>`}
+      ${freeFirst() ? `<div class="pcost free"><span>${icon("sparkle")}Your first video is on us</span><span class="mut">About 10 minutes</span></div>` : quietCost() ? "" : `<div class="pcost ${canBuild() ? "" : "short"}"><span>${icon("coin")}About ${costRange()} credits</span><span class="mut">${left.toLocaleString("en-US")} left · about 10 minutes</span></div>`}${canBuild() ? "" : `<div class="callout warnbox" role="status">${icon("info")}<span>${shortNote()}<a href="#/settings/plan-and-usage">See plans</a></span></div>`}
       ${firstRun() ? "" : `<div class="puses"><span>Uses ${modelPillMini()} · ${ci[0]} · ${kitMini(curKit())}${curKit().name}</span><span class="mut">Change these in the box below</span></div>`}
       <div class="pact"><span class="pleft">${quietCost() ? `<span class="pquiet" title="About ${costRange()} credits of your ${left.toLocaleString("en-US")}">${icon("coin")}Uses about 1 of your ${videosFor(left)} free videos · about 10 minutes</span>` : ""}${S.guest ? `<span class="pnote">You'll create an account to build it. Your brief is kept.</span>` : ci[0] === "Auto" ? `<span class="pnote">Runs without checking in after you build.</span>` : ""}</span><button class="btn" data-act="${S.frChat === c.id ? "frback" : "aieditbrief"}">Change brief</button><button class="btn pink" data-act="aibuild" ${canBuild() ? "" : 'disabled aria-describedby="shortnote"'}>${icon("sparkle")}Build video</button></div>
       </div>`;
@@ -1400,7 +1440,7 @@ function aiThread(c, left, full) {
     if (full && done && c.checks) out += `<div class="msg ai checks"><span>Before you share it, check:</span><ul>${c.checks.map((x, i) => { const on = ((S.checked || {})[c.id] || []).includes(i); return `<li><label><input type="checkbox" data-act="checkitem" data-id="${c.id}" data-i="${i}" ${on ? "checked" : ""}> ${esc(x)}</label></li>`; }).join("")}</ul></div>`;
     if (full && done) { const fb = (S.fb || {})[c.id];
       out += `<div class="mfoot"><button class="iconbtn ${fb === "up" ? "on" : ""}" data-act="feedback" data-id="${c.id}" data-k="up" aria-label="Good result" aria-pressed="${fb === "up"}">${icon("thumbup")}</button><button class="iconbtn ${fb === "down" ? "on" : ""}" data-act="feedback" data-id="${c.id}" data-k="down" aria-label="Not what I wanted" aria-pressed="${fb === "down"}">${icon("thumbdown")}</button><button class="iconbtn" data-act="toast" data-m="Copied" aria-label="Copy reply">${icon("copy")}</button><span style="flex:1"></span>${cred(c.cr)}</div>
-      <div class="followups" role="group" aria-label="Next steps"><button class="pill" data-act="followup" data-k="Shorten the intro to 5 seconds">Shorten the intro</button><button class="pill" data-act="create" data-k="translate">${icon("translate")}Translate it</button>${pr.article ? "" : `<button class="pill" data-act="genarticle">${icon("doc")}Make the guide</button>`}</div>`; } }
+      <div class="followups" role="group" aria-label="Next steps"><button class="pill" data-act="followup" data-k="Shorten the intro to 5 seconds">Shorten the intro</button><button class="pill" data-act="create" data-k="translate">${icon("translate")}Translate it</button>${pr.article ? "" : `<button class="pill" data-act="genarticle">${icon("doc")}Make the article</button>`}</div>`; } }
   if (c.extra) out += c.extra.map(m => `<div class="msg you">${esc(m)}</div><div class="msg ai">Replies aren't part of this prototype.</div>`).join("");
   return out;
 }
@@ -1453,11 +1493,11 @@ function closeLayers(keepOpener) {
   if (had && !keepOpener) { if (layerOpener && document.contains(layerOpener)) layerOpener.focus({ preventScroll: true }); layerOpener = null; }
 }
 
-const guideToggle = (on = true) => `<div class="kv"><span>Also make a step-by-step guide <span class="mut" style="font-size:11px">· screenshots and written steps</span></span><span class="swlab">${on ? "On" : "Off"}<span class="sw ${on ? "on" : ""}"></span></span></div>`;
+const guideToggle = (on = true) => `<div class="kv"><span>Also make a step-by-step article <span class="mut" style="font-size:11px">· screenshots and written steps</span></span><span class="swlab">${on ? "On" : "Off"}<span class="sw ${on ? "on" : ""}"></span></span></div>`;
 function openCreate(k) {
-  if (k === "style") return go("/library/styles");
+  if (k === "style") return go("/clueprints");
   if (k === "blank") { const id = "b" + Date.now(); PROJECTS.unshift({ id, name: "Untitled project", type: "Blank", th: "t-white", label: "Untitled project", dur: "0:00", mod: "just now", created: "just now", chat: null, article: false, versions: [], madeFrom: [] }); toast("Blank project created"); return go("/project/" + id); } // your own empty project (it used to open a seeded one a new account doesn't have)
-  if (k === "translate") return translateDialog(false);
+  if (k === "translate") { S.tr = null; return translateDialog(false); }
   if (k === "record") return dialog(dh("Record your screen", "Talk as you go. Clueso writes the script, voiceover and steps from your recording.") + `<div class="db">
     <div class="seg" role="group" aria-label="What to record"><button class="on">This browser tab</button><button>A window</button><button>Entire screen</button></div>
     <div class="callout grey" ${fix(1)}>${icon("info")}<span>Records right here, nothing to install. Add the free Chrome extension later for click highlights and auto-zoom.</span></div>
@@ -1470,11 +1510,19 @@ function openCreate(k) {
     <label class="field">Input language<select><option>English</option><option>Spanish</option><option>Hindi</option></select></label></div>
     <div class="df"><span class="note">${freeFirst() ? `${icon("sparkle")}Your first video is on us` : `${icon("coin")}Clueso shows the credit cost before it builds`}</span><button class="btn" data-act="closedlg">Cancel</button><button class="btn pink" data-act="uploadnext">Create</button></div>`);
 }
+// Translate (IA fix W10, 21 Oct 2026): opens from New project, search, the project page, the editor and the AI panel. It takes an
+// upload or one of your projects (the one you're on is preselected) and adds the language version under its original.
+const TR_LANGS = ["Spanish", "French", "German", "Hindi", "Japanese", "Portuguese"];
+function trContext() { const [r, a] = route(); if (r !== "project" && r !== "edit") return ""; const own = PROJECTS.find(p => p.id === a) || PROJECTS.find(p => p.versions.some(v => v.id === a) || p.madeFrom.some(m => m.id === a)); return own ? own.id : ""; }
+function trRead() { const to = $("#trto"), pid = $("#trpid"); if (to) S.tr.to = to.value; if (pid) S.tr.pid = pid.value; }
 function translateDialog(rules) {
-  dialog(dh("Translate a video", "Upload a video, or pick one of your projects. The translation is grouped under the original.") + `<div class="db ${rules ? "two" : ""}">
-    <div style="display:grid;gap:12px"><div style="display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:end"><label class="field">Input<select><option>English</option></select></label><span style="padding-bottom:8px">→</span><label class="field">Output<select><option>Spanish</option><option>French</option><option>German</option></select></label></div>
-    <div class="drop" style="padding:16px">${icon("upload")}<b style="color:var(--ink);font-weight:500">Drag and drop a video or click to select</b>.mp4 .mov .wav .webm</div>
-    <label class="field">Or choose an existing project<select><option value="">None</option>${PROJECTS.map(p => `<option>${esc(p.name)}</option>`).join("")}</select></label>
+  const T = S.tr = S.tr || { to: "Spanish", pid: trContext(), file: "" }; const mine = PROJECTS.filter(p => !p.sample);
+  dialog(dh("Translate a video", mine.length ? "Upload a video, or pick one of your projects. The translation is grouped under the original." : "Upload a video to make a copy in another language. The translation is grouped under it.") + `<div class="db ${rules ? "two" : ""}">
+    <div style="display:grid;gap:12px"><div style="display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:end"><label class="field">Input<select><option>English</option></select></label><span style="padding-bottom:8px">→</span><label class="field">Output<select id="trto">${TR_LANGS.map(l => `<option ${l === T.to ? "selected" : ""}>${l}</option>`).join("")}</select></label></div>
+    ${T.file ? `<div class="stdone">${icon("check")}<span class="grow"><b>${esc(T.file)}</b><span>Ready to translate</span></span><button class="btn ghost" data-act="trunpick">Remove</button></div>`
+      : `<button class="drop" style="padding:16px;width:100%" data-act="trpick">${icon("upload")}<b style="color:var(--ink);font-weight:500">Drag and drop a video or click to select</b>.mp4 .mov .wav .webm</button>`}
+    ${mine.length && !T.file ? `<label class="field">Or choose an existing project<select id="trpid"><option value="">None</option>${mine.map(p => `<option value="${p.id}" ${p.id === T.pid ? "selected" : ""}>${esc(p.name)}</option>`).join("")}</select></label>` : ""}
+    <p class="ferr" id="trErr" role="alert" hidden></p>
     <div class="callout grey">${icon("info")}<span>Each language version counts as its own video when exported: a 1-minute video in 2 languages uses 2 minutes.</span></div></div>
     ${rules ? `<div class="box" ${fix(1)}><h3>${icon("translate")}Translation rules</h3><label class="field">Keep these words as they are<input placeholder="Taskly, Kanban"></label><label class="field">Rule<input placeholder="Use formal Spanish (usted)"></label><span class="hint mut" style="font-size:11px">Saved to Settings › Language and voice, for every translation.</span></div>` : ""}
   </div><div class="df"><button class="btn ghost" data-act="rules">${icon("settings")}${rules ? "Hide rules" : "Customize translation rules"}</button><span style="flex:1"></span><button class="btn" data-act="closedlg">Cancel</button><button class="btn pink" data-act="dotranslate">Translate</button></div>`, rules ? "wide" : "");
@@ -1491,7 +1539,7 @@ function shareDialog(id) {
   if (S.verified === false) return verifyDialog(p.id);
   const noMin = S.minutes.used >= S.minutes.total;
   dialog(dh("Share “" + esc(p.name) + "”") + `<div class="db"><div class="seg"><button class="on">${icon("link")}View-only link</button><button>Embed</button><button>Export video</button><button>Export article</button></div>
-    ${noMin ? `<div class="callout warnbox" ${fix(1)}>${icon("info")}<span>You've used all ${S.minutes.total} free export minutes this month. New links can be made after they reset on 15 Nov, or <a href="#/settings/plan">see plans</a>. Links you already shared keep working.</span></div>` : `<div class="callout" ${fix(1)}>${icon("coin")}<span>Creating a link uses about <b style="font-weight:500">1 of your ${S.minutes.total - S.minutes.used}</b> free export minutes left this month. Free links include a Clueso watermark.</span></div>`}
+    ${noMin ? `<div class="callout warnbox" ${fix(1)}>${icon("info")}<span>You've used all ${S.minutes.total} free export minutes this month. New links can be made after they reset on 15 Nov, or <a href="#/settings/plan-and-usage">see plans</a>. Links you already shared keep working.</span></div>` : `<div class="callout" ${fix(1)}>${icon("coin")}<span>Creating a link uses about <b style="font-weight:500">1 of your ${S.minutes.total - S.minutes.used}</b> free export minutes left this month. Free links include a Clueso watermark.</span></div>`}
     <div class="kv"><span class="lab">Resolution</span><div class="seg"><button>720p</button><button class="on">1080p</button><button disabled title="Solo plan">${icon("lock")}2K</button><button disabled title="Business plan">${icon("lock")}4K</button></div></div>
     <span class="mut" style="font-size:11px">2K is on Solo, 4K on Business.</span>
     <div class="kv"><span>Include article <span class="mut" style="font-size:11px">· no article yet</span></span><span class="swlab">Off<span class="sw"></span></span></div></div>
@@ -1505,7 +1553,7 @@ function inviteDialog() {
 function planDialog(open) {
   dialog(dh("Ready to build", "Clueso plans, writes, voices and animates it. You can edit everything after.") + `<div class="db">
     <div class="box" style="background:var(--main)"><span class="mut" style="font-size:11px">Your brief</span><div style="font-size:14px">${esc(S.prompt)}</div></div>
-    <div class="buildbar"><div><b>${freeFirst() ? "Your first video is on us" : `About ${costRange()} credits`}</b><span>${freeFirst() ? "" : credLeft().toLocaleString("en-US") + " left · "}about 10 minutes · a guide is included</span></div><button class="btn ghost" data-act="planopts">${open ? "Hide" : "Options"}${icon(open ? "chevDown" : "chevRight")}</button></div>
+    <div class="buildbar"><div><b>${freeFirst() ? "Your first video is on us" : `About ${costRange()} credits`}</b><span>${freeFirst() ? "" : credLeft().toLocaleString("en-US") + " left · "}about 10 minutes · an article is included</span></div><button class="btn ghost" data-act="planopts">${open ? "Hide" : "Options"}${icon(open ? "chevDown" : "chevRight")}</button></div>
     ${open ? `<div class="optbox">
       <div class="kv"><span class="lab">Model</span>${modelPill()}</div>
       <div class="kv"><span class="lab">Check in with me</span><div class="seg">${[["Ask", "When unsure"], ["Plan", "After the plan"], ["Auto", "Never"]].map(([m, l]) => `<button class="${S.mode === m ? "on" : ""}" data-act="setmode" data-m2="${m}">${l}</button>`).join("")}</div></div>
@@ -1523,7 +1571,7 @@ let clueTimer = null;
 function styleDrawer(i, keep) { S.clueView = { i: (i + STYLES.length) % STYLES.length, t: 0, playing: false }; clearInterval(clueTimer); if (!keep) dialog(cluePreviewHTML(), "cluedlg"); if (!matchMedia("(prefers-reduced-motion: reduce)").matches) cluePlay(true, keep || null); else clueRedraw(keep || null); }
 // What each Clueprint gives you and suits (shown beside the preview, so "will this fit my video?" is answered without reading the description)
 const CLUE_META = [
-  { gets: ["Chapters from one recording", "Zooms and callouts", "AI voice and captions", "A written guide"], good: "Onboarding, feature walkthroughs, help articles" },
+  { gets: ["Chapters from one recording", "Zooms and callouts", "AI voice and captions", "A step-by-step article"], good: "Onboarding, feature walkthroughs, help articles" },
   { gets: ["Statement slides between clips", "AI voice and captions", "Music bed"], good: "Feature teasers, social posts" },
   { gets: ["Hook, reveal and demo", "Animated text", "Music bed"], good: "Landing pages, ads, launches" },
   { gets: ["A 72-second product story", "Customer logo wall", "AI voice and captions"], good: "Homepage hero, sales decks" },
@@ -1603,7 +1651,7 @@ function popover(anchor, html, align = "left") {
   if (p.style.maxHeight) p.style.overflowY = "auto";
   p.style.top = (top + scrollY) + "px"; p.style.left = Math.min(Math.max(8, align === "right" ? r.right - pw : r.left), innerWidth - pw - 8) + "px";
 }
-const createMenu = () => `${[CREATE.find(o => o.k === "blank"), ...CREATE.filter(o => o.k !== "blank" && o.k !== "translate")].map(o => `<button class="mi" data-act="create" data-k="${o.k}">${icon(o.ic)}<span class="desc">${o.label}<span>${o.desc}</span></span>${o.fresh ? '<small style="color:var(--pink)">New</small>' : ""}</button>`).join("")}`;
+const createMenu = () => `${[CREATE.find(o => o.k === "blank"), ...CREATE.filter(o => o.k !== "blank")].map(o => `<button class="mi" data-act="create" data-k="${o.k}">${icon(o.ic)}<span class="desc">${o.label}<span>${o.desc}</span></span>${o.fresh ? '<small style="color:var(--pink)">New</small>' : ""}</button>`).join("")}`;
 /* ---------- search (⌘K) ----------
    Measured on web.clueso.io: a fixed-size panel (680 × 480 px, 15vh from the top) with the input pinned in a 48 px header,
    scopes All / Projects / Folders / Navigation / Actions (also typed as p; f; n; a;), Tab to ask AI, and a keyboard footer.
@@ -1623,27 +1671,28 @@ function searchIndex() {
     ...PROJECTS.map(p => ({ g: "projects", t: p.name, s: `${p.type} · edited ${p.mod}`, ic: "video", go: "/project/" + p.id, mod: p.mod })),
     ...PROJECTS.flatMap(p => p.versions.map(v => ({ g: "projects", t: v.name, s: `${v.lang} version of ${p.name}`, ic: "translate", go: "/project/" + v.id, mod: v.mod }))),
     ...PROJECTS.flatMap(p => p.madeFrom.map(m => ({ g: "projects", t: m.name, s: `${m.kind}, made from ${p.name}`, ic: "sparkle", go: "/project/" + m.id, mod: m.mod }))),
+    ...(S.folders || []).map(f => ({ g: "projects", t: f, s: `Folder · ${PROJECTS.filter(p => p.folder === f).length} projects`, ic: "folder", go: "/projects/" + encodeURIComponent(f), mod: "folder" })),
   ];
   const pg = (t, s, ic, go, kw = "") => ({ g: "pages", t, s, ic, go, kw });
   const pages = [
-    pg("Home", "Start a new video", "home", "/create", "create new video"),
-    pg("Projects", "All your videos and guides", "folder", "/projects", "videos guides articles folders"),
+    pg("Home", "Start a new video", "home", "/home", "create new video"),
+    pg("Projects", "All your videos and articles", "folder", "/projects", "videos guides articles folders"),
     pg("Chats", "Your conversations with Clueso AI, what each made and its credits", "chat", "/chats", "clueso ai chat history tasks agent director conversations"),
     pg("Analytics", "Views and drop-off across all videos", "analytics", "/analytics", "insights views performance"),
-    pg("Clueprints", "Reusable video templates", "clueprint", "/library/styles", "styles blueprints templates library"),
-    pg("Brand kit", "Logo, colors, fonts and tone", "brand", "/library/brand", "branding visual style library"),
+    pg("Clueprints", "Recipes for a whole video: look, pacing, voice and structure", "clueprint", "/clueprints", "styles blueprints templates recipes library"),
+    pg("Brand kit", "Logo, colors, fonts and tone", "brand", "/brand-kit", "branding visual style library"),
     pg("Integrations", "Chrome extension, MCP for Claude, ChatGPT and Cursor, GitHub", "mcp", "/integrations", "connections developer"),
     pg("Profile", "Settings · account", "users", "/settings/profile", "account name email"),
     pg("General", "Settings · workspace", "settings", "/settings/general", "workspace"),
     pg("Members", "Settings · invite your team", "users", "/settings/members", "team seats invite"),
-    pg("Plan and usage", "Settings · credits, minutes and billing", "coin", "/settings/plan", "upgrade pricing subscription"),
-    pg("Video defaults", "Settings · voiceover, captions and clicks", "video", "/settings/defaults", "cuts"),
-    pg("Language and voice", "Settings · pronunciation, transcription keywords, glossary", "translate", "/settings/language", "translation dictionary"),
-    pg("Player and links", "Settings · sharing", "link", "/settings/sharing", "share embed player"),
+    pg("Plan and usage", "Settings · credits, minutes and billing", "coin", "/settings/plan-and-usage", "upgrade pricing subscription"),
+    pg("Video defaults", "Settings · AI script, voiceover, click highlights and default voices", "video", "/settings/video-defaults", "cuts"),
+    pg("Language and voice", "Settings · pronunciation, transcription keywords, glossary", "translate", "/settings/language-and-voice", "translation dictionary"),
+    pg("Player and links", "Settings · sharing", "link", "/settings/player-and-links", "share embed player"),
   ];
   const ac = (t, s, ic, attrs, kw = "") => ({ g: "actions", t, s, ic, attrs, kw });
   const actions = [
-    ...CREATE.filter(o => !o.menuOnly && (o.k !== "translate" || PROJECTS.some(p => !p.sample))).map(o => ac(o.label, o.desc, o.ic, `data-act="create" data-k="${o.k}"`, o.k === "translate" ? "new language dub" : "new")),
+    ...CREATE.filter(o => !o.menuOnly).map(o => ac(o.label, o.desc, o.ic, `data-act="create" data-k="${o.k}"`, o.k === "translate" ? "new language dub" : "new")),
     ac("Invite a teammate", "Free includes 1 seat", "users", 'data-act="invite"', "team member"),
     ac("Ask Clueso AI", "Opens the assistant", "sparkle", 'data-act="cmdkopenai"', "help chat"),
   ];
@@ -1686,7 +1735,7 @@ function cmdk() {
     q = raw.trim().toLowerCase(); const words = q.split(/\s+/).filter(Boolean);
     let groups = [], n = 0, count = 0;
     if (!words.length) {
-      const recent = idx.filter(x => x.g === "projects" && !/version of|made from/.test(x.s)).slice(0, 3);
+      const recent = idx.filter(x => x.g === "projects" && x.mod !== "folder" && !/version of|made from/.test(x.s)).slice(0, 3);
       const quick = idx.filter(x => x.g === "actions").slice(0, 4);
       const pages = idx.filter(x => x.g === "pages");
       if (scope === "all") groups = [["Recent projects", recent, 0], ["Quick actions", quick, 0]];
@@ -1810,22 +1859,23 @@ let lastPage = null, lastAi = false, lastAiBody = false;
 function render() {
   saveProgress(); saveWorkSoon();
   const ab0 = document.querySelector(".abody"); const keepAiScroll = ab0 ? ab0.scrollTop : null;
+  const canon = canonicalPath(); if (canon) { location.replace("#/" + canon); return; } // old link: the hashchange renders the new path
   const [r, a] = route(); let html, key = r;
   if (S.ai && NO_PANEL.includes(r)) S.ai = false;
   // One entry screen: Sign in, Sign up, SSO, an invite and links that need an account all open a box over the try screen
   const BOX = { signin: { kind: "signin", mode: "signin" }, signup: { kind: "signup" }, invite: { kind: "invite" } };
   if ((S.guest && NEEDS_ACCOUNT.includes(r)) || BOX[r] || r === "sso") {
-    if (r === "invite" && !S.guest) { go("/create"); setTimeout(inviteSignedIn, 60); return; }
-    if (BOX[r] || r === "sso") { if (!S.guest) return go("/create"); } else S.after = location.hash.replace(/^#/, "");
+    if (r === "invite" && !S.guest) { go("/home"); setTimeout(inviteSignedIn, 60); return; }
+    if (BOX[r] || r === "sso") { if (!S.guest) return go("/home"); } else S.after = location.hash.replace(/^#/, "");
     if (r === "invite") S.invite = "taskly.io";
     const box = r === "sso" ? null : BOX[r] || { kind: "continue", mode: "signin" };
-    if (!S.guest) { toEntry(); } go("/create"); setTimeout(() => box ? signupGate(box) : ssoBox(), 60); return; }
+    if (!S.guest) { toEntry(); } go("/home"); setTimeout(() => box ? signupGate(box) : ssoBox(), 60); return; }
   else if (r === "emails") html = vEmails();
 
-  else if (r === "try") { if (!S.guest) toEntry(); return go("/create"); } // try Clueso before an account (value before commitment)
-  else if (r === "welcome") { return go("/create"); }
-  else if (r === "start") { return go("/create"); } // no onboarding wizard: the first Home visit is the onboarding
-  else if (r === "projects") html = vProjects();
+  else if (r === "try") { if (!S.guest) toEntry(); return go("/home"); } // try Clueso before an account (value before commitment)
+  else if (r === "welcome") { return go("/home"); }
+  else if (r === "start") { return go("/home"); } // no onboarding wizard: the first Home visit is the onboarding
+  else if (r === "projects") html = vProjects(a);
   else if (r === "project") html = vProject(a);
   else if (r === "edit") { key = "edit"; html = vEditor(a); }
   else if (r === "library") html = vLibrary(a);
@@ -1836,6 +1886,9 @@ function render() {
   else if (r === "settings") html = vSettings(a);
   else { key = "create"; html = vCreate(); }
   document.title = ({ start: "Get started", signin: "Sign in", signup: "Sign up", sso: "Continue with SSO", emails: "Follow-up emails", create: "Home", projects: "Projects", project: "Project", edit: "Editor", library: a === "brand" ? "Brand kit" : "Clueprints", integrations: "Integrations", settings: "Settings", chats: "Chats", analytics: "Analytics" }[r] || "Home") + " · Clueso (redesign)";
+  // Settings pages and folders get their own tab title, so tabs and history can be told apart (IA fix W7)
+  if (r === "settings") document.title = `${SET_LABEL[S.setPage] || "Settings"} · Settings · Clueso (redesign)`;
+  if (r === "projects" && a) document.title = `${decodeURIComponent(a)} · Projects · Clueso (redesign)`;
   $("#root").innerHTML = html;
   // Animate only when the feature changes (a new route or the AI panel opening), not on every re-render.
   const page = location.hash.split("?")[0];
@@ -1894,9 +1947,9 @@ document.addEventListener("click", e => {
       <label class="field" for="gann">Name<input id="gann" autocomplete="name" placeholder="Sam Lee"></label>
       <div class="gfoot"><button type="button" class="btn ghost" data-act="google" data-k="${esc(k || "signin")}">Back</button><button class="btn dark" type="submit">Next</button></div></form>`; setTimeout(() => { const i = $("#gaem"); if (i) i.focus(); }, 0); break; }
     case "google": googleChooser(k); break;
-    case "googlepick": closeLayers(); if (S.guest) { if (!S.pending && signInRestore(DEMO_ACCT.email, S.after)) break; finishGate("Alex", "Rivera", "alex.rivera@gmail.com", true); break; } if (k === "signup" || S.scenario === "new" && !PROJECTS.length) { newAccount("Alex", "Rivera", "alex.rivera@gmail.com", true); } else { go("/create"); toast("Welcome back"); } break; // Google gives us the name and a verified email
-    case "signupemail": if (S.guest) signupGate({ kind: "signup" }); else go("/signup"); break; case "_oldsignupemail": applyScenario("new"); seeUpdates(); S.user.known = false; go("/create"); break; // an email sign-up doesn't
-    case "scenario": if (k === "visitor") { try { localStorage.removeItem(HAD_KEY); } catch (e) {} closeLayers(); toEntry(); go("/try"); toast("Visitor: never signed in on this browser"); break; } applyScenario(k); closeLayers(); go("/create"); render(); toast(k === "new" ? "New user: empty workspace, first run" : "Returning user: projects and conversations"); break;
+    case "googlepick": closeLayers(); if (S.guest) { if (!S.pending && signInRestore(DEMO_ACCT.email, S.after)) break; finishGate("Alex", "Rivera", "alex.rivera@gmail.com", true); break; } if (k === "signup" || S.scenario === "new" && !PROJECTS.length) { newAccount("Alex", "Rivera", "alex.rivera@gmail.com", true); } else { go("/home"); toast("Welcome back"); } break; // Google gives us the name and a verified email
+    case "signupemail": if (S.guest) signupGate({ kind: "signup" }); else go("/signup"); break; case "_oldsignupemail": applyScenario("new"); seeUpdates(); S.user.known = false; go("/home"); break; // an email sign-up doesn't
+    case "scenario": if (k === "visitor") { try { localStorage.removeItem(HAD_KEY); } catch (e) {} closeLayers(); toEntry(); go("/try"); toast("Visitor: never signed in on this browser"); break; } applyScenario(k); closeLayers(); go("/home"); render(); toast(k === "new" ? "New user: empty workspace, first run" : "Returning user: projects and conversations"); break;
     case "vtypemenu": { const c = chatById(t.dataset.id); const cur = c.vtype || inferType(c.ask + " " + (c.answer || "")); popover(t, `<div class="lab">Make it</div>${Object.entries(VTYPES).map(([k2, l]) => `<button class="mi" role="menuitemradio" aria-checked="${k2 === cur}" data-act="vtypeset" data-id="${c.id}" data-k="${k2}"><span class="grow">${l.charAt(0).toUpperCase() + l.slice(1)}</span><span class="ck">${k2 === cur ? icon("check") : ""}</span></button>`).join("")}`); break; }
     case "vtypeset": { const c = chatById(t.dataset.id); c.vtype = k; closeLayers(); render(); break; }
     case "joininvite": closeLayers(); joinTeam("taskly.io"); render(); break;
@@ -1958,7 +2011,7 @@ document.addEventListener("click", e => {
     case "aiview": setAiView(k); closeLayers(); render(); aiFocusComposer(); break;
     case "aichip": { const c = aiChips(aiContext())[+t.dataset.i]; if (c.ask) { S.aiDraft = c.t; render(); aiFocusComposer(); }
       else if (c.go) { go(c.go); }
-      else if (c.act === "genarticle") { const ctx = aiContext(); if (ctx.p) ctx.p.article = true; S.credits.used += 30; toast("Writing the step-by-step guide"); render(); }
+      else if (c.act === "genarticle") { const ctx = aiContext(); if (ctx.p) ctx.p.article = true; S.credits.used += 30; toast("Writing the article"); render(); }
       else if (c.act === "create") { openCreate(c.k); }
       break; }
     case "aiadd": popover(t, `<div class="lab">Add to the conversation</div><button class="mi" data-act="create" data-k="record">${icon("record")}Record your screen</button><button class="mi" data-act="aiattach" data-k="file">${icon("upload")}Attach files</button><button class="mi" data-act="aiattach" data-k="project">${icon("video")}Add a project</button><button class="mi" data-act="aiattach" data-k="clueprint">${icon("clueprint")}Add a Clueprint</button>`); { const f = $(".pop .mi"); if (f) f.focus(); } break;
@@ -1980,24 +2033,24 @@ document.addEventListener("click", e => {
     case "aiback": S.pChat = null; render(); aiFocusComposer(); break;
     case "ainewchat": S.pChat = null; S.ai = true; render(); aiFocusComposer(); break;
     case "aiplanopts": S.planOpen = !S.planOpen; render(); { const b = $('[data-act="aiplanopts"]'); if (b) b.focus(); } break;
-    case "aieditbrief": { const c = chatById(curChatId()); TASKS.splice(TASKS.indexOf(c), 1); setCurChat(null); if (onChatsPage()) { S.prompt = c.ask; go("/create"); break; } S.aiDraft = c.ask; render(); aiFocusComposer(); break; }
+    case "aieditbrief": { const c = chatById(curChatId()); TASKS.splice(TASKS.indexOf(c), 1); setCurChat(null); if (onChatsPage()) { S.prompt = c.ask; go("/home"); break; } S.aiDraft = c.ask; render(); aiFocusComposer(); break; }
     case "aibuild": { if (S.guest) { signupGate({ kind: "build", chat: curChatId() }); break; } if (!canBuild()) break; const c = chatById(curChatId()); const brief = c.q && c.answer ? c.answer : c.ask; S.prompt = brief; startBuild("new", brief, c.id); break; } // a vague first brief builds from the answer
     case "ainew": S.aiTitle = null; S.aiSent = null; S.aiAttach = []; S.aiNoCtx = false; render(); aiFocusComposer(); break;
     case "newmenu": popover(t, createMenu(), "right"); break;
     case "attach": if (firstRun()) { popover(t, `<div class="lab">Add to your brief</div><button class="mi" data-act="create" data-k="record">${icon("record")}Record your screen</button><button class="mi" data-act="create" data-k="upload">${icon("upload")}Attach a file<small>A recording, slides or a document</small></button>`); { const f = $(".pop .mi"); if (f) f.focus(); } break; }
       popover(t, `<div class="lab">Add to your brief</div><button class="mi" data-act="create" data-k="record">${icon("record")}Record your screen</button><button class="mi" data-act="toast" data-m="File picker">${icon("upload")}Attach files<small>Videos, slides, documents</small></button><button class="mi" data-act="toast" data-m="Project picker">${icon("folder")}Add a project</button><button class="mi" data-act="libgo">${icon("clueprint")}Add a Clueprint</button>`); { const f = $(".pop .mi"); if (f) f.focus(); } break;
-    case "libgo": go("/library/styles"); closeLayers(); break;
+    case "libgo": go("/clueprints"); closeLayers(); break;
     case "mode": popover(t, `<div class="lab">Check in with me</div>${CHECKIN.map(([m, l, d]) => `<button class="mi mi2" role="menuitemradio" aria-checked="${S.mode === m}" data-act="setmode" data-m2="${m}"><span class="ck">${S.mode === m ? icon("check") : ""}</span><span class="mt"><span>${m}</span><small>${d}${m === "Auto" ? ". Builds as soon as you send, at the cost shown" : ""}</small></span></button>`).join("")}`); { const f = $(".pop [aria-checked=true]"); if (f) f.focus(); } break;
     case "planopts": planDialog(!$(".optbox")); break;
     case "setmode": S.mode = t.dataset.m2; if ($(".scrim")) planDialog(true); else { closeLayers(); render(); } break;
     case "brandchip": popover(t, `<div class="lab">Brand for this video</div>
       ${[["default", KITS.default, "Neutral, no logo"], ...(S.brandSet ? [["own", KITS.acme, "From " + esc(S.brandUrl || "acme.io")]] : [])].map(([k, kit, d]) => { const on = k === "own" ? !!S.brandOn : !S.brandOn; return `<button class="mi mi2 kopt" role="menuitemradio" aria-checked="${on}" data-act="setbrand" data-k="${k}"><span class="ck">${on ? icon("check") : ""}</span><span class="mt"><span>${kit.name}<small style="display:inline;margin-left:6px">${d}</small></span>${kitMini(kit)}</span></button>`; }).join("")}
-      <div class="sep"></div>${S.brandSet ? `<button class="mi" data-go="/library/brand">${icon("brand")}Edit brand kit</button>` : `<button class="mi" data-go="/library/brand">${icon("plus")}<span class="mt"><span>Add your brand</span><small>Pull your logo, colors and fonts from your website</small></span></button>`}`); { const f = $(".pop [aria-checked=true]"); if (f) f.focus(); } break;
+      <div class="sep"></div>${S.brandSet ? `<button class="mi" data-go="/brand-kit">${icon("brand")}Edit brand kit</button>` : `<button class="mi" data-go="/brand-kit">${icon("plus")}<span class="mt"><span>Add your brand</span><small>Pull your logo, colors and fonts from your website</small></span></button>`}`); { const f = $(".pop [aria-checked=true]"); if (f) f.focus(); } break;
     case "setbrand": S.brandOn = k === "own"; closeLayers(); render(); { const b = $('[data-act="brandchip"]'); if (b) b.focus(); } break;
     case "sug": S.prompt = t.dataset.p; render(); $("#prompt").focus(); break;
     case "send": { if (!navigator.onLine) { toast("You're offline. Your brief is kept; send it when you're back"); break; } const fr = firstRun(); if (S.clue != null && STYLES[S.clue]) { S.prompt = `Use the “${STYLES[S.clue][0]}” Clueprint. ${S.prompt}`; S.clue = null; } startChat(S.prompt); const c = TASKS[0]; if (!fr && S.mode === "Auto" && c && c.plan && canBuild()) { S.prompt = c.ask; startBuild("new", c.ask, c.id); } break; }
     case "create": closeLayers(); openCreate(k); break;
-    case "check": if (k === "video") $("#prompt") && $("#prompt").focus(); if (k === "brand") go("/library/brand"); if (k === "share") shareDialog(); break;
+    case "check": if (k === "video") $("#prompt") && $("#prompt").focus(); if (k === "brand") go("/brand-kit"); if (k === "share") shareDialog(); break;
     case "hidecheck": S.gsHidden = true; render(); toast("Getting started hidden. Your progress is kept", { label: "Undo", act: "showcheck" }); break;
     case "showcheck": S.gsHidden = false; closeLayers(); render(); break;
     case "opt": t.parentElement.querySelectorAll(".opt").forEach(o => o.classList.toggle("on", o === t)); break;
@@ -2008,7 +2061,7 @@ document.addEventListener("click", e => {
     case "clueplay": cluePlay(!(S.clueView && S.clueView.playing)); break;
     case "cluescene": { const v = S.clueView; if (!v) break; const n = clueScenes(STYLES[v.i]).length; v.t = +k / n * clueDur(v.i) + 0.01; if (v.playing) cluePlay(true, `[data-act="cluescene"][data-k="${k}"]`); else clueRedraw(`[data-act="cluescene"][data-k="${k}"]`); break; }
     case "clueedit": { clearInterval(clueTimer); const v = S.clueView; closeLayers(); if (S.guest) { signupGate({ kind: "clueedit", clue: v.i }); break; } toast(`A copy of “${STYLES[v.i][0]}” is in your Workspace Clueprints, ready to edit`); break; }
-    case "cluecreate": { clearInterval(clueTimer); const v = S.clueView; closeLayers(); S.clue = v.i; go("/create"); render(); setTimeout(() => { const p = $("#prompt"); if (p) p.focus(); }, 60); break; }
+    case "cluecreate": { clearInterval(clueTimer); const v = S.clueView; closeLayers(); S.clue = v.i; go("/home"); render(); setTimeout(() => { const p = $("#prompt"); if (p) p.focus(); }, 60); break; }
     case "clueoff": S.clue = null; render(); { const p = $("#prompt"); if (p) p.focus(); } break;
     case "startstyle": closeLayers(); startChat(STYLES[+t.dataset.i][0] + " for Taskly"); break;
     case "aifocus": aiFocusComposer(); break;
@@ -2017,8 +2070,19 @@ document.addEventListener("click", e => {
     case "clearpq": S.projQ = ""; render(); $("#pq") && $("#pq").focus(); break;
     case "hideready": S.ready = null; render(); break;
     case "mklink": closeLayers(); S.ready = null; S.minutes.used = 1; S.checklist.share = true; toast("Link copied · 1 of 10 export minutes used"); render(); break;
-    case "genarticle": toast("Writing the step-by-step guide"); S.credits.used += 30; PROJECTS[0].article = true; render(); break;
+    case "genarticle": toast("Writing the article"); S.credits.used += 30; PROJECTS[0].article = true; render(); break;
     case "projtab": S.projTab = k; render(); break;
+    case "newfolder": folderDialog(null); break;
+    case "dofolder": { const v = ($("#fnm").value || "").trim(), old = k || null; S.folders = S.folders || []; const er = folderErr(v, old); const ee = $("#fnmErr");
+      if (er) { ee.textContent = er; ee.hidden = false; $("#fnm").setAttribute("aria-invalid", "true"); $("#fnm").focus(); break; }
+      if (old) { S.folders[S.folders.indexOf(old)] = v; PROJECTS.forEach(p => { if (p.folder === old) p.folder = v; }); closeLayers(); toast("Folder renamed"); if (decodeURIComponent(route()[1] || "") === old) go("/projects/" + encodeURIComponent(v)); else render(); }
+      else { S.folders.push(v); closeLayers(); render(); toast(`Folder “${v}” created`); } break; }
+    case "foldermenu": popover(t, `<div class="lab">${esc(k)}</div><button class="mi" data-act="folderren" data-k="${esc(k)}">${icon("doc")}Rename</button><div class="sep"></div><button class="mi danger" data-act="folderdel" data-k="${esc(k)}">${icon("close")}Delete folder<small>Its projects move to Projects</small></button>`, "right"); { const f = $(".pop .mi"); if (f) f.focus(); } break;
+    case "folderren": closeLayers(); folderDialog(k); break;
+    case "folderdel": { closeLayers(); const n = PROJECTS.filter(p => p.folder === k).length; S.folders = S.folders.filter(f => f !== k); PROJECTS.forEach(p => { if (p.folder === k) p.folder = ""; }); render(); toast(`Folder deleted${n ? `. ${n} project${n === 1 ? "" : "s"} moved to Projects` : ""}`); break; }
+    case "mvpick": moveDialog(t.dataset.id, k); break;
+    case "mvmk": { const i = $("#mvnew"); const v = (i.value || "").trim(); S.folders = S.folders || []; const er = folderErr(v, null); if (er) { toast(er); i.focus(); break; } S.folders.push(v); moveDialog(t.dataset.id, v); toast(`Folder “${v}” created`); break; }
+    case "mvdo": { const p = PROJECTS.find(x => x.id === t.dataset.id); if (!p) break; p.folder = k === ROOT_F ? "" : k; closeLayers(); render(); toast(`Moved to ${k}`); break; }
     case "cancelbuild": { const qi = (S.queue || []).findIndex(x => x.id === k || x.id === t.dataset.id); const id = t.dataset.id;
       if (qi > -1) { S.queue.splice(qi, 1); markCancelled(id, 0); render(); toast("Removed from the queue. Nothing was charged"); break; }
       if (!S.generating || S.generating.id !== id) break;
@@ -2059,25 +2123,33 @@ document.addEventListener("click", e => {
       if (op === "copy") toast("Link copied. Only people in your workspace can open it.");
       else if (op === "pin") { S.pinned.has(id) ? S.pinned.delete(id) : S.pinned.add(id); render(); toast(S.pinned.has(id) ? "Pinned to the top" : "Unpinned"); }
       else if (op === "dup") { const c = { ...p, id: "c" + Date.now(), name: "Copy of " + p.name, mod: "just now", versions: [], madeFrom: [] }; PROJECTS.splice(PROJECTS.indexOf(p) + 1, 0, c); render(); toast("Duplicated. Versions stay with the original."); }
-      else if (op === "move") toast("Create a folder first, then move projects into it");
+      else if (op === "move") moveDialog(id);
       else if (op === "rename") renameDialog(id);
       else if (op === "del") { const i = PROJECTS.indexOf(p); PROJECTS.splice(i, 1); S.pinned.delete(id); S.deleted.unshift({ p, at: Date.now(), i }); render(); toast(`Moved “${p.name.length > 28 ? p.name.slice(0, 28) + "…" : p.name}” to Deleted`, { label: "Undo", act: "restore", id }); }
       break; }
     case "restore": { const d = S.deleted.find(x => x.p.id === t.dataset.id); if (d) { S.deleted = S.deleted.filter(x => x !== d); PROJECTS.splice(Math.min(d.i, PROJECTS.length), 0, d.p); document.querySelectorAll(".toast").forEach(x => x.remove()); render(); toast("Restored"); } break; }
     case "dorename": { const v = $("#rnm").value.trim(); const p = PROJECTS.find(x => x.id === t.dataset.id); if (v && p) { p.name = v; p.mod = "just now"; } closeLayers(); render(); toast("Renamed"); break; }
-    case "libtab": go("/library/" + k); break;
+    case "libtab": go(k === "brand" ? "/brand-kit" : "/clueprints"); break;
     case "cptab": S.cpTab = k; render(); break;
     case "style": styleDrawer(+t.dataset.i); break;
     case "langtab": S.langTab = k; render(); break;
     case "invite": closeLayers(); inviteDialog(); break;
-    case "rules": translateDialog(!$(".dlg.wide")); break;
-    case "dotranslate": closeLayers(); toast("Spanish version added under Taskly – Track Tasks Together"); go("/project/p1"); break;
+    case "rules": trRead(); translateDialog(!$(".dlg.wide")); break;
+    case "trpick": trRead(); S.tr.file = "product-walkthrough.mp4"; S.tr.pid = ""; translateDialog(!!$(".dlg.wide")); break; // stands in for the file picker
+    case "trunpick": trRead(); S.tr.file = ""; translateDialog(!!$(".dlg.wide")); break;
+    case "dotranslate": { trRead(); const T = S.tr, lang = T.to; let p = T.pid && PROJECTS.find(x => x.id === T.pid);
+      const err = m => { const e = $("#trErr"); e.textContent = m; e.hidden = false; };
+      if (!p && !T.file) { err($("#trpid") ? "Upload a video, or pick one of your projects" : "Upload a video to translate"); break; }
+      if (p && p.versions.some(v => v.lang === lang)) { err(`“${p.name}” already has a ${lang} version`); break; }
+      if (!p) { const nm = T.file.replace(/\.[a-z0-9]+$/i, "").replace(/[-_]+/g, " ").replace(/^./, c => c.toUpperCase()); p = { id: "u" + Date.now(), name: nm, type: "Upload", th: "t-white", label: nm, dur: "1:00", mod: "just now", created: "just now", chat: null, article: false, versions: [], madeFrom: [] }; PROJECTS.unshift(p); }
+      p.versions.push({ id: p.id + "-" + lang.slice(0, 2).toLowerCase(), name: `${p.name} (${lang})`, lang, dur: p.dur, mod: "just now" });
+      S.expanded.add(p.id); S.tr = null; closeLayers(); toast(`${lang} version added under ${p.name}`); go("/project/" + p.id); render(); break; }
     case "closedlg": closeLayers(); break;
     case "theme": { applyTheme(k); const inPop = t.closest(".pop"); document.querySelectorAll(".themeseg").forEach(g => g.outerHTML = themeControl()); const again = document.querySelector((inPop ? ".pop " : ".setcard ") + `.themeseg [data-k="${k}"]`); if (again) again.focus(); break; }
     case "cmdk": cmdk(); break;
     case "cmdkai": askAI(($("#cq") || {}).value ? $("#cq").value.trim() : ""); break;
     case "cmdkopenai": askAI(""); break;
-    case "cmdkcreate": { const v = $("#cq").value.trim(); closeLayers(); S.prompt = v; go("/create"); break; }
+    case "cmdkcreate": { const v = $("#cq").value.trim(); closeLayers(); S.prompt = v; go("/home"); break; }
     case "help": seeUpdates(); popover(t, helpMenu(), "right"); document.querySelectorAll(".udot").forEach(d => d.remove()); document.querySelectorAll('[data-act="help"]').forEach(b => b.setAttribute("aria-label", HELP_NAME)); { const f = $(".pop .mi"); if (f) f.focus(); } break;
     case "selopen": { const sel = t._sel || t.previousElementSibling; if (!sel) break; selFor = { sel, b: t }; popover(t, [...sel.options].map((o, i) => `<button class="mi mi2" role="menuitemradio" aria-checked="${i === sel.selectedIndex}" data-act="selpick" data-i="${i}"><span class="ck">${i === sel.selectedIndex ? icon("check") : ""}</span><span class="mt"><span>${esc(o.text)}</span></span></button>`).join("")); { const p = $(".pop"); if (p) { p.style.minWidth = Math.round(t.getBoundingClientRect().width) + "px"; const f = p.querySelector('[aria-checked="true"]') || p.querySelector(".mi"); if (f) f.focus(); } } break; }
     case "selpick": { const f = selFor; document.querySelectorAll(".pop").forEach(x => x.remove()); if (!f) break; f.sel.selectedIndex = +t.dataset.i; selSync(f.sel, f.b); f.sel.dispatchEvent(new Event("change", { bubbles: true })); if (document.contains(f.b)) f.b.focus(); selFor = null; break; }
@@ -2090,9 +2162,7 @@ document.addEventListener("click", e => {
     case "helpnews": closeLayers(); newsDialog(t.dataset.i); break;
     case "account": case "ws": if (firstRun() && S.guest) { popover(t, `<div class="me"><span class="ava person" aria-hidden="true">${userIni()}</span><span>${S.user.known === false ? "" : `<b>${esc(S.user.first)} ${esc(S.user.last)}</b>`}${esc(S.user.email)}</span></div>
       <div class="themerow">${themeControl()}</div><div class="sep"></div><button class="mi" data-act="switchacct">${icon("users")}Use a different account</button><button class="mi" data-act="signout">${icon("chevLeft")}Sign out</button>`, "right"); break; }
-      popover(t, `<div class="lab">Workspace</div><button class="mi" role="menuitemradio" aria-checked="true"><span class="ava wsava" aria-hidden="true">${esc(wsIni())}</span>${esc(wsName())}<small>Free plan</small></button>
-      <div class="sep"></div><div class="me"><span class="ava person" aria-hidden="true">${S.user.ini}</span><span><b>${S.user.first} ${S.user.last}</b>${S.user.email}</span></div>
-      <div class="themerow">${themeControl()}</div><button class="mi" data-go="/settings/profile">${icon("users")}Profile settings</button><div class="sep"></div><button class="mi" data-act="signout">${icon("chevLeft")}Sign out</button>`); break;
+      popover(t, accountMenu()); break;
     case "toast": toast(t.dataset.m); break;
     case "togglefix": S.showFix = !S.showFix; fixLayer(currentFixKey()); break;
     case "fixlist": S.fixList = !S.fixList; fixLayer(currentFixKey()); break;

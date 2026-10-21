@@ -2368,3 +2368,10 @@ a.emcta { text-decoration: none; }
 .plancard .pleft:empty { display: block; }
 @container plan (max-width: 480px) { .plancard .pleft { flex-basis: 100%; } }
 .plancard .pquiet + .pnote { padding-left: 20px; } /* lines up with the cost text after its 14px icon + 6px gap */
+
+/* Folder rows in Projects (IA fix W3, 21 Oct 2026): same row as a project, with a neutral folder tile in place of the thumbnail */
+.list .thumb.fthumb { background: var(--field); color: var(--muted); box-shadow: inset 0 0 0 1px var(--line); }
+.toolbar .tabs[hidden] { display: none; }
+/* Player and links: one page heading that matches its nav label, with its two sections as sub-heads (IA fix W7) */
+.setcard .setsub { display: flex; align-items: center; gap: 6px; margin-top: 4px; font-size: 12px; font-weight: 500; }
+.setcard .setsub .mut { font-weight: 400; }
