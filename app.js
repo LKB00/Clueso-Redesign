@@ -1884,6 +1884,13 @@ function wireFixGrip(bar) {
 // They show on this computer (localhost) and on any URL with ?review=1. The deployed site (GitHub Pages) shows the product
 // with one small "Viewing as" switcher, so people trying it can see the visitor, new-user and returning-user states.
 const REVIEW = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname) || /[?&]review=1\b/.test(location.search);
+// The deployed site keeps itself current: a tab opened before a deploy (or a page the browser cached, which GitHub Pages
+// allows for 10 minutes) checks for a newer version on load and whenever it's focused, and switches to it. The work in
+// progress is in sessionStorage, so it survives the switch.
+if (!REVIEW) { const cur = ((document.querySelector('script[src*="app.js"]') || {}).src || "").match(/v=(\d+)/);
+  const check = () => fetch(location.pathname + "?check=" + Date.now(), { cache: "no-store" }).then(r => r.ok ? r.text() : "").then(t => { const v = t.match(/app\.js\?v=(\d+)/);
+    if (v && cur && v[1] !== cur[1]) { try { saveWork(); } catch (e) {} location.replace(location.pathname + "?v=" + v[1] + location.hash); } }).catch(() => {});
+  addEventListener("focus", check); document.addEventListener("visibilitychange", () => { if (!document.hidden) check(); }); setTimeout(check, 1500); }
 const SCENARIOS = [["visitor", "Visitor"], ["new", "New user"], ["returning", "Returning user"]];
 const curScenario = () => S.guest ? "visitor" : S.scenario === "returning" ? "returning" : "new";
 function fixLayer(key) {
