@@ -482,6 +482,48 @@ function vSignup() {
   </form></div>
   <div class="quote"><p>“With Clueso, we created and launched 8 training courses for Duda's new editor in just one quarter.”</p><span style="font-size:12px;opacity:.75">Duda</span></div></div>`;
 }
+/* Test emails (prototype aid, 21 Oct 2026, asked for by the user): focusing an email field lists emails that each show one
+   path, the way a browser's autofill list does, so people trying the prototype don't have to invent accounts. New-account
+   emails get the next unused number, so they always create a new account. Picking one also fills a test password. */
+const TEST_PW = "prototype-123";
+const TEST_PWF = { gem: "gpw", em: "pw", sem: "spw" };
+function nextFree(make) { const a = accounts(); for (let n = 1; n < 500; n++) { const e = make(n); if (!a[e]) return e; } return make(Date.now()); }
+function testEmails(id) {
+  const mode = id === "gem" ? ((S.pending || {}).mode || "signup") : id === "em" ? "signin" : id === "ssoem" ? "sso" : id === "sem" || id === "gaem" ? "signup" : null;
+  if (!mode) return null;
+  if (mode === "sso") return [["jo@acme.io", "Company with SSO: opens its sign-in"], ["sam@taskly.io", "Taskly: SSO, and the team is on Clueso"], ["pat@northwind.com", "Company without SSO"], ["you@gmail.com", "Personal email: no SSO"]];
+  if (mode === "signin") return [[DEMO_ACCT.email, "Demo account, with videos"], ...Object.values(accounts()).filter(a => a.email !== DEMO_ACCT.email).slice(-2).map(a => [a.email, "Made in this browser"]), ["nobody@gmail.com", "No account: shows the error"]];
+  return [[nextFree(n => `new.user${n}@gmail.com`), "New account, personal email"], [nextFree(n => `sam${n}@taskly.io`), "Work email: the team is already on Clueso"], [nextFree(n => `lee${n}@northwind.com`), "Work email: brand from the company's website"], [DEMO_ACCT.email, "Has an account: shows the error"]];
+}
+let tsug = null; // { input, list, items, active }
+function sugClose() { if (!tsug) return; tsug.list.remove(); tsug.input.setAttribute("aria-expanded", "false"); tsug.input.removeAttribute("aria-activedescendant"); tsug = null; }
+function sugOpen(input) {
+  const all = testEmails(input.id); if (!all) return; const q = input.value.trim().toLowerCase();
+  const items = all.filter(([em]) => !q || (em.toLowerCase().includes(q) && em.toLowerCase() !== q));
+  if (tsug && tsug.input !== input) sugClose();
+  if (!items.length) { sugClose(); return; }
+  const id = "tsug-" + input.id; let list = tsug ? tsug.list : null;
+  if (!list) { list = document.createElement("div"); list.className = "tsug"; list.id = id; list.setAttribute("role", "listbox"); list.setAttribute("aria-label", "Test emails"); input.closest(".field").appendChild(list);
+    input.setAttribute("role", "combobox"); input.setAttribute("aria-autocomplete", "list"); input.setAttribute("aria-controls", id); }
+  list.innerHTML = `<div class="tsugh" aria-hidden="true">Test emails · prototype</div>${items.map(([em, d], i) => `<div class="tsugo" role="option" id="${id}-${i}" aria-selected="false" data-em="${esc(em)}"><b>${esc(em)}</b><span>${esc(d)}</span></div>`).join("")}`;
+  input.setAttribute("aria-expanded", "true"); tsug = { input, list, items, active: -1 };
+}
+function sugActive(n) { if (!tsug) return; const o = [...tsug.list.querySelectorAll(".tsugo")]; if (!o.length) return; tsug.active = (n + o.length) % o.length;
+  o.forEach((x, i) => x.setAttribute("aria-selected", i === tsug.active)); tsug.input.setAttribute("aria-activedescendant", o[tsug.active].id); o[tsug.active].scrollIntoView({ block: "nearest" }); }
+function sugPick(em) {
+  if (!tsug) return; const input = tsug.input; input.value = em; input.removeAttribute("aria-invalid"); input.dispatchEvent(new Event("input", { bubbles: true })); sugClose();
+  const pw = TEST_PWF[input.id] && document.getElementById(TEST_PWF[input.id]); if (pw && !pw.value) pw.value = TEST_PW;
+  const form = input.closest("form"); const next = form && form.querySelector('button[type="submit"], .btn.pink:not([type="button"])'); (next || pw || input).focus();
+}
+document.addEventListener("focusin", e => { const t = e.target; if (t.matches && t.matches('input[type="email"]')) sugOpen(t); });
+document.addEventListener("input", e => { if (e.target.matches && e.target.matches('input[type="email"]') && (!tsug || tsug.input === e.target) && document.activeElement === e.target) sugOpen(e.target); });
+document.addEventListener("focusout", e => { if (tsug && e.target === tsug.input) setTimeout(() => { if (tsug && document.activeElement !== tsug.input) sugClose(); }, 0); });
+document.addEventListener("keydown", e => { if (!tsug || e.target !== tsug.input) return;
+  if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); sugActive(tsug.active + (e.key === "ArrowDown" ? 1 : -1)); }
+  else if (e.key === "Enter" && tsug.active >= 0) { e.preventDefault(); sugPick(tsug.items[tsug.active][0]); }
+  else if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); sugClose(); } }, true);
+document.addEventListener("mousedown", e => { const o = e.target.closest && e.target.closest(".tsugo"); if (o) { e.preventDefault(); sugPick(o.dataset.em); } }, true);
+
 // SSO: a company email finds the company's sign-in. A personal email, or a company without SSO, says what to do instead.
 const SSO_DOMAINS = ["taskly.io", "acme.io"];
 let ssoPrev = null; // the page the SSO page was opened from (sign in, sign up, invite)
