@@ -318,7 +318,7 @@ function signInRestore(email, after) { const started = TASKS.length > 0 || PROJE
   clearTimeout(saveWorkT); removeEventListener("pagehide", saveWork);
   try { if (w) { if (w.work) sessionStorage.setItem(WORK_KEY, w.work); else sessionStorage.removeItem(WORK_KEY); if (w.scenario) localStorage.setItem(SCENARIO_KEY, w.scenario); if (w.progress) localStorage.setItem(PROGRESS_KEY, w.progress); delete st[email.toLowerCase()]; sessionStorage.setItem(SIGNEDOUT_KEY, JSON.stringify(st)); }
     else { sessionStorage.removeItem(WORK_KEY); localStorage.setItem(SCENARIO_KEY, "returning"); } } catch (e) {} // the demo account's seeded videos
-  location.href = "/?s=" + Date.now() + "#" + dest; return true; }
+  location.href = location.pathname + "?s=" + Date.now() + "#" + dest; return true; }
 
 /* ---------- brand ----------
    Live Clueso shows a kit only on the Brand kit page (logo, title font, four colour tiles). Here the same preview appears
