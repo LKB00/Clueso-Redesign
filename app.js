@@ -341,6 +341,12 @@ function kitPreview(k) {
 }
 
 /* ---------- shell ---------- */
+// Phone (≤760px, 21 Oct 2026): a phone-first layout modelled on Claude, ChatGPT and Gemini's mobile apps. A ☰ drawer holds the
+// navigation, search, recent chats and Help; the top bar keeps the page name, Clueso AI and New project; menus open as
+// bottom sheets; composers sit at the bottom of the screen; the editor becomes review and quick edits.
+const isPhone = () => innerWidth <= 760;
+const PAGE_NAME = { projects: "Projects", project: "Project", chats: "Chats", analytics: "Analytics", integrations: "Integrations", settings: "Settings" };
+const pageName = () => { const [r, a] = route(); if (r === "library") return a === "brand" ? "Brand kit" : "Clueprints"; if (r === "projects" && a) return decodeURIComponent(a); return PAGE_NAME[r] || ""; };
 // Getting started: one quiet line under the composer, about the next video you make. Hidden until the first video exists
 // (the prompt is that step) and gone at 4 of 4 or when dismissed. The brand step points at the composer's own brand pill
 // instead of adding a second button for it; sharing has no control on Home, so it gets the one button.
@@ -354,6 +360,7 @@ function sidebar(active) {
   const item = (k, ic, label, href, extra = "") => `<a class="navitem ${active === k ? "on" : ""}" href="#/${href}" data-label="${label}">${icon(ic)}<span class="lbl grow">${label}</span>${extra}</a>`;
   return `<aside class="side">
     <div class="brandrow"><div class="wm">${LOGO}<span>Clueso</span></div><button class="iconbtn" data-act="collapse" aria-label="${S.collapsed ? "Expand sidebar" : "Collapse sidebar"}" title="${S.collapsed ? "Expand sidebar" : "Collapse sidebar"}">${icon("collapse")}</button></div>
+    <button class="phsearch" data-act="cmdk">${icon("search")}<span>Search</span></button>
     <nav class="nav" ${fix(1)}>
       ${item("create", "home", "Home", "home")}
       ${item("projects", "folder", "Projects", "projects")}
@@ -364,6 +371,7 @@ function sidebar(active) {
       ${item("library-brand", "brand", "Brand kit", "brand-kit")}
       ${item("analytics", "analytics", "Analytics", "analytics", `<span class="tag lbl">${icon("lock")}</span>`)}
     </nav>
+    ${TASKS.length ? `<div class="phrecent" aria-label="Recent chats" role="group"><div class="phlab">Recent chats</div>${TASKS.slice(0, 5).map(c => `<a class="navitem" href="#/chats" data-act="phchat" data-id="${c.id}"><span class="lbl grow trunc">${esc(c.t)}</span>${NEEDS.includes(c.st) ? `<span class="navdot attn" role="img" aria-label="Needs you"></span>` : ""}</a>`).join("")}</div>` : ""}
     <div class="spacer"></div>
     ${(() => { const low = credLeft() / S.credits.total <= .2;
       return `<a class="usage ${low ? "low" : ""}" href="#/settings/plan-and-usage" ${fix(7)} title="${S.minutes.total - S.minutes.used} of ${S.minutes.total} export minutes and ${credLeft()} of ${S.credits.total.toLocaleString("en")} AI credits left this month · Plan and usage">
@@ -371,6 +379,7 @@ function sidebar(active) {
       ${low ? `<div class="meter" role="img" aria-label="${credLeft()} of ${S.credits.total} credits left"><i style="width:${credLeft() / S.credits.total * 100}%"></i></div>` : ""}
     </a>`; })()}
     <nav class="nav">
+      <button class="navitem phhelp" data-act="help" aria-haspopup="menu">${icon("helpbook")}<span class="lbl grow">${HELP_NAME}</span>${helpDot()}</button>
       ${item("integrations", "puzzle", "Integrations", "integrations")}
       ${item("settings", "settings", "Settings", "settings/general")}
     </nav>
@@ -380,13 +389,14 @@ function sidebar(active) {
 
 function topbar() {
   return `<div class="top">
-    <button class="iconbtn menubtn" data-act="navopen" aria-label="Open menu">${icon("dots")}</button>
+    <button class="iconbtn menubtn" data-act="navopen" aria-label="Open menu" aria-expanded="${!!S.navopen}">${icon("menu")}</button>
+    <span class="phname trunc">${pageName() ? esc(pageName()) : `${LOGO}<span>Clueso</span>`}</span>
     <button class="searchbox" data-act="cmdk" aria-label="Search or jump to">${icon("search")}<span class="sl trunc">Search or jump to…</span><span class="ss" aria-hidden="true">Search</span><span class="kbd">⌘K</span></button>
     <div class="grow"></div>
     ${S.generating && location.hash !== "#/project/" + S.generating.id ? `<a class="buildchip" href="#/project/${S.generating.id}" aria-label="Video building, scene ${Math.min(S.generating.step + 1, 6)} of 6. Open project"><span class="spin" aria-hidden="true"></span><span class="bl">Building · ${Math.min(S.generating.step + 1, 6)} of 6</span><span class="bs" aria-hidden="true">${Math.min(S.generating.step + 1, 6)}/6</span></a>` : ""}
     <button class="btn helpbtn" data-act="help" aria-haspopup="menu" aria-label="${helpLabel()}">${icon("helpbook")}<span class="lblt">${HELP_NAME}</span>${helpDot()}</button>
     ${panelAllowed() ? `<button class="btn aibtn ${S.ai ? "on" : ""}" id="aibtn" data-act="ai" ${fix(8)} aria-label="Clueso AI" aria-expanded="${!!S.ai}" aria-controls="aipanel">${icon("sparkle")}<span class="lblt">Clueso AI</span></button>` : ""}
-    <button class="btn dark" data-act="newmenu" aria-label="New project"><span class="lblt">New project</span>${icon("chevDown")}</button>
+    <button class="btn dark newbtn" data-act="newmenu" aria-label="New project" aria-haspopup="menu"><span class="phplus">${icon("plus")}</span><span class="lblt">New project</span>${icon("chevDown")}</button>
   </div>`;
 }
 
@@ -408,9 +418,10 @@ function vStrip() {
 function shell(active, inner, opts = {}) {
   // Focus mode (logo, Help, Sign in) is for visitors only (20 Oct 2026, decided with the user): once signed in, the full app
   // with its sidebar shows from the first moment, as signed-in ChatGPT and Gemini do; Home still shows first-run content.
-  if (active === "create" && firstRun() && S.guest) return `<div class="app focus"><div class="col">${focusTop()}<div class="main ${opts.grid ? "grid-bg" : ""}">${inner}</div></div></div>`;
+  if (active === "create" && firstRun() && S.guest) return `<div class="app focus ${isPhone() ? "phone" : ""}"><div class="col">${focusTop()}<div class="main ${opts.grid ? "grid-bg" : ""}">${inner}</div></div></div>`;
   const strip = vStrip();
-  return `<div class="app ${strip ? "hasstrip" : ""} ${S.collapsed ? "collapsed" : ""} ${S.navopen ? "navopen" : ""} ${S.ai ? "ai-" + aiView() : ""}">${strip}${sidebar(active)}
+  const inThread = active === "chats" && isPhone() && (S.chatId === "new" || (S.chatId && chatById(S.chatId)));
+  return `<div class="app ${isPhone() ? "phone" : ""} ${inThread ? "inthread" : ""} ${strip ? "hasstrip" : ""} ${S.collapsed ? "collapsed" : ""} ${S.navopen ? "navopen" : ""} ${S.ai ? "ai-" + aiView() : ""}">${strip}${sidebar(active)}
     <div class="col">${topbar()}<div class="main ${opts.grid ? "grid-bg" : ""}">${inner}</div></div></div>${S.ai ? aiPanel() : ""}${S.tipProjects === "show" ? `<div class="coach" role="dialog" aria-labelledby="coacht"><b id="coacht">${S.generating ? "Your video is building" : "Your video is ready"}</b><span>${innerWidth <= 760 ? "Find it, and every video you make, under Projects in this menu." : "Find it here, along with every video you make."}</span><button class="btn" data-act="tipok">Got it</button></div>` : ""}`;
 }
 // The tip sits beside Projects in the side menu (or under the menu button on phones), placed after each render
@@ -695,7 +706,7 @@ function promptBox(ph) {
   return `<div class="prompt">
     ${S.clue != null && STYLES[S.clue] ? `<div class="pclue" title="Using this Clueprint. Tell Clueso your product, who it's for and what viewers should do"><span class="thumb ${STYLES[S.clue][1]}" aria-hidden="true"></span><span class="trunc">Clueprint: <b>${esc(STYLES[S.clue][0])}</b></span><button class="iconbtn" data-act="clueoff" aria-label="Remove the Clueprint">${icon("close")}</button></div>` : ""}
     <div class="pwrap" ${fix(5)}>
-      <textarea id="prompt" aria-label="${S.clue != null ? "Describe your product, who it's for and what viewers should do" : "Describe the video you want"}" aria-describedby="ghosthint">${esc(S.prompt)}</textarea>
+      <textarea id="prompt" placeholder="${esc(ph || "Describe the video you want")}" aria-label="${S.clue != null ? "Describe your product, who it's for and what viewers should do" : "Describe the video you want"}" aria-describedby="ghosthint">${esc(S.prompt)}</textarea>
       <div class="psug" aria-hidden="true" ${has ? "hidden" : ""}><span class="gtext">${esc(sug)}</span><span class="kbd">Tab</span></div>
       <span id="ghosthint" class="sr">Suggestion: ${esc(sug)}. Press Tab to use it.</span>
     </div>
@@ -837,9 +848,9 @@ function vProjects(fArg) {
       const kids = [...p.versions.map(v => ({ ...v, kind: v.lang, th: p.th, isLang: true })), ...p.madeFrom];
       const kidHit = q && kids.some(k => hit(k.name));
       const open = S.expanded.has(p.id) || kidHit; const showKids = q && !hit(p.name) ? kids.filter(k => hit(k.name)) : kids;
-      return `<tr class="row" data-go="/project/${p.id}"><td><div class="nm">${kids.length ? `<button class="iconbtn" data-act="expand" data-id="${p.id}" aria-expanded="${open}" aria-label="${open ? "Hide" : "Show"} ${kids.length} version${kids.length > 1 ? "s" : ""}">${icon(open ? "chevDown" : "chevRight")}</button>` : `<span style="width:24px"></span>`}<div class="thumb ${p.th}"></div><div class="tw"><a class="ttl" href="#/project/${p.id}">${hl(p.name, words)}</a><span class="sub">${S.pinned.has(p.id) ? `<span class="bdg pink">${icon("bolt")}Pinned</span>` : ""}<span class="bdg">${p.type}</span>${p.article ? `<span class="bdg">${icon("doc")}Article</span>` : ""}${kids.length ? `<span class="mut" style="font-size:11px">+${kids.length} version${kids.length > 1 ? "s" : ""}</span>` : ""}</span></div></div></td>
+      return `<tr class="row" data-go="/project/${p.id}"><td><div class="nm">${kids.length ? `<button class="iconbtn" data-act="expand" data-id="${p.id}" aria-expanded="${open}" aria-label="${open ? "Hide" : "Show"} ${kids.length} version${kids.length > 1 ? "s" : ""}">${icon(open ? "chevDown" : "chevRight")}</button>` : `<span style="width:24px"></span>`}<div class="thumb ${p.th}"></div><div class="tw"><a class="ttl" href="#/project/${p.id}">${hl(p.name, words)}</a><span class="sub">${S.pinned.has(p.id) ? `<span class="bdg pink">${icon("bolt")}Pinned</span>` : ""}<span class="bdg">${p.type}</span>${p.article ? `<span class="bdg">${icon("doc")}Article</span>` : ""}${kids.length ? `<span class="mut" style="font-size:11px">+${kids.length} version${kids.length > 1 ? "s" : ""}</span>` : ""}</span><span class="phmeta">${p.dur} · ${p.mod}</span></div></div></td>
         <td class="mut">${p.dur}</td><td class="mut">${p.mod}</td><td class="rowact"><button class="iconbtn" data-act="rowmenu" data-id="${p.id}" aria-label="More actions for ${esc(p.name)}" aria-haspopup="menu">${icon("dots")}</button></td></tr>
-        ${open ? showKids.map(k => `<tr class="row child" data-go="/project/${k.id}"><td><div class="nm indent"><div class="thumb ${k.th}"></div><div class="tw"><a class="ttl" href="#/project/${k.id}" style="font-size:14px">${hl(k.name, words)}</a><span class="sub">${k.isLang ? `<span class="bdg green">${icon("translate")}${k.kind}</span>` : `<span class="bdg pink">${icon("sparkle")}Made from this · ${k.kind}</span>`}</span></div></div></td><td class="mut">${k.dur}</td><td class="mut">${k.mod}</td><td></td></tr>`).join("") : ""}`;
+        ${open ? showKids.map(k => `<tr class="row child" data-go="/project/${k.id}"><td><div class="nm indent"><div class="thumb ${k.th}"></div><div class="tw"><a class="ttl" href="#/project/${k.id}" style="font-size:14px">${hl(k.name, words)}</a><span class="sub">${k.isLang ? `<span class="bdg green">${icon("translate")}${k.kind}</span>` : `<span class="bdg pink">${icon("sparkle")}Made from this · ${k.kind}</span>`}</span><span class="phmeta">${k.dur} · ${k.mod}</span></div></div></td><td class="mut">${k.dur}</td><td class="mut">${k.mod}</td><td></td></tr>`).join("") : ""}`;
     }).join("");
     const th = (k, l) => { const on = S.projSort.key === k; const d = on ? S.projSort.dir : null; const aria = on ? (k === "edited" ? (d === "asc" ? "descending" : "ascending") : (d === "asc" ? "ascending" : "descending")) : "none";
       const hint = k === "edited" ? (on && d === "asc" ? "newest first" : on ? "oldest first" : "") : k === "name" ? (on ? (d === "asc" ? "A to Z" : "Z to A") : "") : (on ? (d === "asc" ? "shortest first" : "longest first") : "");
@@ -1641,7 +1652,11 @@ document.addEventListener("focusin", e => { const m = e.target.closest && e.targ
 document.addEventListener("mouseout", e => { const pop = e.target.closest && e.target.closest(".pop"); if (pop && !pop.contains(e.relatedTarget)) { const pill = pop.querySelector(":scope > .hpill"); if (pill && !pop.contains(document.activeElement)) pill.style.opacity = "0"; } });
 function popover(anchor, html, align = "left") {
   // Inside a dialog or drawer, close only other menus, not the dialog the menu belongs to
-  if (anchor.closest && anchor.closest(".scrim, .drawer")) document.querySelectorAll(".pop").forEach(x => x.remove()); else closeLayers(); const r = anchor.getBoundingClientRect(); const p = document.createElement("div"); p.className = "pop"; p.innerHTML = html;
+  if (anchor.closest && anchor.closest(".scrim, .drawer")) document.querySelectorAll(".pop").forEach(x => x.remove()); else closeLayers();
+  if (isPhone()) { // a bottom sheet: full width, a grab handle, tapping outside closes it (Claude, ChatGPT and Gemini all do this)
+    const p = document.createElement("div"); p.className = "pop sheet"; p.innerHTML = `<div class="sheetb" role="menu"><span class="grab" aria-hidden="true"></span>${html}</div>`;
+    p.addEventListener("click", e => { if (e.target === p) p.remove(); }); document.body.appendChild(p); return; }
+  const r = anchor.getBoundingClientRect(); const p = document.createElement("div"); p.className = "pop"; p.innerHTML = html;
   document.body.appendChild(p); const pw = p.offsetWidth, ph = p.offsetHeight;
   // Fit the viewport: open below if it fits, else above, else on the roomier side with a scrollable max height.
   const below = innerHeight - r.bottom - 14, above = r.top - 14;
@@ -1851,7 +1866,8 @@ document.addEventListener("pointerdown", e => {
   addEventListener("pointermove", move); addEventListener("pointerup", up); e.preventDefault();
 });
 document.addEventListener("dblclick", e => { if (!e.target.closest(".aipanel.v-float .ah") || e.target.closest("button")) return; S.floatPos = null; try { localStorage.removeItem("clueso-proto-float"); } catch (er) {} placeFloat(); });
-addEventListener("resize", () => { placeFloat(); placeCoach(); });
+let wasPhone = isPhone();
+addEventListener("resize", () => { placeFloat(); placeCoach(); if (isPhone() !== wasPhone) { wasPhone = isPhone(); S.navopen = false; closeLayers(); render(); } });
 
 /* ---------- render ---------- */
 let genTimer = null;
@@ -2000,7 +2016,8 @@ document.addEventListener("click", e => {
       S.collapsed = !S.collapsed; const app = $(".app"); app.classList.add("anim"); app.classList.toggle("collapsed", S.collapsed);
       const l = S.collapsed ? "Expand sidebar" : "Collapse sidebar"; t.setAttribute("aria-label", l); t.title = l;
       clearTimeout(window.__colT); window.__colT = setTimeout(() => app.classList.remove("anim"), 380); break; }
-    case "navopen": S.navopen = true; render(); break;
+    case "navopen": S.navopen = true; render(); { const f = $(".side .phsearch"); if (f) f.focus(); } break;
+    case "phchat": e.preventDefault(); S.navopen = false; S.chatId = t.dataset.id; S.chatFocus = false; if (route()[0] === "chats") render(); else go("/chats"); break;
     case "ai": e.preventDefault(); S.ai = !S.ai; if (!S.ai && S.aiView === "full") S.aiView = S.aiPrev || aiViewDefault(); render(); if (S.ai) aiFocusComposer(); else { const b = $("#aibtn"); if (b) b.focus(); } break;
     case "aiviewmenu": { const v = aiView(); popover(t, AI_VIEWS.filter(x => x[0] !== "full").map(([k, l, d, ic]) => `<button class="mi mi2" role="menuitemradio" aria-checked="${v === k}" data-act="aiview" data-k="${k}"><span class="ck">${v === k ? icon("check") : ""}</span>${icon(ic)}<span class="mt"><span>${l}</span><small>${d}</small></span></button>`).join("") + `<div class="sep"></div><button class="mi mi2" data-act="aiopenpage"><span class="ck"></span>${icon("fullscreen")}<span class="mt"><span>Full screen</span><small>Opens this conversation on the Chats page</small></span></button>`, "right"); { const f = $(".pop [aria-checked=true]"); if (f) f.focus(); } break; }
     // In the editor, as live: past chats sit behind Chat history, and New chat starts over.

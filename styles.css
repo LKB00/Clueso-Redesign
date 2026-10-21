@@ -2375,3 +2375,198 @@ a.emcta { text-decoration: none; }
 /* Player and links: one page heading that matches its nav label, with its two sections as sub-heads (IA fix W7) */
 .setcard .setsub { display: flex; align-items: center; gap: 6px; margin-top: 4px; font-size: 12px; font-weight: 500; }
 .setcard .setsub .mut { font-weight: 400; }
+
+/* ======================================================================================================================
+   Phone experience (≤760px, 21 Oct 2026). Modelled on the mobile apps of Claude, ChatGPT and Gemini, which share one
+   pattern: a ☰ drawer for navigation and recent chats, a short top bar (menu · title · new), the composer pinned to the
+   bottom in the thumb zone, full-screen conversations, bottom sheets for menus and pickers, single-column lists.
+   Touch targets are at least 44px (Apple HIG); type that people read or type into is 15–16px, and inputs are 16px so iOS
+   doesn't zoom the page on focus. Live Clueso's own phone layout couldn't be checked (not covered by the audit, and the
+   live session had signed out), so nothing here is copied from it.
+   ====================================================================================================================== */
+.phname, .phplus, .phsearch, .phrecent, .phhelp, .phmeta { display: none; }
+#prompt::placeholder { color: transparent; } /* desktop shows the typed-out suggestion instead */
+@keyframes sheetUp { from { transform: translateY(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+@media (max-width: 760px) {
+  /* Shell: the page fills the screen; the top bar is menu · page name · Clueso AI · New project */
+  .app.phone .col { padding: 0; gap: 0; }
+  .app.phone .main { border-radius: 0; }
+  .app.phone .top { height: 52px; padding: 0 8px; gap: 4px; background: var(--page); flex: none; }
+  .app.phone .top .searchbox, .app.phone .top .helpbtn { display: none; }
+  .app.phone .menubtn { width: 40px; height: 40px; }
+  .app.phone .menubtn .ic { width: 22px; height: 22px; }
+  .app.phone .phname { display: flex; align-items: center; gap: 6px; flex: 1; min-width: 0; font: 500 16px/22px var(--display); color: var(--ink); }
+  .app.phone .phname svg { width: 20px; height: 20px; flex: none; }
+  .app.phone .top > .grow { display: none; }
+  .app.phone .top .aibtn, .app.phone .top .newbtn { width: 40px; height: 40px; padding: 0; justify-content: center; }
+  .app.phone .top .aibtn .ic, .app.phone .top .newbtn .ic { width: 20px; height: 20px; }
+  .app.phone .newbtn .phplus { display: contents; }
+  .app.phone .newbtn > .ic:last-child { display: none; }
+
+  /* Drawer: search first, the sections, recent chats, then Help, Integrations, Settings and the account */
+  .app.phone .side { width: min(85vw, 320px); padding: 12px 12px calc(12px + env(safe-area-inset-bottom, 0px)); gap: 6px; }
+  .app.phone .brandrow { height: 40px; }
+  .app.phone .brandrow [data-act="collapse"] { display: none; }
+  .app.phone .phsearch { display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 12px; border-radius: 8px; background: var(--field); color: var(--muted); font-size: 16px; text-align: left; }
+  .app.phone .phsearch .ic { width: 18px; height: 18px; }
+  .app.phone .side .navitem { height: 44px; font-size: 15px; gap: 10px; padding: 0 10px; border-radius: 8px; }
+  .app.phone .side .navitem .ic { width: 20px; height: 20px; }
+  .app.phone .phrecent { display: grid; gap: 2px; padding-top: 8px; }
+  .app.phone .phlab { font-size: 13px; color: var(--muted); padding: 4px 10px; }
+  .app.phone .phrecent .navitem { height: 40px; font-size: 15px; color: var(--ink); }
+  .app.phone .phrecent .lbl { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .app.phone .phhelp { display: flex; }
+  .app.phone .usage { padding: 12px; font-size: 13px; }
+  .app.phone .brandrow { margin-bottom: 4px; }
+  .app.phone .ws { height: 52px; flex: none; }
+  .app.phone .ws .t b { font-size: 15px; } .app.phone .ws .t span { font-size: 13px; }
+
+  /* Menus and pickers: bottom sheets */
+  .pop.sheet { position: fixed; inset: 0; z-index: 120; display: flex; align-items: flex-end; padding: 0; min-width: 0; max-height: none; border-radius: 0; background: var(--backdrop); box-shadow: none; animation: enterFade .15s ease-out; }
+  .sheetb { width: 100%; max-height: 85dvh; overflow-y: auto; background: var(--surface); border-radius: var(--r-dialog) var(--r-dialog) 0 0; box-shadow: var(--sh-dialog); padding: 0 8px calc(12px + env(safe-area-inset-bottom, 0px)); animation: sheetUp .22s cubic-bezier(0, 0, .2, 1); }
+  .sheetb .grab { display: block; width: 36px; height: 4px; border-radius: 2px; background: var(--line); margin: 8px auto 6px; }
+  .sheetb .mi { min-height: 48px; font-size: 15px; gap: 12px; padding: 10px 12px; border-radius: 8px; }
+  .sheetb .mi .ic { width: 20px; height: 20px; }
+  .sheetb .mi .desc span, .sheetb .mi small, .sheetb .mt small { font-size: 13px; }
+  .sheetb .lab { font-size: 13px; padding: 10px 12px 4px; }
+  .sheetb .me { padding: 10px 12px; font-size: 15px; }
+
+  /* Dialogs: sheets from the bottom; search fills the screen */
+  .scrim { align-items: end; padding: 0; }
+  .dlg { width: 100%; max-height: 92dvh; border-radius: var(--r-dialog) var(--r-dialog) 0 0; padding-bottom: env(safe-area-inset-bottom, 0px); animation: sheetUp .22s cubic-bezier(0, 0, .2, 1); }
+  .scrim.sk { padding: 0; align-items: stretch; }
+  .dlg.search { height: 100dvh; max-height: none; border-radius: 0; }
+  .dlg input, .dlg textarea, .dlg select { font-size: 16px; }
+
+  /* Home: greeting at the top, starters just above the composer, the composer pinned to the bottom of the screen */
+  .app.phone .create { padding: 24px 16px 0; align-items: stretch; }
+  .app.phone .create .hero { font-size: 22px; line-height: 28px; margin: 4px 0 20px; justify-content: center; text-align: center; }
+  .app.phone .create .hero > span { flex-direction: column; gap: 12px !important; }
+  .app.phone .create .hero svg { width: 28px; height: 28px; }
+  .app.phone.focus .top { height: 52px; }
+  .app.phone.focus .top .btn { min-height: 36px; font-size: 14px; }
+  .app.phone .create .starters { justify-content: center; margin-bottom: 10px; }
+  .app.phone .create .starters > .mut { flex-basis: 100%; text-align: center; }
+  .app.phone .create .starters .choice { min-height: 36px; font-size: 14px; }
+  .app.phone .create > .prompt { order: 99; position: sticky; bottom: 0; z-index: 5; width: 100%; margin-top: auto; margin-bottom: calc(8px + env(safe-area-inset-bottom, 0px)); background: var(--surface); box-shadow: 0 -16px 16px var(--main); }
+  .app.phone .create > .hasacct, .app.phone .create > .hello, .app.phone .create > .resume { order: -3; }
+  .app.phone .create > .hero { order: -2; }
+  .app.phone .create > .starters, .app.phone .create > .nextline { order: -1; } /* examples sit right under the greeting, in the first screen */
+  .app.phone .create > .vterms { order: 100; }
+  .app.phone .create .recent, .app.phone .create .ways, .app.phone .create .orline { width: 100%; }
+  .app.phone .create .recent { margin: 24px 0; }
+  .app.phone .create .orline { margin: 24px 0 12px; }
+  .app.phone .psug { display: none; }
+  .app.phone #prompt::placeholder { color: var(--faint); }
+  .app.phone #prompt, .app.phone .prompt textarea { font-size: 16px; line-height: 22px; min-height: 48px; max-height: 30dvh; }
+  .app.phone .prow { flex-wrap: wrap; gap: 6px; }
+  .app.phone .prow .pill { height: 36px; font-size: 14px; }
+  .app.phone .prow .pill.sq, .app.phone .sendbtn { width: 36px; height: 36px; flex: none; }
+  .app.phone .prow .sendbtn { margin-left: auto; }
+  .app.phone .prow .pill[data-act="brandchip"] { font-size: 0; gap: 2px; } /* the colour dots say which kit; its name is in the label and the sheet */
+  .app.phone .prow .pill[data-act="brandchip"] .ic { font-size: 14px; }
+  .app.phone .prow .cost { order: 10; flex-basis: 100%; font-size: 12px; }
+  /* Recent projects: a row you swipe through, so the composer stays in reach */
+  .app.phone .create .recent .cards { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 16px; gap: 10px; margin: 0 -16px; padding: 0 16px 4px; scrollbar-width: none; }
+  .app.phone .create .recent .cards > .pcard { flex: 0 0 72%; scroll-snap-align: start; }
+  .app.phone .way { padding: 14px; }
+  .app.phone .way b { font-size: 15px; } .app.phone .way span span { font-size: 13px; }
+
+  /* Chats: the list is one screen; an open conversation fills the screen with its reply box at the bottom */
+  .app.phone .chatrow { min-height: 56px; }
+  .app.phone .chatrow .ct b { font-size: 15px; } .app.phone .chatrow .cm { font-size: 13px; }
+  .app.phone.inthread .main > .page { padding: 0; height: 100%; display: flex; flex-direction: column; }
+  .app.phone.inthread .main > .page > .toolbar:first-child { display: none; }
+  .app.phone.inthread .col > .top { display: none; } /* a conversation is pushed over the list: its own header (back · title · ⋯) replaces the top bar */
+  .app.phone.inthread .cthead { position: sticky; top: 0; z-index: 4; background: var(--page); padding: 6px 8px; min-height: 52px; }
+  .app.phone.inthread .cthead .iconbtn { width: 40px; height: 40px; }
+  .app.phone.inthread .cthead .iconbtn .ic { width: 20px; height: 20px; }
+  .app.phone.inthread .cthead .aititle { font-size: 15px; }
+  .app.phone.inthread .ctfoot { position: sticky; bottom: 0; z-index: 4; background: var(--main); padding: 8px 8px calc(8px + env(safe-area-inset-bottom, 0px)); }
+  .app.phone .ctfoot textarea, .app.phone .aipanel textarea { font-size: 16px; }
+
+  /* Buttons on a phone: 40px tall with 14px labels (Apple's 44pt guidance counts the spacing around them) */
+  .app.phone .main .btn:not(.xs), .dlg .btn, .edp .btn { min-height: 40px; font-size: 14px; }
+  .app.phone .page .tabs button { min-height: 36px; font-size: 14px; }
+
+  /* Projects: a single-column list; length and edited time under the name; the row menu always showing */
+  .app.phone .page { padding: 16px 16px 32px; }
+  .app.phone .page > .ptitle:first-child { font-size: 0; gap: 0; } /* the top bar already names the page; a description under the name stays */
+  .app.phone .page > .ptitle:first-child > .ic { display: none; }
+  .app.phone .page > .ptitle:first-child > .mut { font-size: 13px !important; line-height: 18px; margin: 0 !important; }
+  .app.phone table.list:not(.antable) thead { display: none; }
+  .app.phone table.list:not(.antable) tr.row { display: flex; align-items: center; gap: 4px; }
+  .app.phone table.list:not(.antable) tr.row > td:first-child { flex: 1; min-width: 0; padding: 10px 0; }
+  .app.phone table.list:not(.antable) tr.row > td.mut, .app.phone table.list:not(.antable) tr.row > td:empty { display: none; }
+  .app.phone table.list:not(.antable) tr.row { border-bottom: 1px solid var(--line); }
+  .app.phone table.list:not(.antable) tr.row > td { border: 0; }
+  .app.phone table.list:not(.antable) .rowact { display: block; }
+  .app.phone table.list:not(.antable) .rowact .iconbtn { opacity: 1; width: 40px; height: 40px; }
+  .app.phone table.list .ttl { font-size: 15px; }
+  .app.phone .phmeta { display: block; font-size: 13px; color: var(--muted); }
+  .app.phone table.list .nm .thumb { width: 64px; }
+  .app.phone .toolbar .searchbox { width: 100% !important; order: 10; height: 44px; }
+  .app.phone .toolbar .searchbox input { font-size: 16px !important; }
+
+  /* Clueprints: two compact columns instead of full-width posters */
+  .app.phone .sgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .app.phone .sgrid .pcard .thumb { font-size: 11px; line-height: 14px; padding: 8px; }
+  .app.phone .sgrid .pcard .meta b { font-size: 14px; line-height: 18px; white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .app.phone .sgrid .pcard .meta span { font-size: 12px; white-space: normal; }
+
+  /* Clueso AI: a full-screen sheet; floating and side-by-side views don't exist on a phone */
+  .aipanel.v-full .prow { flex-wrap: wrap; gap: 6px; }
+  .aipanel.v-full .prow .pill { height: 36px; font-size: 14px; }
+  .aipanel.v-full .prow .pill.sq, .aipanel.v-full .sendbtn { width: 36px; height: 36px; flex: none; }
+  .aipanel.v-full .prow .sendbtn { margin-left: auto; }
+  .aipanel.v-full .prow .pill[data-act="brandchip"] { font-size: 0; gap: 2px; }
+  .aipanel.v-full .prow .pill[data-act="brandchip"] .ic { font-size: 14px; }
+  .aipanel.v-full textarea { font-size: 16px; line-height: 22px; }
+  .aipanel.v-full .ah { min-height: 56px; }
+  .aipanel.v-full .ah .iconbtn { width: 40px; height: 40px; }
+  .app.phone ~ .aipanel [data-act="aiviewmenu"], .aipanel.v-full [data-act="aiviewmenu"] { display: none; }
+}
+
+/* Phone editor: review and quick edits (see edPhone in editor.js) */
+.edp { position: fixed; inset: 0; display: flex; flex-direction: column; background: var(--main); }
+.edpt { display: flex; align-items: center; gap: 4px; min-height: 52px; padding: 0 6px; background: var(--page); flex: none; }
+.edpt b { font: 500 15px/20px var(--sans); color: var(--ink); min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.edpt .iconbtn { width: 40px; height: 40px; flex: none; } .edpt .iconbtn .ic { width: 20px; height: 20px; }
+.edpbody { flex: 1; min-height: 0; overflow-y: auto; padding: 0 0 16px; }
+.edpplayer { background: var(--page); padding: 0 0 10px; position: sticky; top: 0; z-index: 2; }
+.edpplayer .edframe { width: 100%; border-radius: 0; box-shadow: none; }
+.edpplay { position: absolute; left: 12px; bottom: 12px; width: 44px; height: 44px; border-radius: 50%; background: oklch(0 0 0 / .55); color: #fff; display: grid; place-items: center; }
+.edpplay .ic { width: 20px; height: 20px; }
+.edpbar { display: flex; align-items: center; gap: 10px; padding: 10px 16px 0; }
+.edpprog { flex: 1; height: 4px; border-radius: 2px; background: var(--active); overflow: hidden; }
+.edpprog i { display: block; height: 100%; background: var(--ink); }
+.edptime { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.edptabs { padding: 12px 16px 4px; }
+.edptabs .seg { width: 100%; } .edptabs .seg button { flex: 1; justify-content: center; height: 36px; font-size: 14px; }
+.edpstale { margin: 8px 16px 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+.edpstale .btn { height: 36px; }
+.edpscript { display: grid; gap: 4px; padding: 8px 12px; }
+.edpsc { border-radius: 8px; padding: 4px; }
+.edpsc.on { background: var(--surface); box-shadow: inset 0 0 0 1px var(--ring); }
+.edpsh { display: flex; align-items: center; gap: 8px; width: 100%; min-height: 40px; padding: 0 6px; text-align: left; font-size: 14px; }
+.edpsh b { font-weight: 500; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.edpsh .mut { font-size: 12px; font-variant-numeric: tabular-nums; }
+.edpnum { width: 22px; height: 22px; border-radius: 4px; background: var(--active); display: grid; place-items: center; font-size: 12px; flex: none; }
+.edpst { font-size: 11px; color: var(--blue); flex: none; white-space: nowrap; }
+.edpsh .mut { white-space: nowrap; }
+.edpask .edpaskS { display: none; }
+@media (max-width: 360px) { .edpask .edpaskL { display: none; } .edpask .edpaskS { display: inline; } }
+.edpsc .edtext { font-size: 16px; line-height: 24px; padding: 6px 8px; }
+.edpart { padding: 8px 16px; }
+.edpart .edart { font-size: 16px; line-height: 24px; }
+.edpart .edgd { display: grid; gap: 8px; padding: 16px; border-radius: 8px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--ring); }
+.edpnote { display: flex; gap: 8px; align-items: flex-start; margin: 16px 16px 0; font-size: 13px; color: var(--muted); }
+.edpnote .ic { width: 16px; height: 16px; flex: none; margin-top: 1px; }
+.edpf2 { display: flex; gap: 8px; align-items: center; padding: 8px 12px calc(8px + env(safe-area-inset-bottom, 0px)); background: var(--page); flex: none; }
+.edpask { flex: 1; min-width: 0; height: 44px; display: flex; align-items: center; gap: 8px; padding: 0 12px; border-radius: 8px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--ring); color: var(--muted); font-size: 15px; text-align: left; }
+.edpask span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.edpask .ic { width: 18px; height: 18px; color: var(--pink); flex: none; }
+.edpf2 .btn.pink { height: 44px; padding: 0 16px; font-size: 15px; }
+/* Captions wrap to a second line instead of being cut off on narrow screens (seen at 320px) */
+.cluecap { white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; width: max-content; }

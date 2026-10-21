@@ -195,10 +195,43 @@ document.addEventListener("dblclick", ev => { if (!(ev.target.closest && ev.targ
 document.addEventListener("keydown", ev => { const h = ev.target.closest && ev.target.closest(".airesize"); if (!h || !["ArrowLeft", "ArrowRight", "Home", "End"].includes(ev.key)) return; ev.preventDefault(); const t = edTier(), d = ED_AIW[t];
   edAiSet(t, ev.key === "Home" ? d[1] : ev.key === "End" ? d[2] : edAiW(t) + (ev.key === "ArrowLeft" ? 20 : -20)); saveWorkSoon(); });
 function edMeasure() { edPx(); const b = document.querySelector(".ed .edbottom"); document.documentElement.style.setProperty("--ed-bottom-h", (b ? b.offsetHeight + 8 : 0) + "px"); }
+/* Phone editor (21 Oct 2026, decided with the user: review and quick edits). A phone is for watching, fixing words and
+   asking for changes, the way Claude shows an artifact as a full-screen preview on a phone rather than an editor. So:
+   back to the project · title · project menu; the player; Script (each scene's words, editable) and Article; Ask Clueso AI
+   and Share at the bottom. The timeline, layers and design tools stay on a computer, and the page says so. */
+function edPhone(p, e, sc, T) {
+  const art = e.view === "guide";
+  const dur = i => (i < e.scenes.length - 1 ? edStart(e, i + 1) : T) - edStart(e, i);
+  const pct = T ? Math.min(100, e.t / T * 100) : 0;
+  queueMicrotask(() => { const b = document.querySelector(".edpbody"); if (b && e.pScroll) b.scrollTop = e.pScroll; }); // playback re-renders twice a second; keep the reader's place
+  const script = `<div class="edpscript">${e.scenes.map((s, i) => `<section class="edpsc ${i === e.scene ? "on" : ""}" aria-label="Scene ${i + 1}, ${esc(s.name)}">
+      <button class="edpsh" data-act="edscene" data-i="${i}" aria-label="Play from scene ${i + 1}, ${esc(s.name)}"><span class="edpnum">${i + 1}</span><b class="trunc">${esc(s.name)}</b><span class="mut">${mmss(dur(i))}</span>${s.stale || s.text !== s.voiced ? `<span class="edpst">Needs new speech</span>` : ""}</button>
+      <div class="edtext" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Script for scene ${i + 1}" data-i="${i}">${edScriptHTML(s, "")}</div>
+      ${s.updating ? `<div class="edvoice"><span class="spin" aria-hidden="true"></span>Generating speech…</div>` : ""}</section>`).join("")}</div>`;
+  const article = p.article ? `<div class="edart" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Article" id="edart">${edArticleHTML(e)}</div>`
+    : `<div class="edgd"><b>Article</b><p class="mut">This video doesn't have its article yet. Clueso writes it from the same scenes: step-by-step instructions with a screenshot for each step.</p><button class="btn dark" data-act="edguidemake">${icon("doc")}Make the article</button></div>`;
+  return `<div class="edp">
+    <header class="edpt"><a class="iconbtn" href="#/project/${p.id}" aria-label="Back to project">${icon("chevLeft")}</a><b class="trunc grow">${esc(p.name)}</b><button class="iconbtn" data-act="edprojmenu" aria-haspopup="menu" aria-label="Project menu">${icon("dots")}</button></header>
+    <div class="edpbody">
+      ${art ? "" : `<div class="edpplayer"><div class="edframe thumb ${edTh(e.scene, sc)}" style="--ar:16/9"><span class="edcap">${esc(sc.name)}</span><span class="edsub">${esc(sc.text.split(". ")[0])}</span>${e.capsOn ? `<span class="edcaps">${esc(sc.text.split(" ").slice(0, 9).join(" "))}</span>` : ""}
+          <button class="edpplay" data-act="edplay" aria-label="${e.playing ? "Pause" : "Play"}">${icon(e.playing ? "pause" : "play")}</button></div>
+        <div class="edpbar"><span class="edpprog" role="progressbar" aria-label="Playback" aria-valuemin="0" aria-valuemax="${Math.round(T)}" aria-valuenow="${Math.round(e.t)}"><i style="width:${pct}%"></i></span><span class="edptime">${mmss(e.t)} / ${mmss(T)}</span></div></div>`}
+      <div class="edptabs"><div class="seg" role="group" aria-label="Show"><button class="${!art ? "on" : ""}" aria-pressed="${!art}" data-act="edview" data-k="video">Script</button><button class="${art ? "on" : ""}" aria-pressed="${art}" data-act="edview" data-k="guide">Article</button></div></div>
+      ${!art && edStale(e) ? `<div class="edpstale" role="status"><span>${edStale(e)} scene${edStale(e) === 1 ? "" : "s"} changed. Make new speech so the voice matches the words.</span><button class="btn" data-act="edvoiceall">Generate speech</button></div>` : ""}
+      ${art ? `<div class="edpart">${article}</div>` : script}
+      <p class="edpnote">${icon("info")}<span>Timeline, layers and design tools are in the editor on a computer.</span></p>
+    </div>
+    <footer class="edpf2"><button class="edpask" data-act="ai" aria-label="Ask Clueso AI to change this video">${icon("sparkle")}<span class="edpaskL">Ask Clueso AI for a change</span><span class="edpaskS">Ask Clueso AI</span></button><button class="btn pink" data-act="sharefrom" data-id="${p.id}">${icon("link")}Share</button></footer>
+  </div>${S.ai ? aiPanel() : ""}`;
+}
+// Keep the phone editor's scroll position across its re-renders
+document.addEventListener("scroll", ev => { if (ev.target.classList && ev.target.classList.contains("edpbody") && S.ed) S.ed.pScroll = ev.target.scrollTop; }, true);
+
 function vEditor(pid) {
   const p = PROJECTS.find(x => x.id === pid) || PROJECTS[0];
   if (!p) return shell("projects", `<div class="page"><div class="drop">${icon("folder")}<b>This project doesn't exist</b><a class="btn" href="#/projects">All projects</a></div></div>`);
   const e = edState(p.id), sc = e.scenes[e.scene], T = edTotal(e);
+  if (isPhone()) return edPhone(p, e, sc, T);
   const art = e.view === "guide";
   const tier = edTier(); edLastTier = tier; edAiApply();
   // the tab that was opened last is in front when left and right share a column
